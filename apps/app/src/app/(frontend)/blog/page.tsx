@@ -33,7 +33,7 @@ export default async function BlogPage() {
         <Header
           badge="Blog"
           title="All Articles"
-          subtitle="Insights, updates, and tutorials from our team about modern web development and design."
+          subtitle="Real estate insights, market updates, and helpful guides for buyers, sellers, and investors in Orange County."
         />
         
         {posts.length > 0 ? (
