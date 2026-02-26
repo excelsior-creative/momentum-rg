@@ -9,7 +9,7 @@
  */
 
 import "dotenv/config";
-import payload from "payload";
+import { getPayload } from "payload";
 import config from "../src/payload.config";
 
 // ─── Type Maps ────────────────────────────────────────────────────────────────
@@ -65,7 +65,7 @@ async function fetchPropertiesPage(page: number): Promise<any[]> {
 
 async function main() {
   console.log("🚀 Initializing Payload...");
-  await payload.init({ config, local: true });
+  const payload = await getPayload({ config });
 
   // Load taxonomy maps
   console.log("📋 Loading taxonomy terms...");
