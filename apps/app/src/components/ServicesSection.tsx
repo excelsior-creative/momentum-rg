@@ -46,7 +46,7 @@ export const ServicesSection = () => {
           <span className="text-sm font-semibold uppercase tracking-widest text-gold">
             What We Do
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-brand">
+          <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
             Full-Service Real Estate
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
@@ -71,7 +71,7 @@ export const ServicesSection = () => {
               <span className="text-xs font-semibold uppercase tracking-widest text-gold mb-1">
                 {service.tagline}
               </span>
-              <h3 className="text-xl font-bold text-brand mb-3">{service.title}</h3>
+              <h3 className="font-heading text-xl font-bold text-foreground mb-3">{service.title}</h3>
               <p className="text-muted-foreground text-sm leading-relaxed flex-1">
                 {service.description}
               </p>

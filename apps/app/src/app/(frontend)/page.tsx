@@ -3,6 +3,9 @@ import { Hero } from "@/components/Hero";
 import { ServicesSection } from "@/components/ServicesSection";
 import { AboutSection } from "@/components/AboutSection";
 import { ListingsSection } from "@/components/ListingsSection";
+import { ComplexTransactionsSection } from "@/components/ComplexTransactionsSection";
+import { TestimonialsSection } from "@/components/TestimonialsSection";
+import { BlogTeaserSection } from "@/components/BlogTeaserSection";
 import nextDynamic from "next/dynamic";
 
 const CTASection = nextDynamic(
@@ -18,6 +21,9 @@ export default function Home() {
       <ServicesSection />
       <AboutSection />
       <ListingsSection />
+      <ComplexTransactionsSection />
+      <TestimonialsSection />
+      <BlogTeaserSection />
       <CTASection />
     </div>
   );

@@ -47,9 +47,9 @@ export const Hero = () => {
             </span>
           </div>
 
-          <h1 className="hero-animate-delay-1 text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
+          <h1 className="hero-animate-delay-1 font-heading text-4xl md:text-6xl lg:text-7xl font-bold text-white leading-tight mb-6">
             We do Real Estate{" "}
-            <span className="text-gold">Better</span>
+            <span className="text-white drop-shadow-sm underline decoration-white/40 decoration-4 underline-offset-4">Better</span>
           </h1>
 
           <p className="hero-animate-delay-2 text-lg md:text-xl text-white/70 max-w-xl mb-10 leading-relaxed">
@@ -63,7 +63,7 @@ export const Hero = () => {
             <Button
               asChild
               size="lg"
-              className="bg-gold hover:bg-gold-light text-brand font-semibold px-8 h-14 text-base transition-colors border-none shadow-lg"
+              className="bg-white hover:bg-white/90 text-brand font-heading font-semibold px-8 h-14 text-base transition-colors border-none shadow-xl"
             >
               <Link href="/contact">
                 Get Started
@@ -74,7 +74,7 @@ export const Hero = () => {
               asChild
               variant="outline"
               size="lg"
-              className="border-white/30 text-white hover:bg-white/10 hover:text-white px-8 h-14 text-base transition-colors"
+              className="border-white/50 text-white hover:bg-white/15 hover:text-white px-8 h-14 text-base font-heading transition-colors"
             >
               <Link href="/listings">View Listings</Link>
             </Button>

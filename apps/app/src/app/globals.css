@@ -1,7 +1,9 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: var(--font-geist-sans);
+  /* Brand fonts */
+  --font-sans: var(--font-rubik), ui-sans-serif, system-ui, sans-serif;
+  --font-heading: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
 
   --color-background: hsl(var(--background));
@@ -33,12 +35,14 @@
   --color-ring: hsl(var(--ring));
 
   /* Momentum Realty Group brand colors */
-  --color-brand: #112240;
-  --color-brand-light: #1d3a6e;
-  --color-brand-dark: #0a1628;
+  --color-brand: #E8862C;       /* Warm orange — primary brand */
+  --color-brand-light: #FB9634; /* Brighter orange for hover states */
+  --color-brand-dark: #C26E18;  /* Deep orange for pressed states */
   --color-brand-foreground: #ffffff;
   --color-gold: #c8a951;
   --color-gold-light: #d4bb72;
+  --color-charcoal: #2D2D2D;    /* Rich dark text + footer bg */
+  --color-warm-gray: #F7F4F0;   /* Warm off-white alternating sections */
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -48,24 +52,24 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 215 28% 10%;
+    --foreground: 20 10% 15%;     /* Warm near-black text */
     --card: 0 0% 100%;
-    --card-foreground: 215 28% 10%;
+    --card-foreground: 20 10% 15%;
     --popover: 0 0% 100%;
-    --popover-foreground: 215 28% 10%;
-    --primary: 215 65% 16%;
+    --popover-foreground: 20 10% 15%;
+    --primary: 28 80% 55%;         /* Warm orange hue */
     --primary-foreground: 0 0% 98%;
-    --secondary: 215 20% 94%;
-    --secondary-foreground: 215 28% 10%;
-    --muted: 215 20% 94%;
-    --muted-foreground: 215 16% 46%;
-    --accent: 215 20% 94%;
-    --accent-foreground: 215 28% 10%;
+    --secondary: 30 15% 94%;       /* Warm off-white */
+    --secondary-foreground: 20 10% 15%;
+    --muted: 30 15% 94%;
+    --muted-foreground: 20 8% 46%;
+    --accent: 30 15% 94%;
+    --accent-foreground: 20 10% 15%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 20% 88%;
-    --input: 215 20% 88%;
-    --ring: 215 65% 16%;
+    --border: 30 12% 88%;           /* Warm gray border */
+    --input: 30 12% 88%;
+    --ring: 28 80% 55%;
     --radius: 0.5rem;
   }
   .dark {
