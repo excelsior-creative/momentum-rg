@@ -12,6 +12,7 @@ import { fileURLToPath } from "url";
 import { Categories } from "@/collections/Categories";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";
+import { Properties } from "@/collections/Properties";
 import { Tags } from "@/collections/Tags";
 import { Users } from "@/collections/Users";
 import { ContentGenerationSettings } from "@/globals/ContentGenerationSettings";
@@ -37,7 +38,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Posts, Media, Categories, Tags],
+  collections: [Users, Posts, Media, Categories, Tags, Properties],
   globals: [SiteSettings, ContentGenerationSettings],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",

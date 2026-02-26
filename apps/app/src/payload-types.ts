@@ -72,6 +72,7 @@ export interface Config {
     media: Media;
     categories: Category;
     tags: Tag;
+    properties: Property;
     search: Search;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -85,6 +86,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     tags: TagsSelect<false> | TagsSelect<true>;
+    properties: PropertiesSelect<false> | PropertiesSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -270,6 +272,107 @@ export interface Tag {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties".
+ */
+export interface Property {
+  id: number;
+  title: string;
+  /**
+   * URL-friendly identifier (auto-populated from WP slug on import)
+   */
+  slug: string;
+  description?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  excerpt?: string | null;
+  status:
+    | 'for-sale'
+    | 'sold'
+    | 'in-escrow'
+    | 'for-lease'
+    | 'leased'
+    | 'pending'
+    | 'on-hold'
+    | 'cancelled'
+    | 'coming-soon';
+  propertyType?:
+    | (
+        | 'single-family-home'
+        | 'condo'
+        | 'townhouse'
+        | 'duplex'
+        | 'fourplex'
+        | 'multi-unit'
+        | 'apartment'
+        | 'land'
+        | 'co-op'
+      )
+    | null;
+  /**
+   * Show this property prominently on the site
+   */
+  featured?: boolean | null;
+  price?: number | null;
+  priceOld?: number | null;
+  bedrooms?: number | null;
+  bathrooms?: number | null;
+  sqft?: number | null;
+  garage?: number | null;
+  lotSize?: string | null;
+  yearBuilt?: number | null;
+  propertyId?: string | null;
+  address?: string | null;
+  city?: string | null;
+  state?: string | null;
+  zipCode?: string | null;
+  county?: string | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  featuredImage?: (number | null) | Media;
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  features?:
+    | {
+        feature: string;
+        id?: string | null;
+      }[]
+    | null;
+  dateAdded?: string | null;
+  /**
+   * Original WP post ID — do not edit
+   */
+  wpId?: number | null;
+  /**
+   * Cached for future re-import. Not used in frontend.
+   */
+  wpImageUrls?:
+    | {
+        url?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -332,6 +435,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'tags';
         value: number | Tag;
+      } | null)
+    | ({
+        relationTo: 'properties';
+        value: number | Property;
       } | null)
     | ({
         relationTo: 'search';
@@ -500,6 +607,59 @@ export interface CategoriesSelect<T extends boolean = true> {
 export interface TagsSelect<T extends boolean = true> {
   name?: T;
   slug?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "properties_select".
+ */
+export interface PropertiesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  description?: T;
+  excerpt?: T;
+  status?: T;
+  propertyType?: T;
+  featured?: T;
+  price?: T;
+  priceOld?: T;
+  bedrooms?: T;
+  bathrooms?: T;
+  sqft?: T;
+  garage?: T;
+  lotSize?: T;
+  yearBuilt?: T;
+  propertyId?: T;
+  address?: T;
+  city?: T;
+  state?: T;
+  zipCode?: T;
+  county?: T;
+  latitude?: T;
+  longitude?: T;
+  featuredImage?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  features?:
+    | T
+    | {
+        feature?: T;
+        id?: T;
+      };
+  dateAdded?: T;
+  wpId?: T;
+  wpImageUrls?:
+    | T
+    | {
+        url?: T;
+        id?: T;
+      };
   updatedAt?: T;
   createdAt?: T;
 }
