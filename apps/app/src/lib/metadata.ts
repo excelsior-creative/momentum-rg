@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 
 export const SITE_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
-export const SITE_NAME = "Template Site";
-export const SITE_TAGLINE = "Built with Next.js & Payload CMS";
+export const SITE_NAME = "Momentum Realty Group";
+export const SITE_TAGLINE = "Putting Purpose Behind Every Property";
 export const DEFAULT_DESCRIPTION =
-  "A high-performance project template with integrated SEO and AI features.";
+  "Momentum Realty Group — Orange County real estate experts. Helping buyers, sellers, and investors across Orange County, LA County, and Riverside County since 2009.";
 
 export const DEFAULT_OG_IMAGE = "/og-image.jpg";
 
@@ -19,11 +19,16 @@ export const defaultMetadata: Metadata = {
   },
   description: DEFAULT_DESCRIPTION,
   keywords: [
-    "Next.js",
-    "Payload CMS",
-    "React",
-    "Tailwind CSS",
-    "SEO optimized",
+    "real estate",
+    "Orange County real estate",
+    "Newport Beach homes",
+    "homes for sale Orange County",
+    "real estate broker",
+    "Karl Parize",
+    "Momentum Realty Group",
+    "property listings",
+    "buy home Orange County",
+    "sell home Orange County",
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
@@ -45,7 +50,7 @@ export const defaultMetadata: Metadata = {
         url: DEFAULT_OG_IMAGE,
         width: 1200,
         height: 630,
-        alt: `${SITE_NAME} - Project Template`,
+        alt: `${SITE_NAME} - ${SITE_TAGLINE}`,
       },
     ],
   },

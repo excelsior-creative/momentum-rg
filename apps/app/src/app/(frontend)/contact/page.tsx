@@ -33,7 +33,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">hello@example.com</p>
+                    <p className="text-muted-foreground">karl@momentumrg.com</p>
                   </div>
                 </div>
 
@@ -43,7 +43,7 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground">+1 (555) 000-0000</p>
+                    <p className="text-muted-foreground">(714) 336-3375</p>
                   </div>
                 </div>
 
@@ -54,8 +54,8 @@ export default function ContactPage() {
                   <div>
                     <p className="font-medium">Office</p>
                     <p className="text-muted-foreground">
-                      123 Innovation Drive<br />
-                      Silicon Valley, CA 94025
+                      1451 Quail Street, Suite 110B<br />
+                      Newport Beach, CA 92660
                     </p>
                   </div>
                 </div>
