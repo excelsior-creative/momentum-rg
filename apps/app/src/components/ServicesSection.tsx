@@ -1,73 +1,92 @@
-import React from 'react'
-import Header from './Header'
-import { Container } from './Container'
-import { Card, CardContent, CardHeader, CardTitle } from './ui/card'
-import { Code2, Layout, Zap, Shield, Smartphone, Globe } from 'lucide-react'
+import React from "react";
+import Link from "next/link";
+import { Container } from "./Container";
+import { ArrowRight, Home, Banknote, Building2, TrendingUp } from "lucide-react";
 
 const services = [
   {
-    title: 'Custom Development',
-    description: 'Bespoke web applications built with Next.js and Payload CMS tailored to your needs.',
-    icon: Code2,
+    icon: Home,
+    title: "Real Estate",
+    tagline: "Problem Solved",
+    description:
+      "With over 25 years of experience, we offer creative solutions that other firms cannot. Contact us today to learn how we can save you time and money on your next real estate transaction.",
+    href: "/real-estate-solutions",
   },
   {
-    title: 'UI/UX Design',
-    description: 'Beautiful, intuitive interfaces designed with modern user experience principles.',
-    icon: Layout,
+    icon: Banknote,
+    title: "Mortgages",
+    tagline: "Easier Than Ever",
+    description:
+      "We have a variety of mortgage instruments to help you get what you want. Let us help you understand your current mortgage, refinance, or how to best leverage home equity.",
+    href: "/contact",
   },
   {
-    title: 'Performance Optimization',
-    description: 'Lightning-fast load times and optimized Core Web Vitals for better SEO and conversion.',
-    icon: Zap,
+    icon: Building2,
+    title: "Property Management",
+    tagline: "Simple Approach",
+    description:
+      "We provide multi-unit management services with the highest standards of excellence. Make your next real estate transaction a success by working with our team.",
+    href: "/property-management",
   },
   {
-    title: 'Enterprise Security',
-    description: 'Robust access control and secure data handling patterns built into every project.',
-    icon: Shield,
+    icon: TrendingUp,
+    title: "Investments",
+    tagline: "Grow With Us",
+    description:
+      "Keeping our finger on the pulse, our network of analysts helps you understand the market. We have a long history of clients who have found success with investment properties.",
+    href: "/contact",
   },
-  {
-    title: 'Responsive Design',
-    description: 'Seamless experiences across all devices, from mobile phones to large desktops.',
-    icon: Smartphone,
-  },
-  {
-    title: 'Global Delivery',
-    description: 'Edge-native deployments using Cloudflare for low latency and high availability worldwide.',
-    icon: Globe,
-  },
-]
+];
 
 export const ServicesSection = () => {
   return (
-    <section className="py-20 md:py-24 bg-muted/30">
+    <section className="py-20 md:py-28">
       <Container>
-        <Header
-          badge="Our Services"
-          title="What We Offer"
-          subtitle="Comprehensive solutions for modern web development, leveraging the best of the Next.js and Payload ecosystem."
-        />
+        <div className="text-center mb-14">
+          <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            What We Do
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-brand">
+            Full-Service Real Estate
+          </h2>
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+            From buying your first home to managing your investment portfolio,
+            Momentum Realty Group handles every aspect of your real estate journey.
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-12">
-          {services.map((service, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-all duration-300 border-border/50 bg-card/50 backdrop-blur-sm">
-              <CardHeader>
-                <div className="w-12 h-12 rounded-lg bg-brand/10 flex items-center justify-center mb-4 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
-                  <service.icon className="w-6 h-6 text-brand group-hover:text-white" />
-                </div>
-                <CardTitle className="text-xl group-hover:text-brand transition-colors">
-                  {service.title}
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground leading-relaxed">
-                  {service.description}
-                </p>
-              </CardContent>
-            </Card>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service) => (
+            <div
+              key={service.title}
+              className="group relative flex flex-col p-8 bg-white border border-border rounded-xl hover:border-gold/40 hover:shadow-xl transition-all duration-300"
+            >
+              {/* Gold accent top border on hover */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-t-xl" />
+
+              <div className="w-12 h-12 rounded-lg bg-brand/5 flex items-center justify-center mb-5 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
+                <service.icon className="w-6 h-6 text-brand group-hover:text-white transition-colors" />
+              </div>
+
+              <span className="text-xs font-semibold uppercase tracking-widest text-gold mb-1">
+                {service.tagline}
+              </span>
+              <h3 className="text-xl font-bold text-brand mb-3">{service.title}</h3>
+              <p className="text-muted-foreground text-sm leading-relaxed flex-1">
+                {service.description}
+              </p>
+
+              <Link
+                href={service.href}
+                className="mt-6 inline-flex items-center text-sm font-semibold text-brand hover:text-gold transition-colors"
+              >
+                Contact Us
+                <ArrowRight className="ml-1.5 h-4 w-4" />
+              </Link>
+            </div>
           ))}
         </div>
       </Container>
     </section>
-  )
-}
-
+  );
+};

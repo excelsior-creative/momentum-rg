@@ -32,10 +32,13 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  --color-brand: #1e40af;
-  --color-brand-light: #3b82f6;
-  --color-brand-dark: #1e3a8a;
+  /* Momentum Realty Group brand colors */
+  --color-brand: #112240;
+  --color-brand-light: #1d3a6e;
+  --color-brand-dark: #0a1628;
   --color-brand-foreground: #ffffff;
+  --color-gold: #c8a951;
+  --color-gold-light: #d4bb72;
 
   --radius-lg: var(--radius);
   --radius-md: calc(var(--radius) - 2px);
@@ -45,53 +48,62 @@
 @layer base {
   :root {
     --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --foreground: 215 28% 10%;
     --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
+    --card-foreground: 215 28% 10%;
     --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 240 5.9% 10%;
+    --popover-foreground: 215 28% 10%;
+    --primary: 215 65% 16%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
+    --secondary: 215 20% 94%;
+    --secondary-foreground: 215 28% 10%;
+    --muted: 215 20% 94%;
+    --muted-foreground: 215 16% 46%;
+    --accent: 215 20% 94%;
+    --accent-foreground: 215 28% 10%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --border: 215 20% 88%;
+    --input: 215 20% 88%;
+    --ring: 215 65% 16%;
     --radius: 0.5rem;
   }
   .dark {
-    --background: 240 10% 3.9%;
+    --background: 215 65% 8%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 215 50% 12%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 215 50% 12%;
     --popover-foreground: 0 0% 98%;
     --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
-    --secondary: 240 3.7% 15.9%;
+    --primary-foreground: 215 65% 16%;
+    --secondary: 215 30% 18%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
+    --muted: 215 30% 18%;
+    --muted-foreground: 215 16% 65%;
+    --accent: 215 30% 18%;
     --accent-foreground: 0 0% 98%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 240 4.9% 83.9%;
+    --border: 215 30% 18%;
+    --input: 215 30% 18%;
+    --ring: 215 16% 65%;
   }
 }
 
 @layer utilities {
   .bg-dot-pattern {
     background-image: radial-gradient(circle, var(--color-border) 1px, transparent 1px);
-    background-size: 20px 20px;
+    background-size: 24px 24px;
+  }
+  .text-gold {
+    color: var(--color-gold);
+  }
+  .bg-gold {
+    background-color: var(--color-gold);
+  }
+  .border-gold {
+    border-color: var(--color-gold);
   }
 }
 
