@@ -1,7 +1,8 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Bed, Bath, Maximize, MapPin } from "lucide-react";
-import type { Property } from "@/payload-types";
+import type { Property, Media } from "@/payload-types";
 
 function formatPrice(price: number) {
   return new Intl.NumberFormat("en-US", {
@@ -38,21 +39,53 @@ type PropertyCardProps = {
   property: Property;
 };
 
+/** Resolve the best available image URL for a property */
+function getImageUrl(property: Property): string | null {
+  // 1. Payload media (uploaded/migrated)
+  if (property.featuredImage && typeof property.featuredImage === "object") {
+    const media = property.featuredImage as Media;
+    if (media.url) return media.url;
+  }
+
+  // 2. Fallback: first wpImageUrl (still on WP CDN)
+  if (property.wpImageUrls && property.wpImageUrls.length > 0) {
+    const first = property.wpImageUrls[0];
+    if (first?.url) return first.url;
+  }
+
+  return null;
+}
+
 export const PropertyCard = ({ property }: PropertyCardProps) => {
   const statusInfo = STATUS_LABELS[property.status || ""] || {
     label: property.status || "",
     className: "bg-gray-600 text-white",
   };
 
+  const imageUrl = getImageUrl(property);
+
   return (
     <Link
       href={`/listings/${property.slug}`}
       className="group bg-white rounded-2xl border border-border overflow-hidden hover:border-gold/40 hover:shadow-xl transition-all duration-300 flex flex-col"
     >
-      {/* Image / Placeholder */}
-      <div className="relative h-52 bg-brand/5 flex items-center justify-center overflow-hidden flex-shrink-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-brand/20" />
-        <MapPin className="h-10 w-10 text-brand/20" />
+      {/* Image */}
+      <div className="relative h-52 bg-brand/5 overflow-hidden flex-shrink-0">
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={property.title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            unoptimized={imageUrl.includes("momentumrg.com")}
+          />
+        ) : (
+          <>
+            <div className="absolute inset-0 bg-gradient-to-br from-brand/10 to-brand/20" />
+            <MapPin className="absolute inset-0 m-auto h-10 w-10 text-brand/20" />
+          </>
+        )}
 
         {/* Status badge */}
         <span
