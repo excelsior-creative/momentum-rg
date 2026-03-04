@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
@@ -42,12 +42,23 @@ export const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="w-full">
-      {/* Contact bar */}
-      <div className="bg-charcoal text-white text-sm py-2">
-        <div className="max-w-7xl mx-auto px-4 md:px-10 flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-0">
+    <header className={cn("w-full sticky top-0 z-50 transition-all duration-300", scrolled && "shadow-lg")}>
+      {/* Contact bar — hides when scrolled */}
+      <m.div
+        animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.25 }}
+        className="overflow-hidden bg-charcoal text-white text-sm"
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-10 flex flex-col sm:flex-row justify-between items-center py-2 gap-1 sm:gap-0">
           <div className="flex items-center gap-6 flex-wrap justify-center">
             <a
               href="tel:7143363375"
@@ -70,12 +81,24 @@ export const Navbar = () => {
             <span>CBRE #01364278</span>
           </div>
         </div>
-      </div>
+      </m.div>
 
       {/* Main nav */}
-      <nav className="bg-white border-b border-border shadow-sm">
+      <nav
+        className={cn(
+          "transition-all duration-300",
+          scrolled
+            ? "bg-white/95 backdrop-blur-md border-b border-border/60"
+            : "bg-white border-b border-border"
+        )}
+      >
         <div className="max-w-7xl mx-auto px-4 md:px-10">
-          <div className="relative flex justify-between items-center py-4">
+          <div
+            className={cn(
+              "relative flex justify-between items-center transition-all duration-300",
+              scrolled ? "py-2.5" : "py-4"
+            )}
+          >
             {/* Logo */}
             <Logo variant="orange" />
 
@@ -141,7 +164,17 @@ export const Navbar = () => {
             </div>
 
             {/* CTA */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex items-center gap-3">
+              <a
+                href="tel:7143363375"
+                className={cn(
+                  "text-sm font-medium text-foreground/60 hover:text-brand transition-colors flex items-center gap-1.5",
+                  !scrolled && "hidden"
+                )}
+              >
+                <Phone className="h-3.5 w-3.5" />
+                (714) 336-3375
+              </a>
               <Button
                 asChild
                 className="bg-brand hover:bg-brand-light text-white font-semibold transition-colors border-none"
