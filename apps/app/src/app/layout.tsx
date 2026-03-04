@@ -2,7 +2,7 @@ import { defaultMetadata } from "@/lib/metadata";
 import { generateGlobalSchema } from "@/lib/structured-data";
 import { VercelToolbar } from "@vercel/toolbar/next";
 import type { Metadata } from "next";
-import { Montserrat, Rubik } from "next/font/google";
+import { Montserrat, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
 const montserrat = Montserrat({
@@ -12,10 +12,17 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-const rubik = Rubik({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "500"],
-  variable: "--font-rubik",
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-playfair",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  variable: "--font-inter",
   display: "swap",
 });
 
@@ -30,7 +37,7 @@ export default function RootLayout({
   const shouldShowToolbar = process.env.NODE_ENV !== "production";
 
   return (
-    <html lang="en" className={`${montserrat.variable} ${rubik.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
         {children}
         {shouldShowToolbar && <VercelToolbar />}

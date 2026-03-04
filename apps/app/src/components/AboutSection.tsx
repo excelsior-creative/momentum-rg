@@ -2,38 +2,70 @@ import React from "react";
 import Link from "next/link";
 import { Container } from "./Container";
 import { Button } from "./ui/button";
-import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
-const highlights = [
-  "Founded by Karl Parize in 2009",
-  "Over 25 years of real estate experience",
-  "Orange County, LA County & Riverside County",
-  "First-time buyers to seasoned investors",
-  "Full-service: Sales, Mortgages, Management",
-  "Personal touch on every transaction",
+const stats = [
+  { value: "25+", label: "Years Experience" },
+  { value: "2009", label: "Founded" },
+  { value: "3", label: "Counties Served" },
+  { value: "500+", label: "Transactions Closed" },
 ];
 
 export const AboutSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-muted/30">
+    <section className="py-20 md:py-28 bg-white overflow-hidden">
       <Container>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-14 items-center">
-          {/* Left: content */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+          {/* Left: real photo from WP CDN */}
+          <div className="relative">
+            {/* Background accent */}
+            <div className="absolute -top-6 -left-6 w-48 h-48 bg-warm-gray rounded-full -z-10 hidden lg:block" />
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gold/10 rounded-full -z-10 hidden lg:block" />
+
+            <div className="relative overflow-hidden rounded-2xl shadow-2xl">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+                alt="Momentum Realty Group — Orange County Real Estate"
+                className="w-full h-[480px] object-cover"
+              />
+              {/* Karl floating card */}
+              <div className="absolute bottom-4 left-4 right-4">
+                <div className="bg-charcoal/95 backdrop-blur-sm rounded-xl p-4 flex items-center gap-4 shadow-xl border border-gold/20">
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                    alt="Karl Parize"
+                    className="w-14 h-14 rounded-full object-cover border-2 border-gold/50 flex-shrink-0"
+                  />
+                  <div>
+                    <p className="font-heading text-white text-base font-medium">Karl Parize</p>
+                    <p className="text-gold text-xs font-display uppercase tracking-wider mt-0.5">
+                      Owner &amp; Principal Broker
+                    </p>
+                    <p className="text-white/50 text-xs mt-0.5">NMLS #313044 · CBRE #01364278</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right: content */}
           <div>
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
               About Momentum
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-brand leading-tight">
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-foreground leading-tight">
               Putting Purpose Behind{" "}
-              <span className="text-gold">Every Property</span>
+              <span className="text-brand italic">Every Property</span>
             </h2>
             <p className="text-muted-foreground mt-6 text-base leading-relaxed">
               Momentum Realty Group was founded by Karl in 2009 to help others
-              achieve the dream of ownership and peace of mind. With over a
-              decade&apos;s worth of experience in real estate, Karl designed
-              Momentum to break the mold of the traditional brokerage model and
-              put primary focus of all transactions on the &ldquo;why&rdquo; of
-              his clientele.
+              achieve the dream of ownership and peace of mind. With over 25 years
+              of experience in real estate, Karl designed Momentum to break the mold
+              of the traditional brokerage model and put primary focus on the
+              &ldquo;why&rdquo; of his clientele.
             </p>
             <p className="text-muted-foreground mt-4 text-base leading-relaxed">
               First-time home buyers and seasoned investors alike experience unique
@@ -41,46 +73,36 @@ export const AboutSection = () => {
               understanding that Karl brings to each and every case.
             </p>
 
-            <div className="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-3">
-              {highlights.map((item) => (
-                <div key={item} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4 w-4 text-gold mt-0.5 flex-shrink-0" />
-                  <span className="text-sm text-foreground/80">{item}</span>
+            {/* Stats row */}
+            <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
+              {stats.map((stat) => (
+                <div key={stat.label} className="text-center">
+                  <div className="text-3xl font-heading font-semibold text-brand">{stat.value}</div>
+                  <div className="text-xs text-muted-foreground mt-1 font-display uppercase tracking-wide">
+                    {stat.label}
+                  </div>
                 </div>
               ))}
             </div>
 
-            <div className="mt-10">
+            <div className="mt-10 flex gap-4">
               <Button
                 asChild
-                className="bg-brand hover:bg-brand-light text-white px-8 h-12 transition-colors"
+                className="bg-brand hover:bg-brand-light text-white px-8 h-12 transition-colors font-display uppercase tracking-wide"
               >
                 <Link href="/about">
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-            </div>
-          </div>
-
-          {/* Right: stat cards */}
-          <div className="grid grid-cols-2 gap-5">
-            {[
-              { value: "25+", label: "Years of Experience" },
-              { value: "2009", label: "Founded" },
-              { value: "3", label: "Counties Served" },
-              { value: "100%", label: "Client-First Focus" },
-            ].map((stat) => (
-              <div
-                key={stat.label}
-                className="bg-white rounded-2xl border border-border p-8 text-center hover:border-gold/40 hover:shadow-lg transition-all duration-300"
+              <Button
+                asChild
+                variant="outline"
+                className="border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white px-8 h-12 transition-colors font-display uppercase tracking-wide"
               >
-                <div className="text-4xl font-bold text-brand">{stat.value}</div>
-                <div className="text-sm text-muted-foreground mt-2 font-medium">
-                  {stat.label}
-                </div>
-              </div>
-            ))}
+                <Link href="/contact">Contact Karl</Link>
+              </Button>
+            </div>
           </div>
         </div>
       </Container>

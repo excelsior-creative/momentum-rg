@@ -29,10 +29,10 @@ export const CTASection = () => {
       <section className="py-20 md:py-28 bg-muted/30">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
               Real-world experience. Real-time insights.
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-brand">
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-brand">
               Know The Market
             </h2>
           </div>
@@ -46,7 +46,7 @@ export const CTASection = () => {
                 <div className="w-12 h-12 rounded-xl bg-brand/5 flex items-center justify-center mb-5">
                   <pillar.icon className="h-6 w-6 text-brand" />
                 </div>
-                <h3 className="text-xl font-bold text-brand mb-3">{pillar.title}</h3>
+                <h3 className="font-heading text-xl font-medium text-brand mb-3">{pillar.title}</h3>
                 <p className="text-muted-foreground leading-relaxed">{pillar.description}</p>
               </div>
             ))}
@@ -70,10 +70,10 @@ export const CTASection = () => {
 
         <Container>
           <div className="max-w-3xl mx-auto text-center relative z-10">
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
               Let&apos;s Connect
             </span>
-            <h2 className="text-3xl md:text-5xl font-bold text-white mt-4 mb-6">
+            <h2 className="font-heading text-3xl md:text-5xl font-medium text-white mt-4 mb-6">
               How to Make a Living With Your Real Estate Portfolio
             </h2>
             <p className="text-white/70 text-lg mb-10 leading-relaxed">

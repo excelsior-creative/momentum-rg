@@ -63,7 +63,7 @@ export const Footer = async () => {
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-sm font-bold uppercase tracking-widest text-gold mb-4">
+              <h3 className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-gold mb-4">
                 {category}
               </h3>
               <ul className="space-y-2.5">

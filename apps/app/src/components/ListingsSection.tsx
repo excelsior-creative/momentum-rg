@@ -41,10 +41,10 @@ export const ListingsSection = async () => {
       <Container>
         <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-12">
           <div>
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
               Our Listings
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mt-3 text-brand">
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-brand">
               Find Home Listings In Your Area
             </h2>
           </div>

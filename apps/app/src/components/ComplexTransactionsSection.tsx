@@ -1,84 +1,77 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "./Container";
-import { Shield, TrendingUp, Users, ArrowRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const points = [
   {
-    icon: Shield,
     title: "1031 Exchanges",
     body: "Defer capital gains and maximize your investment through strategic like-kind exchanges.",
   },
   {
-    icon: TrendingUp,
     title: "Investment Portfolios",
     body: "Scale your real estate holdings with expert guidance on multi-unit and commercial properties.",
   },
   {
-    icon: Users,
     title: "Probate & Estate Sales",
     body: "Compassionate, experienced handling of inherited and estate properties from start to close.",
+  },
+  {
+    title: "Multi-Unit Management",
+    body: "End-to-end property management for apartment buildings, duplexes, and commercial spaces.",
   },
 ];
 
 export const ComplexTransactionsSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-brand relative overflow-hidden">
-      {/* Subtle pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-10"
-        style={{
-          backgroundImage:
-            "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
-          backgroundSize: "28px 28px",
-        }}
-      />
+    <section className="bg-white overflow-hidden">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+        {/* Left: photo */}
+        <div className="relative min-h-[400px] lg:min-h-0">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
+            alt="Complex Real Estate Transactions"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/40" />
+        </div>
 
-      <Container>
-        <div className="relative z-10">
-          {/* Header */}
-          <div className="max-w-2xl mb-14">
-            <span className="inline-block text-white/80 text-sm font-semibold uppercase tracking-widest mb-3">
-              DON&apos;T Find Out The Hard Way
-            </span>
-            <h2 className="font-heading text-3xl md:text-5xl font-bold text-white leading-tight mb-5">
-              Complex Transactions
-            </h2>
-            <p className="text-white/80 text-lg leading-relaxed">
-              Momentum Realty Group was founded by Karl in 2009 to help others
-              achieve the dream of ownership and peace of mind. With over a
-              decade&apos;s worth of experience, Karl designed Momentum to break
-              the mold of the traditional brokerage model and put primary focus
-              on the &ldquo;why&rdquo; of each client.
-            </p>
-          </div>
+        {/* Right: content */}
+        <div className="py-16 md:py-20 px-8 md:px-16 bg-charcoal flex flex-col justify-center">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display mb-4">
+            Don&apos;t Find Out The Hard Way
+          </span>
+          <h2 className="font-heading text-3xl md:text-4xl font-medium text-white leading-tight mb-6">
+            Complex Transactions
+          </h2>
+          <p className="text-white/60 text-base leading-relaxed mb-8">
+            With over 25 years of experience, Momentum Realty Group specializes in
+            transactions that require creative problem-solving and deep market
+            knowledge. We offer solutions that other firms simply cannot.
+          </p>
 
-          {/* Feature points */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
-            {points.map(({ icon: Icon, title, body }) => (
-              <div
-                key={title}
-                className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-6 hover:bg-white/15 transition-colors"
-              >
-                <div className="w-10 h-10 rounded-lg bg-white/20 flex items-center justify-center mb-4">
-                  <Icon className="w-5 h-5 text-white" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-10">
+            {points.map(({ title, body }) => (
+              <div key={title} className="flex gap-3">
+                <div className="w-1 bg-gold flex-shrink-0 rounded-full mt-1" />
+                <div>
+                  <h3 className="font-heading font-medium text-white text-base mb-1">{title}</h3>
+                  <p className="text-white/50 text-sm leading-relaxed">{body}</p>
                 </div>
-                <h3 className="font-heading font-bold text-white text-lg mb-2">{title}</h3>
-                <p className="text-white/70 text-sm leading-relaxed">{body}</p>
               </div>
             ))}
           </div>
 
-          {/* CTA */}
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-white text-brand font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors text-base"
+            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white font-display font-semibold px-8 py-4 uppercase tracking-wide transition-colors text-sm self-start"
           >
             Discuss Your Situation
-            <ArrowRight className="w-5 h-5" />
+            <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
-      </Container>
+      </div>
     </section>
   );
 };
