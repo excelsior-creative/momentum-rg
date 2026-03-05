@@ -10,6 +10,8 @@ import { ComplexTransactionsSection } from "@/components/ComplexTransactionsSect
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { AreasSection } from "@/components/AreasSection";
 import { BlogTeaserSection } from "@/components/BlogTeaserSection";
+import { MapSection } from "@/components/MapSection";
+import { MortgageCalculator } from "@/components/MortgageCalculator";
 import nextDynamic from "next/dynamic";
 
 export const metadata: Metadata = generatePageMetadata({
@@ -50,6 +52,8 @@ export default function Home() {
       <ComplexTransactionsSection />
       <TestimonialsSection />
       <AreasSection />
+      <MapSection />
+      <MortgageCalculator />
       <BlogTeaserSection />
       <CTASection />
     </div>

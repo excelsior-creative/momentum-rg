@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
@@ -48,47 +49,19 @@ const propertyTypes = [
 export default function MultiUnitManagementPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="py-20 md:py-32 bg-charcoal relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-        <Container>
-          <div className="relative z-10 max-w-2xl">
-            <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-              Multi-Unit Management
-            </span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
-              Your Multifamily Portfolio,{" "}
-              <span className="text-gold">Professionally Managed</span>
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
-              Managing multiple units multiplies complexity. Momentum Realty
-              Group brings expertise, systems, and local market knowledge to
-              keep your portfolio performing — with minimal headaches for you.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-charcoal font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
-            >
-              Get a Free Portfolio Review
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        badge="Multi-Unit Management"
+        title="Your Multifamily Portfolio,"
+        titleAccent="Professionally Managed"
+        subtitle="Managing multiple units multiplies complexity. Momentum Realty Group brings expertise, systems, and local market knowledge to keep your portfolio performing — with minimal headaches for you."
+        backgroundImage="https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg"
+      />
 
       {/* Property Types */}
       <section className="py-20 md:py-28">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
               Property Types
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -100,10 +73,10 @@ export default function MultiUnitManagementPage() {
             {propertyTypes.map(({ label, desc }) => (
               <div
                 key={label}
-                className="flex items-start gap-4 p-6 bg-white border border-border rounded-xl hover:border-gold/30 hover:shadow-md transition-all"
+                className="flex items-start gap-4 p-6 bg-white border border-border rounded-xl hover:border-brand/30 hover:shadow-md transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-gold/5 flex items-center justify-center shrink-0 mt-0.5">
-                  <Building2 className="w-5 h-5 text-gold" />
+                <div className="w-10 h-10 rounded-lg bg-brand/5 flex items-center justify-center shrink-0 mt-0.5">
+                  <Building2 className="w-5 h-5 text-brand" />
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-foreground mb-1">{label}</h3>
@@ -116,7 +89,7 @@ export default function MultiUnitManagementPage() {
           {/* What's Included */}
           <div className="bg-warm-gray rounded-2xl p-10 md:p-14">
             <div className="text-center mb-10">
-              <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+              <span className="text-sm font-semibold uppercase tracking-widest text-brand">
                 Full Coverage
               </span>
               <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-foreground">
@@ -126,7 +99,7 @@ export default function MultiUnitManagementPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {included.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-gold mt-0.5 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-brand mt-0.5 shrink-0" />
                   <span className="text-sm text-foreground">{item}</span>
                 </div>
               ))}
@@ -175,7 +148,7 @@ export default function MultiUnitManagementPage() {
                   key={stat}
                   className="flex items-center gap-5 bg-white/5 border border-white/10 rounded-xl p-6"
                 >
-                  <div className="text-4xl font-heading font-bold text-gold shrink-0">
+                  <div className="text-4xl font-heading font-bold text-brand shrink-0">
                     {stat}
                   </div>
                   <p className="text-white/70 text-sm">{label}</p>
@@ -200,14 +173,14 @@ export default function MultiUnitManagementPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
+                className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
               >
                 Schedule a Consultation
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/property-management"
-                className="inline-flex items-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-xl hover:border-gold hover:text-gold transition-colors"
+                className="inline-flex items-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-xl hover:border-brand hover:text-brand transition-colors"
               >
                 View All Services
               </Link>

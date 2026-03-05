@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -102,24 +103,13 @@ const faqs = [
 export default function FAQsPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="py-20 md:py-28 bg-charcoal relative">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
-        <Container>
-          <div className="max-w-2xl">
-            <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-              FAQ
-            </span>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mt-4 mb-4">
-              Frequently Asked Questions
-            </h1>
-            <p className="text-xl text-white/80">
-              Real answers to the questions we hear most. Can&apos;t find what
-              you&apos;re looking for? Reach out directly.
-            </p>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        badge="FAQ"
+        title="Frequently Asked"
+        titleAccent="Questions"
+        subtitle="Real answers to the questions we hear most. Can't find what you're looking for? Reach out directly."
+        backgroundImage="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
+      />
 
       {/* FAQ Content */}
       <section className="py-20 md:py-28">
@@ -159,7 +149,7 @@ export default function FAQsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
+              className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
             >
               Talk to Karl
               <ArrowRight className="w-5 h-5" />

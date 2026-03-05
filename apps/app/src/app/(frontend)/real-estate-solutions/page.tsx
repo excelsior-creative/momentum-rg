@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import {
@@ -84,50 +85,13 @@ const stats = [
 export default function RealEstateSolutionsPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="py-20 md:py-32 bg-charcoal relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-        <Container>
-          <div className="relative z-10 max-w-3xl">
-            <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-              Real Estate Solutions
-            </span>
-            <h1 className="font-heading text-4xl md:text-6xl font-bold text-white mt-4 mb-6 leading-tight">
-              Creative Solutions.{" "}
-              <span className="text-gold">Proven Results.</span>
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
-              With over 25 years of experience navigating Southern California
-              real estate, Karl Parize offers solutions that other firms can't.
-              Whether you&apos;re buying, selling, or investing — we&apos;ll
-              find a way that works for you.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-charcoal font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
-              >
-                Talk to Karl
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/listings"
-                className="inline-flex items-center gap-2 border border-white/40 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-colors"
-              >
-                View Listings
-              </Link>
-            </div>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        badge="Real Estate Solutions"
+        title="Creative Solutions."
+        titleAccent="Proven Results."
+        subtitle="With over 25 years of experience navigating Southern California real estate, Karl Parize offers solutions that other firms can't. Whether you're buying, selling, or investing — we'll find a way that works for you."
+        backgroundImage="https://momentumrg.com/wp-content/uploads/2025/06/ec0f2dd1aefdaf6488f3e6b01142695d1df501df-scaled.png"
+      />
 
       {/* Stats */}
       <section className="py-12 border-b border-border">
@@ -135,7 +99,7 @@ export default function RealEstateSolutionsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map(({ value, label }) => (
               <div key={label}>
-                <p className="font-heading text-3xl md:text-4xl font-bold text-gold">{value}</p>
+                <p className="font-heading text-3xl md:text-4xl font-bold text-brand">{value}</p>
                 <p className="text-sm text-muted-foreground mt-1">{label}</p>
               </div>
             ))}
@@ -150,7 +114,7 @@ export default function RealEstateSolutionsPage() {
       <section className="py-20 md:py-28">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
               What We Offer
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -166,10 +130,10 @@ export default function RealEstateSolutionsPage() {
             {solutions.map(({ icon: Icon, title, description, href }) => (
               <div
                 key={title}
-                className="group flex flex-col p-8 bg-white border border-border rounded-xl hover:border-gold/30 hover:shadow-xl transition-all duration-300"
+                className="group flex flex-col p-8 bg-white border border-border rounded-xl hover:border-brand/30 hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-lg bg-gold/5 flex items-center justify-center mb-5 group-hover:bg-gold transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-gold group-hover:text-white transition-colors" />
+                <div className="w-12 h-12 rounded-lg bg-brand/5 flex items-center justify-center mb-5 group-hover:bg-brand transition-colors duration-300">
+                  <Icon className="w-6 h-6 text-brand group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-heading text-xl font-bold text-foreground mb-3">{title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed flex-1">
@@ -177,7 +141,7 @@ export default function RealEstateSolutionsPage() {
                 </p>
                 <Link
                   href={href}
-                  className="mt-6 inline-flex items-center text-sm font-semibold text-teal hover:text-teal-light transition-colors"
+                  className="mt-6 inline-flex items-center text-sm font-semibold text-brand hover:text-gold transition-colors"
                 >
                   Learn More
                   <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -197,7 +161,7 @@ export default function RealEstateSolutionsPage() {
               history, but the true desired outcome of your clients.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
@@ -227,7 +191,7 @@ export default function RealEstateSolutionsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
+              className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
             >
               Schedule a Free Consultation
               <ArrowRight className="w-5 h-5" />
