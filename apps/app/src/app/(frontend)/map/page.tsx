@@ -25,7 +25,7 @@ export const metadata: Metadata = generatePageMetadata({
 
 // Load map client-side only (Leaflet needs window)
 const PropertyMap = nextDynamic(
-  () => import("@/components/PropertyMap").then((m) => m.PropertyMap),
+  () => import("@/components/PropertyMap").then((m) => ({ default: m.PropertyMap })),
   { ssr: false, loading: () => <div className="w-full h-full bg-warm-gray animate-pulse rounded-xl" /> },
 );
 
