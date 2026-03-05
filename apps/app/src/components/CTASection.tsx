@@ -82,7 +82,7 @@ export const CTASection = () => {
                 asChild
                 className="bg-cta hover:bg-cta-light text-white px-8 h-12 font-display uppercase tracking-wide transition-colors"
               >
-                <Link href="/about">
+                <Link href="/team/karl">
                   Meet Karl
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -129,7 +129,7 @@ export const CTASection = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-gold hover:bg-gold-light text-charcoal font-semibold px-10 h-14 text-base transition-colors border-none shadow-lg"
+                className="bg-cta hover:bg-cta-light text-white font-semibold px-10 h-14 text-base transition-colors border-none shadow-lg"
               >
                 <Link href="/contact">
                   Schedule a Consultation

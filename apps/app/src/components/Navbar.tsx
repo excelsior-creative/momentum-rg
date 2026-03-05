@@ -108,7 +108,7 @@ export const Navbar = () => {
             )}
           >
             {/* Logo */}
-            <Logo variant="orange" />
+            <Logo variant="gold" />
 
             {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-1">

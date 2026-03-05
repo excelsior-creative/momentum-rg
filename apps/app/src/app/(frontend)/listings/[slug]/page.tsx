@@ -25,7 +25,7 @@ function formatPrice(price: number) {
 const STATUS_MAP: Record<string, { label: string; className: string }> = {
   "for-sale":    { label: "For Sale",     className: "bg-gold text-charcoal" },
   sold:          { label: "Sold",         className: "bg-gray-800 text-white" },
-  "in-escrow":   { label: "In Escrow",    className: "bg-orange-500 text-white" },
+  "in-escrow":   { label: "In Escrow",    className: "bg-cta text-white" },
   "for-lease":   { label: "For Lease",    className: "bg-blue-600 text-white" },
   leased:        { label: "Leased",       className: "bg-blue-800 text-white" },
   pending:       { label: "Pending",      className: "bg-yellow-500 text-charcoal" },
