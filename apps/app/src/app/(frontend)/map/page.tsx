@@ -3,7 +3,7 @@ import { getPayload } from "payload";
 import config from "@/payload.config";
 import { Container } from "@/components/Container";
 import { generatePageMetadata } from "@/lib/metadata";
-import nextDynamic from "next/dynamic";
+import { MapLoader } from "@/components/MapLoader";
 import Link from "next/link";
 import type { Metadata } from "next";
 import type { Property } from "@/payload-types";
@@ -22,12 +22,6 @@ export const metadata: Metadata = generatePageMetadata({
     "Momentum Realty Group listings map",
   ],
 });
-
-// Load map client-side only (Leaflet needs window)
-const PropertyMap = nextDynamic(
-  () => import("@/components/PropertyMap").then((m) => ({ default: m.PropertyMap })),
-  { ssr: false, loading: () => <div className="w-full h-full bg-warm-gray animate-pulse rounded-xl" /> },
-);
 
 const STATUS_FILTERS = [
   { label: "All", value: "all" },
@@ -159,7 +153,7 @@ export default async function MapPage({
 
       {/* Map — fills remaining space */}
       <div className="flex-1 relative">
-        <PropertyMap
+        <MapLoader
           properties={mapProperties}
           className="absolute inset-0"
         />
