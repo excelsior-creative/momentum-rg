@@ -119,7 +119,7 @@ export const Hero = () => {
             <Button
               asChild
               size="lg"
-              className="bg-brand hover:bg-brand-light text-white font-display font-semibold px-8 h-14 text-base uppercase tracking-wide transition-colors border-none shadow-xl"
+              className="bg-cta hover:bg-cta-light text-white font-display font-semibold px-8 h-14 text-base uppercase tracking-wide transition-colors border-none shadow-xl"
             >
               <Link href="/contact">
                 Get Started

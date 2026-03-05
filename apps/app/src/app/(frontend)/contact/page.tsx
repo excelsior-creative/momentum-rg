@@ -75,7 +75,7 @@ export default function ContactPage() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: contact info */}
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
               Momentum Realty Group
             </span>
             <h2 className="font-heading text-2xl md:text-3xl font-medium mt-3 mb-8 text-foreground">
@@ -91,14 +91,14 @@ export default function ContactPage() {
                   rel={item.label === "Office" ? "noopener noreferrer" : undefined}
                   className="flex items-start gap-5 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0 group-hover:bg-brand group-hover:border-brand transition-all">
-                    <item.icon className="w-5 h-5 text-brand group-hover:text-white transition-colors" />
+                  <div className="w-12 h-12 rounded-xl bg-teal/10 border border-teal/20 flex items-center justify-center shrink-0 group-hover:bg-teal group-hover:border-teal transition-all">
+                    <item.icon className="w-5 h-5 text-teal group-hover:text-white transition-colors" />
                   </div>
                   <div>
                     <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground font-display mb-1">
                       {item.label}
                     </p>
-                    <p className="text-foreground text-sm leading-relaxed whitespace-pre-line group-hover:text-brand transition-colors">
+                    <p className="text-foreground text-sm leading-relaxed whitespace-pre-line group-hover:text-teal transition-colors">
                       {item.value}
                     </p>
                   </div>
@@ -116,7 +116,7 @@ export default function ContactPage() {
               />
               <div>
                 <p className="font-heading font-medium text-foreground">Karl Parize</p>
-                <p className="text-xs font-display uppercase tracking-wider text-brand mt-0.5">
+                <p className="text-xs font-display uppercase tracking-wider text-gold mt-0.5">
                   Broker / Owner
                 </p>
                 <p className="text-xs text-muted-foreground mt-1">NMLS #313044 · CBRE #01364278</p>
@@ -126,7 +126,7 @@ export default function ContactPage() {
 
           {/* Right: form */}
           <div>
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
               Send a Message
             </span>
             <h2 className="font-heading text-2xl md:text-3xl font-medium mt-3 mb-8 text-foreground">

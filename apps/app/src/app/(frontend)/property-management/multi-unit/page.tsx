@@ -49,7 +49,7 @@ export default function MultiUnitManagementPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="py-20 md:py-32 bg-brand relative overflow-hidden">
+      <section className="py-20 md:py-32 bg-charcoal relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
         <div
           className="absolute inset-0 opacity-10"
@@ -75,7 +75,7 @@ export default function MultiUnitManagementPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-brand font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
+              className="inline-flex items-center gap-2 bg-white text-charcoal font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
             >
               Get a Free Portfolio Review
               <ArrowRight className="w-5 h-5" />
@@ -88,7 +88,7 @@ export default function MultiUnitManagementPage() {
       <section className="py-20 md:py-28">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
               Property Types
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -100,10 +100,10 @@ export default function MultiUnitManagementPage() {
             {propertyTypes.map(({ label, desc }) => (
               <div
                 key={label}
-                className="flex items-start gap-4 p-6 bg-white border border-border rounded-xl hover:border-brand/30 hover:shadow-md transition-all"
+                className="flex items-start gap-4 p-6 bg-white border border-border rounded-xl hover:border-gold/30 hover:shadow-md transition-all"
               >
-                <div className="w-10 h-10 rounded-lg bg-brand/5 flex items-center justify-center shrink-0 mt-0.5">
-                  <Building2 className="w-5 h-5 text-brand" />
+                <div className="w-10 h-10 rounded-lg bg-gold/5 flex items-center justify-center shrink-0 mt-0.5">
+                  <Building2 className="w-5 h-5 text-gold" />
                 </div>
                 <div>
                   <h3 className="font-heading font-bold text-foreground mb-1">{label}</h3>
@@ -116,7 +116,7 @@ export default function MultiUnitManagementPage() {
           {/* What's Included */}
           <div className="bg-warm-gray rounded-2xl p-10 md:p-14">
             <div className="text-center mb-10">
-              <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+              <span className="text-sm font-semibold uppercase tracking-widest text-gold">
                 Full Coverage
               </span>
               <h2 className="font-heading text-2xl md:text-3xl font-bold mt-3 text-foreground">
@@ -126,7 +126,7 @@ export default function MultiUnitManagementPage() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {included.map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-brand mt-0.5 shrink-0" />
+                  <CheckCircle2 className="w-5 h-5 text-gold mt-0.5 shrink-0" />
                   <span className="text-sm text-foreground">{item}</span>
                 </div>
               ))}
@@ -175,7 +175,7 @@ export default function MultiUnitManagementPage() {
                   key={stat}
                   className="flex items-center gap-5 bg-white/5 border border-white/10 rounded-xl p-6"
                 >
-                  <div className="text-4xl font-heading font-bold text-brand shrink-0">
+                  <div className="text-4xl font-heading font-bold text-gold shrink-0">
                     {stat}
                   </div>
                   <p className="text-white/70 text-sm">{label}</p>
@@ -200,14 +200,14 @@ export default function MultiUnitManagementPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
+                className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
               >
                 Schedule a Consultation
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/property-management"
-                className="inline-flex items-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-xl hover:border-brand hover:text-brand transition-colors"
+                className="inline-flex items-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-xl hover:border-gold hover:text-gold transition-colors"
               >
                 View All Services
               </Link>

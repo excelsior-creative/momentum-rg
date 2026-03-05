@@ -52,7 +52,7 @@ export const ContactForm = () => {
   if (state === "success") {
     return (
       <div className="text-center py-12 bg-zinc-900 border border-white/10 p-8 rounded-2xl">
-        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-brand flex items-center justify-center">
+        <div className="w-20 h-20 mx-auto mb-6 rounded-full bg-gold flex items-center justify-center">
           <svg className="w-10 h-10 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
           </svg>
@@ -61,7 +61,7 @@ export const ContactForm = () => {
         <p className="text-zinc-400 mb-8">We'll be in touch with you as soon as possible.</p>
         <button
           onClick={() => setState("idle")}
-          className="px-8 py-3 bg-brand text-white font-bold uppercase tracking-widest text-sm rounded-full hover:shadow-[0_0_30px_rgba(var(--brand),0.5)] transition-all hover:scale-105"
+          className="px-8 py-3 bg-cta text-white font-bold uppercase tracking-widest text-sm rounded-full hover:shadow-[0_0_30px_rgba(251,150,52,0.5)] transition-all hover:scale-105"
         >
           Send Another
         </button>
@@ -72,12 +72,12 @@ export const ContactForm = () => {
   return (
     <div className="bg-zinc-900 border border-white/10 p-8 rounded-2xl relative overflow-hidden">
       {/* Decorative glow */}
-      <div className="absolute -top-20 -right-20 w-40 h-40 bg-brand/20 blur-[100px] pointer-events-none" />
-      <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-brand/20 blur-[100px] pointer-events-none" />
+      <div className="absolute -top-20 -right-20 w-40 h-40 bg-gold/20 blur-[100px] pointer-events-none" />
+      <div className="absolute -bottom-20 -left-20 w-40 h-40 bg-gold/20 blur-[100px] pointer-events-none" />
 
       <form onSubmit={handleSubmit} className="space-y-5 relative z-10">
         <div>
-          <label className="block text-[10px] uppercase tracking-widest text-brand mb-2 font-mono flex items-center gap-2">
+          <label className="block text-[10px] uppercase tracking-widest text-gold mb-2 font-mono flex items-center gap-2">
             <User className="w-3 h-3" />
             Your Name
           </label>
@@ -88,12 +88,12 @@ export const ContactForm = () => {
             placeholder="John Doe"
             required
             disabled={state === "submitting"}
-            className="w-full bg-black/50 border border-white/10 p-4 text-white placeholder:text-zinc-600 focus:border-brand focus:bg-black/70 outline-none transition-all font-mono text-sm disabled:opacity-50 rounded-lg"
+            className="w-full bg-black/50 border border-white/10 p-4 text-white placeholder:text-zinc-600 focus:border-gold focus:bg-black/70 outline-none transition-all font-mono text-sm disabled:opacity-50 rounded-lg"
           />
         </div>
 
         <div>
-          <label className="block text-[10px] uppercase tracking-widest text-brand mb-2 font-mono flex items-center gap-2">
+          <label className="block text-[10px] uppercase tracking-widest text-gold mb-2 font-mono flex items-center gap-2">
             <Mail className="w-3 h-3" />
             Email Address
           </label>
@@ -104,12 +104,12 @@ export const ContactForm = () => {
             placeholder="you@example.com"
             required
             disabled={state === "submitting"}
-            className="w-full bg-black/50 border border-white/10 p-4 text-white placeholder:text-zinc-600 focus:border-brand focus:bg-black/70 outline-none transition-all font-mono text-sm disabled:opacity-50 rounded-lg"
+            className="w-full bg-black/50 border border-white/10 p-4 text-white placeholder:text-zinc-600 focus:border-gold focus:bg-black/70 outline-none transition-all font-mono text-sm disabled:opacity-50 rounded-lg"
           />
         </div>
 
         <div>
-          <label className="block text-[10px] uppercase tracking-widest text-brand mb-2 font-mono flex items-center gap-2">
+          <label className="block text-[10px] uppercase tracking-widest text-gold mb-2 font-mono flex items-center gap-2">
             <MessageSquare className="w-3 h-3" />
             What can we help you with?
           </label>
@@ -120,7 +120,7 @@ export const ContactForm = () => {
             rows={4}
             required
             disabled={state === "submitting"}
-            className="w-full bg-black/50 border border-white/10 p-4 text-white placeholder:text-zinc-600 focus:border-brand focus:bg-black/70 outline-none transition-all font-mono text-sm resize-none disabled:opacity-50 rounded-lg"
+            className="w-full bg-black/50 border border-white/10 p-4 text-white placeholder:text-zinc-600 focus:border-gold focus:bg-black/70 outline-none transition-all font-mono text-sm resize-none disabled:opacity-50 rounded-lg"
           />
         </div>
 
@@ -131,7 +131,7 @@ export const ContactForm = () => {
         <button
           type="submit"
           disabled={state === "submitting"}
-          className="w-full py-4 bg-brand text-white font-bold uppercase tracking-widest text-sm rounded-full hover:shadow-[0_0_30px_rgba(var(--brand),0.5)] transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
+          className="w-full py-4 bg-cta text-white font-bold uppercase tracking-widest text-sm rounded-full hover:shadow-[0_0_30px_rgba(251,150,52,0.5)] transition-all hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center justify-center gap-2"
         >
           {state === "submitting" ? (
             <>

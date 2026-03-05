@@ -59,7 +59,7 @@ export const AreasSection = () => {
     <section className="py-20 md:py-28 bg-warm-gray">
       <Container>
         <div className="text-center mb-14">
-          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
             Local Expertise
           </span>
           <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-foreground">
@@ -79,11 +79,11 @@ export const AreasSection = () => {
               className="group bg-white rounded-xl p-6 border border-border hover:border-gold/50 hover:shadow-lg transition-all duration-300"
             >
               <div className="flex items-start gap-3 mb-3">
-                <div className="w-10 h-10 rounded-lg bg-brand/10 flex items-center justify-center flex-shrink-0 group-hover:bg-brand/20 transition-colors">
-                  <MapPin className="h-5 w-5 text-brand" />
+                <div className="w-10 h-10 rounded-lg bg-gold/10 flex items-center justify-center flex-shrink-0 group-hover:bg-gold/20 transition-colors">
+                  <MapPin className="h-5 w-5 text-gold" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-lg font-medium text-foreground group-hover:text-brand transition-colors">
+                  <h3 className="font-heading text-lg font-medium text-foreground group-hover:text-gold transition-colors">
                     {area.city}
                   </h3>
                   <p className="text-xs text-muted-foreground font-display uppercase tracking-wide mt-0.5">
@@ -113,7 +113,7 @@ export const AreasSection = () => {
         <div className="text-center mt-12">
           <p className="text-sm text-muted-foreground">
             Don&apos;t see your area?{" "}
-            <Link href="/contact" className="text-brand hover:underline font-medium">
+            <Link href="/contact" className="text-teal hover:underline font-medium">
               Contact us — we cover all of Southern California.
             </Link>
           </p>

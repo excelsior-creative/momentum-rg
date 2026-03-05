@@ -103,7 +103,7 @@ export default function FAQsPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="py-20 md:py-28 bg-brand relative">
+      <section className="py-20 md:py-28 bg-charcoal relative">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
         <Container>
           <div className="max-w-2xl">
@@ -159,7 +159,7 @@ export default function FAQsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
+              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
             >
               Talk to Karl
               <ArrowRight className="w-5 h-5" />

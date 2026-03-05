@@ -11,7 +11,7 @@ export const TrustBar = () => {
   return (
     <div className="bg-gold">
       <div className="max-w-7xl mx-auto px-4 md:px-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-brand/20">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-charcoal/20">
           {stats.map((stat) => (
             <div
               key={stat.label}

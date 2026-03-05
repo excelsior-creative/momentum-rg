@@ -65,7 +65,7 @@ export const ComplexTransactionsSection = () => {
 
           <Link
             href="/contact"
-            className="inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white font-display font-semibold px-8 py-4 uppercase tracking-wide transition-colors text-sm self-start"
+            className="inline-flex items-center gap-2 bg-cta hover:bg-cta-light text-white font-display font-semibold px-8 py-4 uppercase tracking-wide transition-colors text-sm self-start"
           >
             Discuss Your Situation
             <ArrowRight className="w-4 h-4" />

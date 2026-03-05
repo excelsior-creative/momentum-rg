@@ -85,7 +85,7 @@ export default function RealEstateSolutionsPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="py-20 md:py-32 bg-brand relative overflow-hidden">
+      <section className="py-20 md:py-32 bg-charcoal relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
         <div
           className="absolute inset-0 opacity-10"
@@ -113,7 +113,7 @@ export default function RealEstateSolutionsPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-brand font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-charcoal font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
               >
                 Talk to Karl
                 <ArrowRight className="w-5 h-5" />
@@ -135,7 +135,7 @@ export default function RealEstateSolutionsPage() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
             {stats.map(({ value, label }) => (
               <div key={label}>
-                <p className="font-heading text-3xl md:text-4xl font-bold text-brand">{value}</p>
+                <p className="font-heading text-3xl md:text-4xl font-bold text-gold">{value}</p>
                 <p className="text-sm text-muted-foreground mt-1">{label}</p>
               </div>
             ))}
@@ -150,7 +150,7 @@ export default function RealEstateSolutionsPage() {
       <section className="py-20 md:py-28">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
               What We Offer
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -166,10 +166,10 @@ export default function RealEstateSolutionsPage() {
             {solutions.map(({ icon: Icon, title, description, href }) => (
               <div
                 key={title}
-                className="group flex flex-col p-8 bg-white border border-border rounded-xl hover:border-brand/30 hover:shadow-xl transition-all duration-300"
+                className="group flex flex-col p-8 bg-white border border-border rounded-xl hover:border-gold/30 hover:shadow-xl transition-all duration-300"
               >
-                <div className="w-12 h-12 rounded-lg bg-brand/5 flex items-center justify-center mb-5 group-hover:bg-brand transition-colors duration-300">
-                  <Icon className="w-6 h-6 text-brand group-hover:text-white transition-colors" />
+                <div className="w-12 h-12 rounded-lg bg-gold/5 flex items-center justify-center mb-5 group-hover:bg-gold transition-colors duration-300">
+                  <Icon className="w-6 h-6 text-gold group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-heading text-xl font-bold text-foreground mb-3">{title}</h3>
                 <p className="text-muted-foreground text-sm leading-relaxed flex-1">
@@ -177,7 +177,7 @@ export default function RealEstateSolutionsPage() {
                 </p>
                 <Link
                   href={href}
-                  className="mt-6 inline-flex items-center text-sm font-semibold text-brand hover:text-gold transition-colors"
+                  className="mt-6 inline-flex items-center text-sm font-semibold text-teal hover:text-teal-light transition-colors"
                 >
                   Learn More
                   <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -197,7 +197,7 @@ export default function RealEstateSolutionsPage() {
               history, but the true desired outcome of your clients.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand">
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
@@ -227,7 +227,7 @@ export default function RealEstateSolutionsPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
+              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
             >
               Schedule a Free Consultation
               <ArrowRight className="w-5 h-5" />

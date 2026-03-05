@@ -1,29 +1,53 @@
 import { Container } from '@/components/Container'
 import { generatePageMetadata } from '@/lib/metadata'
+import Link from 'next/link'
 
 export const revalidate = 3600
 
 export const metadata = generatePageMetadata({
-  title: 'About Karl Parize | Momentum Realty Group',
+  title: 'Meet Our Team | Momentum Realty Group',
   description:
-    'Meet Karl Parize, Broker/Owner of Momentum Realty Group. 25+ years of real estate expertise across Orange County, LA County, and Riverside County. NMLS #313044.',
+    'Meet the Momentum Realty Group team — Karl Parize, Broker/Owner, and Esmeralda Novikoff, Real Estate & Foreclosure Specialist. Serving Orange County, LA County, and Riverside County.',
   path: '/about',
   keywords: [
     'Karl Parize',
-    'real estate broker Orange County',
-    'Momentum Realty Group',
-    'Long Beach realtor',
-    'Orange County broker',
-    'NMLS 313044',
+    'Esmeralda Novikoff',
+    'Momentum Realty Group team',
+    'real estate team Orange County',
+    'foreclosure specialist',
   ],
 })
+
+const team = [
+  {
+    name: 'Karl Parize',
+    title: 'Broker / Owner',
+    photo: 'https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg',
+    dre: 'CBRE #01364278 · NMLS #313044',
+    phone: '(714) 336-3375',
+    email: 'karl@momentumrg.com',
+    href: '/team/karl',
+    bio: 'Karl Parize is the Broker and Owner of Momentum Realty Group, with 25+ years of expertise in real estate, mortgage, and financial planning across Orange County, LA County, and Riverside County. He founded Momentum in 2009 on one core belief: every client deserves a broker who acts as if the outcome is their own.',
+    tags: ['Residential Sales', 'Investment Properties', 'Property Management', 'Short Sales'],
+  },
+  {
+    name: 'Esmeralda Novikoff',
+    title: 'Real Estate & Foreclosure Specialist',
+    photo: '/esmeralda-novikoff.jpg',
+    dre: 'CA DRE #01409881',
+    phone: '(877) 886-2699',
+    email: 'esmenovi@yahoo.com',
+    href: '/team/esmeralda',
+    bio: 'Esmeralda Novikoff has been licensed since 2004 and is a certified Seniors Real Estate Specialist (SRES) and Short Sale & Foreclosure Resource (SFR). She brings deep experience in foreclosures, probate sales, loan modifications, and escrow — and she\'s fully bilingual in English and Spanish.',
+    tags: ['Foreclosure', 'Short Sales', 'Probate', 'Loan Modification', 'Hablamos Español'],
+  },
+]
 
 export default function AboutPage() {
   return (
     <div className="flex flex-col">
-      {/* Premium dark photo hero */}
+      {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
-        {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
@@ -32,125 +56,97 @@ export default function AboutPage() {
           className="absolute inset-0 w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
-        {/* Gold top accent */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
 
         <Container className="relative z-10">
           <div className="max-w-2xl">
             <span className="text-gold text-xs font-semibold uppercase tracking-[0.3em] font-display">
-              Our Story
+              Our Team
             </span>
             <h1 className="font-heading text-4xl md:text-6xl font-medium text-white mt-4 mb-6 leading-tight">
-              Putting Purpose Behind{' '}
-              <span className="text-gold italic">Every Property</span>
+              The People Behind{' '}
+              <span className="text-gold italic">Momentum</span>
             </h1>
             <p className="text-lg text-white/70 leading-relaxed max-w-xl">
-              Momentum Realty Group was founded by Karl in 2009 to help others achieve the dream
-              of ownership and peace of mind — breaking the mold of the traditional brokerage
-              model by putting the <em className="text-white/90">why</em> of every client first.
+              Two specialists. One shared mission: put the client first, find the right solution,
+              and get results that last. Get to know the team.
             </p>
           </div>
         </Container>
       </section>
 
-      {/* Karl Bio */}
+      {/* Team cards */}
       <section className="py-20 md:py-28">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
-            {/* Photo + credentials */}
-            <div className="text-center lg:text-left">
-              <div className="relative inline-block">
-                <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-gold/20 shadow-2xl mx-auto lg:mx-0">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
-                    alt="Karl Parize - Broker/Owner, Momentum Realty Group"
-                    className="w-full h-full object-cover"
-                  />
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
+            {team.map((member) => (
+              <div
+                key={member.name}
+                className="bg-white rounded-2xl border border-border shadow-sm overflow-hidden flex flex-col"
+              >
+                {/* Card header */}
+                <div className="flex items-start gap-6 p-8 border-b border-border">
+                  <div className="relative shrink-0">
+                    <div className="w-24 h-24 rounded-xl overflow-hidden border-2 border-gold/20 shadow-md">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={member.photo}
+                        alt={`${member.name} - ${member.title}, Momentum Realty Group`}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-gold border-2 border-white" />
+                  </div>
+                  <div>
+                    <p className="font-heading text-xl font-medium text-foreground">{member.name}</p>
+                    <p className="text-gold font-display font-semibold uppercase tracking-wider text-xs mt-0.5">
+                      {member.title}
+                    </p>
+                    <p className="text-muted-foreground text-xs mt-1">{member.dre}</p>
+                    <div className="flex flex-wrap gap-x-4 gap-y-1 mt-2">
+                      <a
+                        href={`tel:${member.phone.replace(/\D/g, '')}`}
+                        className="text-xs text-foreground/70 hover:text-teal transition-colors"
+                      >
+                        📞 {member.phone}
+                      </a>
+                      <a
+                        href={`mailto:${member.email}`}
+                        className="text-xs text-foreground/70 hover:text-teal transition-colors"
+                      >
+                        ✉ {member.email}
+                      </a>
+                    </div>
+                  </div>
                 </div>
-                {/* Gold accent bar */}
-                <div className="absolute -bottom-3 left-0 right-0 mx-auto lg:mx-0 w-20 h-1 bg-brand rounded-full" />
-              </div>
-              <div className="mt-8 space-y-1.5">
-                <p className="font-heading text-2xl font-medium text-foreground">Karl Parize</p>
-                <p className="text-brand font-display font-semibold uppercase tracking-wider text-sm">
-                  Broker / Owner
-                </p>
-                <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground justify-center lg:justify-start mt-1">
-                  <span>NMLS #313044</span>
-                  <span>·</span>
-                  <span>CBRE #01364278</span>
-                </div>
-                <div className="pt-3 space-y-2">
-                  <a
-                    href="tel:7143363375"
-                    className="flex items-center gap-2 text-sm text-foreground hover:text-brand transition-colors justify-center lg:justify-start"
-                  >
-                    <span className="text-brand">📞</span>
-                    (714) 336-3375
-                  </a>
-                  <a
-                    href="mailto:karl@momentumrg.com"
-                    className="flex items-center gap-2 text-sm text-foreground hover:text-brand transition-colors justify-center lg:justify-start"
-                  >
-                    <span className="text-brand">✉</span>
-                    karl@momentumrg.com
-                  </a>
-                </div>
-              </div>
-            </div>
 
-            {/* Bio */}
-            <div className="lg:col-span-2 space-y-5 text-muted-foreground leading-relaxed text-base">
-              <p>
-                Karl Parize is a Real Estate Broker and Owner of Momentum Realty Group — a true
-                expert in the consumer services industry, having spent several committed years in
-                financial planning, mortgage, and real estate. Being a real estate broker during
-                tough economic climates, he is described as the guy who finds a way to offer an
-                ideal solution that makes sense for the client.
-              </p>
-              <p>
-                He operates every transaction with the utmost integrity. Because of his large
-                circle of influence, it enables him to create positive results for most situations.
-              </p>
-              <p>
-                Integrity and working knowledge of finance, mortgage, and real estate add to the
-                power behind Momentum. Equally important is the attention to detail adhered to when
-                finding the RIGHT solutions for clients.
-              </p>
-              <p>
-                Karl&apos;s passion and enthusiasm for history provide extremely useful knowledge
-                about geographical and neighborhood pasts, presents, and futures that — when tied
-                to any transaction — prove priceless.
-              </p>
-              <p>
-                First-time home buyers and seasoned investors alike experience unique service and
-                results generated from the personal touch and understanding that Karl brings to
-                each and every case.
-              </p>
-              <blockquote className="border-l-4 border-gold/60 pl-6 py-2 italic font-heading text-foreground text-lg bg-warm-gray rounded-r-xl">
-                &ldquo;Clients looking to establish a relationship with an expert who will not only
-                have their best interest at heart, but act as if it&apos;s his own, need look no
-                further.&rdquo;
-              </blockquote>
-            </div>
-          </div>
-        </Container>
-      </section>
+                {/* Bio */}
+                <div className="px-8 py-6 flex-1">
+                  <p className="text-muted-foreground leading-relaxed text-sm">{member.bio}</p>
 
-      {/* Stats — dark */}
-      <section className="py-16 bg-charcoal">
-        <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            {[
-              { value: "2009", label: "Founded" },
-              { value: "25+", label: "Years Experience" },
-              { value: "500+", label: "Transactions" },
-              { value: "3", label: "Counties Served" },
-            ].map((s) => (
-              <div key={s.label}>
-                <p className="font-heading text-4xl md:text-5xl font-medium text-gold">{s.value}</p>
-                <p className="text-white/50 text-sm mt-2 font-display uppercase tracking-wide">{s.label}</p>
+                  {/* Tags */}
+                  <div className="flex flex-wrap gap-2 mt-4">
+                    {member.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="text-xs bg-warm-gray text-foreground/70 px-3 py-1 rounded-full border border-border"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTA */}
+                <div className="px-8 pb-8">
+                  <Link
+                    href={member.href}
+                    className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold/80 transition-colors group"
+                  >
+                    Learn More
+                    <span className="transition-transform group-hover:translate-x-1">→</span>
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
@@ -158,24 +154,29 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="py-20">
+      <section className="py-16 bg-charcoal">
         <Container>
           <div className="max-w-3xl mx-auto text-center">
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
-              Our Mission
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
+              Why Momentum
             </span>
-            <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-foreground">
-              Real Estate Built Around <span className="text-brand italic">People</span>
+            <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-white">
+              Real Estate Built Around <span className="text-gold italic">You</span>
             </h2>
-            <p className="text-muted-foreground mt-6 text-lg leading-relaxed">
-              At Momentum Realty Group, we believe that real estate starts with property — but
-              it doesn&apos;t end there. Every client deserves a broker who listens, a strategist
-              who thinks creatively, and a partner who stays until the job is done right.
+            <p className="text-white/60 mt-6 text-lg leading-relaxed">
+              Momentum Realty Group was founded in 2009 on a simple idea: real estate should
+              start with the client, not the commission. Whether you&apos;re buying your first
+              home, navigating a foreclosure, or growing an investment portfolio — we bring the
+              right expertise to your specific situation.
             </p>
-            <p className="text-muted-foreground mt-4 text-lg leading-relaxed">
-              That&apos;s the Momentum standard. It&apos;s why our clients return, and why they
-              refer their friends and family. We earn trust one transaction at a time.
-            </p>
+            <div className="mt-8">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-gold hover:bg-gold/90 text-charcoal font-semibold px-8 py-3 rounded-lg transition-colors"
+              >
+                Get in Touch
+              </Link>
+            </div>
           </div>
         </Container>
       </section>

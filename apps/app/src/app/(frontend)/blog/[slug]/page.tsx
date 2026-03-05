@@ -118,7 +118,7 @@ function renderNode(node: any, idx: number): React.ReactNode {
         <a
           key={idx}
           href={node.fields?.url || "#"}
-          className="text-brand underline hover:text-brand-light"
+          className="text-teal underline hover:text-teal-light"
           target={node.fields?.newTab ? "_blank" : undefined}
           rel={node.fields?.newTab ? "noopener noreferrer" : undefined}
         >
@@ -258,7 +258,7 @@ export default async function PostPage({
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="bg-brand hover:bg-brand-light text-white font-display font-semibold uppercase tracking-wide px-8 py-3 rounded-lg transition-colors"
+                className="bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-8 py-3 rounded-lg transition-colors"
               >
                 Contact Karl
               </Link>

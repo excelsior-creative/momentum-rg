@@ -23,12 +23,12 @@ function formatPrice(price: number) {
 }
 
 const STATUS_MAP: Record<string, { label: string; className: string }> = {
-  "for-sale":    { label: "For Sale",     className: "bg-gold text-brand" },
+  "for-sale":    { label: "For Sale",     className: "bg-gold text-charcoal" },
   sold:          { label: "Sold",         className: "bg-gray-800 text-white" },
   "in-escrow":   { label: "In Escrow",    className: "bg-orange-500 text-white" },
   "for-lease":   { label: "For Lease",    className: "bg-blue-600 text-white" },
   leased:        { label: "Leased",       className: "bg-blue-800 text-white" },
-  pending:       { label: "Pending",      className: "bg-yellow-500 text-brand" },
+  pending:       { label: "Pending",      className: "bg-yellow-500 text-charcoal" },
   "on-hold":     { label: "On Hold",      className: "bg-gray-500 text-white" },
   "coming-soon": { label: "Coming Soon",  className: "bg-green-600 text-white" },
   cancelled:     { label: "Cancelled",    className: "bg-red-700 text-white" },
@@ -153,7 +153,7 @@ export default async function PropertyDetailPage({
   return (
     <div>
       {/* Header bar */}
-      <div className="bg-brand py-10 relative">
+      <div className="bg-charcoal py-10 relative">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
         <Container>
           <Link
@@ -212,7 +212,7 @@ export default async function PropertyDetailPage({
             {images.length > 0 ? (
               <div>
                 {/* Primary image */}
-                <div className="rounded-2xl overflow-hidden bg-brand/5 aspect-[16/9] relative">
+                <div className="rounded-2xl overflow-hidden bg-gold/5 aspect-[16/9] relative">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={images[0]}
@@ -225,7 +225,7 @@ export default async function PropertyDetailPage({
                 {images.length > 1 && (
                   <div className="grid grid-cols-4 gap-2 mt-2">
                     {images.slice(1, 5).map((url, i) => (
-                      <div key={i} className="rounded-xl overflow-hidden aspect-[4/3] bg-brand/5">
+                      <div key={i} className="rounded-xl overflow-hidden aspect-[4/3] bg-gold/5">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={url}
@@ -239,7 +239,7 @@ export default async function PropertyDetailPage({
                 )}
               </div>
             ) : (
-              <div className="rounded-2xl overflow-hidden bg-brand/5 aspect-[16/9] flex flex-col items-center justify-center text-muted-foreground border border-border">
+              <div className="rounded-2xl overflow-hidden bg-gold/5 aspect-[16/9] flex flex-col items-center justify-center text-muted-foreground border border-border">
                 <MapPin className="w-12 h-12 mb-3 opacity-20" />
                 <p className="text-sm">Photos not available</p>
               </div>
@@ -253,7 +253,7 @@ export default async function PropertyDetailPage({
                     key={label}
                     className="bg-muted/40 rounded-xl p-4 flex flex-col items-center text-center gap-2 border border-border"
                   >
-                    <Icon className="w-5 h-5 text-brand" />
+                    <Icon className="w-5 h-5 text-gold" />
                     <span className="text-sm font-semibold">{label}</span>
                   </div>
                 ))}
@@ -304,7 +304,7 @@ export default async function PropertyDetailPage({
             <div className="sticky top-24 space-y-6">
               <div className="border border-border rounded-2xl p-6 bg-white shadow-sm">
                 <div className="flex items-center gap-4 mb-5">
-                  <div className="w-14 h-14 rounded-full overflow-hidden bg-brand/10 shrink-0">
+                  <div className="w-14 h-14 rounded-full overflow-hidden bg-gold/10 shrink-0">
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
@@ -322,21 +322,21 @@ export default async function PropertyDetailPage({
                 <div className="space-y-3 mb-5">
                   <a
                     href="tel:7143363375"
-                    className="flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors"
+                    className="flex items-center gap-3 text-sm text-foreground hover:text-teal transition-colors"
                   >
-                    <Phone className="w-4 h-4 text-brand shrink-0" />
+                    <Phone className="w-4 h-4 text-teal shrink-0" />
                     (714) 336-3375
                   </a>
                   <a
                     href="mailto:karl@momentumrg.com"
-                    className="flex items-center gap-3 text-sm text-foreground hover:text-brand transition-colors"
+                    className="flex items-center gap-3 text-sm text-foreground hover:text-teal transition-colors"
                   >
-                    <Mail className="w-4 h-4 text-brand shrink-0" />
+                    <Mail className="w-4 h-4 text-teal shrink-0" />
                     karl@momentumrg.com
                   </a>
                 </div>
 
-                <Button asChild className="w-full bg-brand hover:bg-brand/90 text-white">
+                <Button asChild className="w-full bg-cta hover:bg-cta-light text-white">
                   <Link href="/contact">Contact Agent</Link>
                 </Button>
               </div>

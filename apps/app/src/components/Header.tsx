@@ -20,7 +20,7 @@ const Header = ({
       )}
     >
       {badge && (
-        <span className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
+        <span className="inline-block text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
           {badge}
         </span>
       )}

@@ -94,7 +94,7 @@ export default function PropertyManagementPage() {
   return (
     <div className="flex flex-col">
       {/* Hero */}
-      <section className="py-20 md:py-32 bg-brand relative overflow-hidden">
+      <section className="py-20 md:py-32 bg-charcoal relative overflow-hidden">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
         <div
           className="absolute inset-0 opacity-10"
@@ -121,7 +121,7 @@ export default function PropertyManagementPage() {
             <div className="flex flex-col sm:flex-row gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 bg-white text-brand font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
+                className="inline-flex items-center gap-2 bg-white text-charcoal font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
               >
                 Get a Free Evaluation
                 <ArrowRight className="w-5 h-5" />
@@ -141,7 +141,7 @@ export default function PropertyManagementPage() {
       <section className="py-20 md:py-28">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
               What&apos;s Included
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -157,10 +157,10 @@ export default function PropertyManagementPage() {
             {services.map(({ icon: Icon, title, description }) => (
               <div
                 key={title}
-                className="p-7 bg-white border border-border rounded-xl hover:border-brand/30 hover:shadow-lg transition-all group"
+                className="p-7 bg-white border border-border rounded-xl hover:border-gold/30 hover:shadow-lg transition-all group"
               >
-                <div className="w-11 h-11 rounded-lg bg-brand/5 flex items-center justify-center mb-5 group-hover:bg-brand transition-colors">
-                  <Icon className="w-5 h-5 text-brand group-hover:text-white transition-colors" />
+                <div className="w-11 h-11 rounded-lg bg-gold/5 flex items-center justify-center mb-5 group-hover:bg-gold transition-colors">
+                  <Icon className="w-5 h-5 text-gold group-hover:text-white transition-colors" />
                 </div>
                 <h3 className="font-heading text-lg font-bold text-foreground mb-3">
                   {title}
@@ -178,7 +178,7 @@ export default function PropertyManagementPage() {
       <section className="py-20 md:py-28 bg-warm-gray">
         <Container>
           <div className="text-center mb-14">
-            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
               The Process
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -189,7 +189,7 @@ export default function PropertyManagementPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step) => (
               <div key={step.num} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-brand text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-5">
+                <div className="w-16 h-16 rounded-full bg-charcoal text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-5">
                   {step.num}
                 </div>
                 <h3 className="font-heading font-bold text-foreground text-lg mb-3">
@@ -217,7 +217,7 @@ export default function PropertyManagementPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
+              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
             >
               Schedule a Free Consultation
               <ArrowRight className="w-5 h-5" />

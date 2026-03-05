@@ -155,8 +155,8 @@ export default async function ListingsPage({
                 href={buildHref(currentFilters, { status: f.value, page: "1" })}
                 className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors border font-display ${
                   statusFilter === f.value
-                    ? "bg-brand text-white border-brand"
-                    : "bg-white text-charcoal border-border hover:border-brand hover:text-brand"
+                    ? "bg-charcoal text-white border-charcoal"
+                    : "bg-white text-charcoal border-border hover:border-gold hover:text-gold"
                 }`}
               >
                 {f.label}
@@ -199,7 +199,7 @@ export default async function ListingsPage({
             {cityLabel && (
               <Link
                 href="/listings"
-                className="mt-4 inline-block text-brand hover:underline text-sm"
+                className="mt-4 inline-block text-teal hover:underline text-sm"
               >
                 View all listings →
               </Link>

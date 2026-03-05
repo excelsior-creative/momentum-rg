@@ -25,7 +25,15 @@ const navItems: NavItem[] = [
       { name: "Sold", path: "/listings/sold" },
     ],
   },
-  { name: "About", path: "/about" },
+  {
+    name: "About",
+    path: "/about",
+    children: [
+      { name: "Meet Our Team", path: "/about" },
+      { name: "Karl Parize", path: "/team/karl" },
+      { name: "Esmeralda Novikoff", path: "/team/esmeralda" },
+    ],
+  },
   { name: "FAQs", path: "/faqs" },
   {
     name: "Property Management",
@@ -177,7 +185,7 @@ export const Navbar = () => {
               </a>
               <Button
                 asChild
-                className="bg-brand hover:bg-brand-light text-white font-semibold transition-colors border-none"
+                className="bg-cta hover:bg-cta-light text-white font-semibold transition-colors border-none"
               >
                 <Link href="/contact">Get Started</Link>
               </Button>
@@ -235,7 +243,7 @@ export const Navbar = () => {
                 <hr className="border-border my-2" />
                 <Button
                   asChild
-                  className="bg-brand hover:bg-brand-light text-white font-semibold w-full"
+                  className="bg-cta hover:bg-cta-light text-white font-semibold w-full"
                 >
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
                     Get Started
