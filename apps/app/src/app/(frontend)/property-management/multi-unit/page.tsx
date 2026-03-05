@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
@@ -48,41 +49,13 @@ const propertyTypes = [
 export default function MultiUnitManagementPage() {
   return (
     <div className="flex flex-col">
-      {/* Hero */}
-      <section className="py-20 md:py-32 bg-brand relative overflow-hidden">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
-        <div
-          className="absolute inset-0 opacity-10"
-          style={{
-            backgroundImage:
-              "radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0)",
-            backgroundSize: "28px 28px",
-          }}
-        />
-        <Container>
-          <div className="relative z-10 max-w-2xl">
-            <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-              Multi-Unit Management
-            </span>
-            <h1 className="font-heading text-4xl md:text-5xl font-bold text-white mt-4 mb-6 leading-tight">
-              Your Multifamily Portfolio,{" "}
-              <span className="text-gold">Professionally Managed</span>
-            </h1>
-            <p className="text-xl text-white/80 leading-relaxed mb-8">
-              Managing multiple units multiplies complexity. Momentum Realty
-              Group brings expertise, systems, and local market knowledge to
-              keep your portfolio performing — with minimal headaches for you.
-            </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-white text-brand font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-white/90 transition-colors"
-            >
-              Get a Free Portfolio Review
-              <ArrowRight className="w-5 h-5" />
-            </Link>
-          </div>
-        </Container>
-      </section>
+      <PageHero
+        badge="Multi-Unit Management"
+        title="Your Multifamily Portfolio,"
+        titleAccent="Professionally Managed"
+        subtitle="Managing multiple units multiplies complexity. Momentum Realty Group brings expertise, systems, and local market knowledge to keep your portfolio performing — with minimal headaches for you."
+        backgroundImage="https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg"
+      />
 
       {/* Property Types */}
       <section className="py-20 md:py-28">
