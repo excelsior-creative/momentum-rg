@@ -11,11 +11,20 @@ const footerLinks = {
     { name: "Investments", path: "/contact" },
   ],
   Company: [
-    { name: "About", path: "/about" },
+    { name: "About / Team", path: "/about" },
     { name: "Listings", path: "/listings" },
     { name: "Property Map", path: "/map" },
     { name: "FAQs", path: "/faqs" },
     { name: "News", path: "/blog" },
+    { name: "Privacy Policy", path: "/privacy" },
+  ],
+  Areas: [
+    { name: "Long Beach", path: "/areas/long-beach" },
+    { name: "Huntington Beach", path: "/areas/huntington-beach" },
+    { name: "La Habra", path: "/areas/la-habra" },
+    { name: "La Mirada", path: "/listings?city=la-mirada" },
+    { name: "Anaheim", path: "/listings?city=anaheim" },
+    { name: "Riverside", path: "/listings?city=riverside" },
   ],
 };
 
