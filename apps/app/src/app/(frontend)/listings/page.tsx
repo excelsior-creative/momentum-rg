@@ -5,9 +5,25 @@ import config from "@/payload.config";
 import { Container } from "@/components/Container";
 import { PropertyCard } from "@/components/PropertyCard";
 import { Button } from "@/components/ui/button";
+import { generatePageMetadata } from "@/lib/metadata";
 import type { Property } from "@/payload-types";
+import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
+
+export const metadata: Metadata = generatePageMetadata({
+  title: "Property Listings | Momentum Realty Group",
+  description:
+    "Browse homes for sale and for lease across Orange County, LA County, and Riverside County. Find your next home with Momentum Realty Group.",
+  path: "/listings",
+  keywords: [
+    "homes for sale Orange County",
+    "property listings Long Beach",
+    "homes for sale Huntington Beach",
+    "La Habra real estate",
+    "Momentum Realty Group listings",
+  ],
+});
 
 const STATUS_FILTERS = [
   { label: "All", value: "all" },
@@ -16,7 +32,26 @@ const STATUS_FILTERS = [
   { label: "Sold", value: "sold" },
 ];
 
-type SearchParams = { status?: string; page?: string };
+const CITY_LABELS: Record<string, string> = {
+  "long-beach": "Long Beach",
+  "huntington-beach": "Huntington Beach",
+  "la-habra": "La Habra",
+  "la-mirada": "La Mirada",
+  anaheim: "Anaheim",
+  riverside: "Riverside",
+};
+
+type SearchParams = { status?: string; page?: string; city?: string };
+
+function buildHref(base: Record<string, string>, overrides: Record<string, string>) {
+  const merged = { ...base, ...overrides };
+  const params = new URLSearchParams();
+  Object.entries(merged).forEach(([k, v]) => {
+    if (v && v !== "all" && v !== "1") params.set(k, v);
+  });
+  const q = params.toString();
+  return q ? `/listings?${q}` : "/listings";
+}
 
 export default async function ListingsPage({
   searchParams,
@@ -25,6 +60,7 @@ export default async function ListingsPage({
 }) {
   const params = await searchParams;
   const statusFilter = params.status || "all";
+  const cityFilter = params.city || "";
   const page = parseInt(params.page || "1");
   const limit = 12;
 
@@ -36,10 +72,24 @@ export default async function ListingsPage({
   try {
     const payload = await getPayload({ config });
 
+    // Build where clause supporting both status and city filters
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const conditions: any[] = [];
+    if (statusFilter !== "all") {
+      conditions.push({ status: { equals: statusFilter } });
+    }
+    if (cityFilter) {
+      // city is stored as plain text, do a case-insensitive like
+      const cityName = CITY_LABELS[cityFilter] || cityFilter;
+      conditions.push({ city: { like: cityName } });
+    }
+
     const whereClause =
-      statusFilter !== "all"
-        ? { status: { equals: statusFilter } }
-        : undefined;
+      conditions.length === 1
+        ? conditions[0]
+        : conditions.length > 1
+          ? { and: conditions }
+          : undefined;
 
     const result = await payload.find({
       collection: "properties",
@@ -57,42 +107,73 @@ export default async function ListingsPage({
     error = true;
   }
 
+  const cityLabel = cityFilter ? CITY_LABELS[cityFilter] || cityFilter : "";
+  const currentFilters = { status: statusFilter, city: cityFilter, page: String(page) };
+
   return (
     <div>
-      {/* Header */}
-      <div className="bg-brand py-14 relative">
+      {/* Premium dark header matching site style */}
+      <div
+        className="relative py-20 md:py-28 overflow-hidden"
+        style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2D2D2D 100%)" }}
+      >
+        {/* Gold accent line top */}
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
-        <Container>
-          <span className="text-gold text-sm font-semibold uppercase tracking-widest">
-            Browse Properties
+        {/* Subtle background photo */}
+        <div
+          className="absolute inset-0 bg-cover bg-center opacity-15"
+          style={{
+            backgroundImage:
+              "url(https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg)",
+          }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />
+
+        <Container className="relative z-10">
+          <span className="text-gold text-xs font-semibold uppercase tracking-[0.3em] font-display">
+            {cityLabel ? `${cityLabel} Properties` : "Browse Properties"}
           </span>
-          <h1 className="text-3xl md:text-5xl font-bold text-white mt-3">
-            Property Listings
+          <h1 className="font-heading text-4xl md:text-5xl font-medium text-white mt-3">
+            {cityLabel ? `Homes in ${cityLabel}` : "Property Listings"}
           </h1>
-          <p className="text-white/70 mt-3 text-lg">
+          <p className="text-white/60 mt-3 text-lg font-sans">
             {error
               ? "Orange County, LA County & Riverside County"
-              : `${totalDocs} properties across Orange County, LA County & Riverside County`}
+              : `${totalDocs} propert${totalDocs === 1 ? "y" : "ies"}${cityLabel ? ` in ${cityLabel}` : " across Orange County, LA County & Riverside County"}`}
           </p>
         </Container>
       </div>
 
-      <Container>
-        {/* Filter tabs */}
-        <div className="flex gap-2 flex-wrap mt-8 mb-10">
-          {STATUS_FILTERS.map((f) => (
+      <Container className="py-10">
+        {/* Filter bar */}
+        <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center justify-between">
+          {/* Status filters */}
+          <div className="flex gap-2 flex-wrap">
+            {STATUS_FILTERS.map((f) => (
+              <Link
+                key={f.value}
+                href={buildHref(currentFilters, { status: f.value, page: "1" })}
+                className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors border font-display ${
+                  statusFilter === f.value
+                    ? "bg-brand text-white border-brand"
+                    : "bg-white text-charcoal border-border hover:border-brand hover:text-brand"
+                }`}
+              >
+                {f.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* City filter badge */}
+          {cityLabel && (
             <Link
-              key={f.value}
-              href={f.value === "all" ? "/listings" : `/listings?status=${f.value}`}
-              className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors border ${
-                statusFilter === f.value
-                  ? "bg-brand text-white border-brand"
-                  : "bg-white text-brand border-border hover:border-brand"
-              }`}
+              href={buildHref(currentFilters, { city: "", page: "1" })}
+              className="flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-sm font-display text-charcoal hover:bg-gold/20 transition-colors"
             >
-              {f.label}
+              📍 {cityLabel}
+              <span className="text-muted-foreground">✕</span>
             </Link>
-          ))}
+          )}
         </div>
 
         {/* Error state */}
@@ -113,19 +194,25 @@ export default async function ListingsPage({
         )}
 
         {!error && properties.length === 0 && (
-          <div className="text-center py-20 text-muted-foreground">
-            No properties found.
+          <div className="text-center py-20">
+            <p className="text-xl text-muted-foreground">No properties found.</p>
+            {cityLabel && (
+              <Link
+                href="/listings"
+                className="mt-4 inline-block text-brand hover:underline text-sm"
+              >
+                View all listings →
+              </Link>
+            )}
           </div>
         )}
 
         {/* Pagination */}
         {!error && totalPages > 1 && (
-          <div className="flex justify-center gap-2 mt-12 pb-12">
+          <div className="flex justify-center gap-2 mt-12 pb-4">
             {page > 1 && (
               <Button asChild variant="outline">
-                <Link
-                  href={`/listings?${statusFilter !== "all" ? `status=${statusFilter}&` : ""}page=${page - 1}`}
-                >
+                <Link href={buildHref(currentFilters, { page: String(page - 1) })}>
                   Previous
                 </Link>
               </Button>
@@ -135,9 +222,7 @@ export default async function ListingsPage({
             </span>
             {page < totalPages && (
               <Button asChild variant="outline">
-                <Link
-                  href={`/listings?${statusFilter !== "all" ? `status=${statusFilter}&` : ""}page=${page + 1}`}
-                >
+                <Link href={buildHref(currentFilters, { page: String(page + 1) })}>
                   Next
                 </Link>
               </Button>

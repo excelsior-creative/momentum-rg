@@ -1,69 +1,137 @@
 import React from "react";
 import { Container } from "@/components/Container";
-import Header from "@/components/Header";
 import { ContactForm } from "@/components/ContactForm";
+import { generatePageMetadata } from "@/lib/metadata";
 import { Mail, MapPin, Phone } from "lucide-react";
+import type { Metadata } from "next";
 
 export const revalidate = 3600;
 
+export const metadata: Metadata = generatePageMetadata({
+  title: "Contact Karl Parize | Momentum Realty Group",
+  description:
+    "Get in touch with Karl Parize and the Momentum Realty Group team. Serving Orange County, LA County, and Riverside County. Call (714) 336-3375.",
+  path: "/contact",
+  keywords: [
+    "contact Momentum Realty Group",
+    "Karl Parize phone",
+    "Orange County realtor contact",
+    "real estate agent Long Beach",
+  ],
+});
+
+const contactDetails = [
+  {
+    icon: Phone,
+    label: "Phone",
+    value: "(714) 336-3375",
+    href: "tel:7143363375",
+  },
+  {
+    icon: Mail,
+    label: "Email",
+    value: "karl@momentumrg.com",
+    href: "mailto:karl@momentumrg.com",
+  },
+  {
+    icon: MapPin,
+    label: "Office",
+    value: "1451 Quail Street, Suite 110B\nNewport Beach, CA 92660",
+    href: "https://maps.google.com/?q=1451+Quail+Street+Suite+110B+Newport+Beach+CA",
+  },
+];
+
 export default function ContactPage() {
   return (
-    <div className="py-20">
-      <Container>
-        <Header
-          badge="Contact Us"
-          title="Get in Touch"
-          subtitle="Have a question or want to work together? We'd love to hear from you."
+    <div>
+      {/* Premium dark hero */}
+      <section className="relative py-24 md:py-32 overflow-hidden">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover"
         />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/40" />
+        <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mt-12">
+        <Container className="relative z-10">
+          <span className="text-gold text-xs font-semibold uppercase tracking-[0.3em] font-display">
+            Reach Out
+          </span>
+          <h1 className="font-heading text-4xl md:text-5xl font-medium text-white mt-3 mb-4">
+            Let&rsquo;s Talk Real Estate
+          </h1>
+          <p className="text-white/60 text-lg max-w-md leading-relaxed">
+            Whether you&rsquo;re buying, selling, or just exploring your options — we respond
+            within one business day.
+          </p>
+        </Container>
+      </section>
+
+      {/* Content */}
+      <Container className="py-16 md:py-20">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+          {/* Left: contact info */}
           <div>
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-xl font-bold mb-4">Contact Information</h3>
-                <p className="text-muted-foreground mb-6">
-                  Fill out the form and our team will get back to you within 24 hours.
-                </p>
-              </div>
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
+              Momentum Realty Group
+            </span>
+            <h2 className="font-heading text-2xl md:text-3xl font-medium mt-3 mb-8 text-foreground">
+              Contact Information
+            </h2>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
-                    <Mail className="w-5 h-5 text-brand" />
+            <div className="space-y-6">
+              {contactDetails.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target={item.label === "Office" ? "_blank" : undefined}
+                  rel={item.label === "Office" ? "noopener noreferrer" : undefined}
+                  className="flex items-start gap-5 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-brand/10 border border-brand/20 flex items-center justify-center shrink-0 group-hover:bg-brand group-hover:border-brand transition-all">
+                    <item.icon className="w-5 h-5 text-brand group-hover:text-white transition-colors" />
                   </div>
                   <div>
-                    <p className="font-medium">Email</p>
-                    <p className="text-muted-foreground">karl@momentumrg.com</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
-                    <Phone className="w-5 h-5 text-brand" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Phone</p>
-                    <p className="text-muted-foreground">(714) 336-3375</p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-10 h-10 rounded-full bg-brand/10 flex items-center justify-center shrink-0">
-                    <MapPin className="w-5 h-5 text-brand" />
-                  </div>
-                  <div>
-                    <p className="font-medium">Office</p>
-                    <p className="text-muted-foreground">
-                      1451 Quail Street, Suite 110B<br />
-                      Newport Beach, CA 92660
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground font-display mb-1">
+                      {item.label}
+                    </p>
+                    <p className="text-foreground text-sm leading-relaxed whitespace-pre-line group-hover:text-brand transition-colors">
+                      {item.value}
                     </p>
                   </div>
-                </div>
+                </a>
+              ))}
+            </div>
+
+            {/* Karl card */}
+            <div className="mt-10 p-6 bg-warm-gray rounded-2xl border border-border flex items-center gap-5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                alt="Karl Parize"
+                className="w-16 h-16 rounded-full object-cover border-2 border-gold/30 flex-shrink-0"
+              />
+              <div>
+                <p className="font-heading font-medium text-foreground">Karl Parize</p>
+                <p className="text-xs font-display uppercase tracking-wider text-brand mt-0.5">
+                  Broker / Owner
+                </p>
+                <p className="text-xs text-muted-foreground mt-1">NMLS #313044 · CBRE #01364278</p>
               </div>
             </div>
           </div>
 
+          {/* Right: form */}
           <div>
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display">
+              Send a Message
+            </span>
+            <h2 className="font-heading text-2xl md:text-3xl font-medium mt-3 mb-8 text-foreground">
+              How Can We Help?
+            </h2>
             <ContactForm />
           </div>
         </div>
