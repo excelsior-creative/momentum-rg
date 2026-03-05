@@ -2,7 +2,7 @@
 
 @theme {
   /* Brand fonts */
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-heading: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-display: var(--font-montserrat), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-geist-mono);
@@ -35,64 +35,92 @@
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
 
-  /* Momentum Realty Group brand colors */
-  --color-brand: #E8862C;       /* Warm orange — primary brand */
-  --color-brand-light: #FB9634; /* Brighter orange for hover states */
-  --color-brand-dark: #C26E18;  /* Deep orange for pressed states */
-  --color-brand-foreground: #ffffff;
-  --color-gold: #c8a951;
-  --color-gold-light: #d4bb72;
-  --color-charcoal: #2D2D2D;    /* Rich dark text + footer bg */
-  --color-warm-gray: #F7F4F0;   /* Warm off-white alternating sections */
+  /* ─── Momentum Realty Group Brand Colors ─── */
 
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  /* Warm Gold — primary accent, logos, luxury elements (60% of accent use) */
+  --color-brand: #C6A15B;
+  --color-brand-light: #D4BB72;
+  --color-brand-dark: #B08B4A;
+  --color-brand-foreground: #1A1A2E;
+
+  /* Alias: gold = brand */
+  --color-gold: #C6A15B;
+  --color-gold-light: #D4BB72;
+
+  /* Amber Orange — CTA buttons ONLY, use sparingly */
+  --color-cta: #FB9634;
+  --color-cta-light: #FCA54A;
+  --color-cta-dark: #E07818;
+
+  /* Deep Charcoal — primary dark, section backgrounds, headers */
+  --color-charcoal: #1A1A2E;
+
+  /* Slate Gray — body text, professional, grounding */
+  --color-slate: #394041;
+
+  /* Soft Cream — backgrounds, warmth, elegance */
+  --color-cream: #F5F0E8;
+
+  /* Rich Teal — links, trust signals, interactive elements */
+  --color-teal: #0B8278;
+  --color-teal-light: #0D9B8E;
+
+  /* Legacy alias */
+  --color-warm-gray: #F5F0E8;
 }
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 20 10% 15%;     /* Warm near-black text */
+    --background: 37 40% 94%;          /* Soft Cream #F5F0E8 */
+    --foreground: 188 7% 24%;          /* Slate Gray #394041 */
+
     --card: 0 0% 100%;
-    --card-foreground: 20 10% 15%;
+    --card-foreground: 188 7% 24%;
+
     --popover: 0 0% 100%;
-    --popover-foreground: 20 10% 15%;
-    --primary: 28 80% 55%;         /* Warm orange hue */
+    --popover-foreground: 188 7% 24%;
+
+    --primary: 30 96% 59%;             /* Amber Orange #FB9634 — CTA buttons */
     --primary-foreground: 0 0% 98%;
-    --secondary: 30 15% 94%;       /* Warm off-white */
-    --secondary-foreground: 20 10% 15%;
-    --muted: 30 15% 94%;
-    --muted-foreground: 20 8% 46%;
-    --accent: 30 15% 94%;
-    --accent-foreground: 20 10% 15%;
+
+    --secondary: 37 40% 94%;           /* Soft Cream */
+    --secondary-foreground: 188 7% 24%;
+
+    --muted: 37 20% 90%;
+    --muted-foreground: 188 6% 46%;
+
+    --accent: 39 48% 57%;              /* Warm Gold #C6A15B */
+    --accent-foreground: 240 28% 14%;  /* Deep Charcoal */
+
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 30 12% 88%;           /* Warm gray border */
-    --input: 30 12% 88%;
-    --ring: 28 80% 55%;
+
+    --border: 37 20% 86%;              /* Warm cream border */
+    --input: 37 20% 86%;
+    --ring: 39 48% 57%;                /* Gold ring */
     --radius: 0.5rem;
   }
+
   .dark {
-    --background: 215 65% 8%;
-    --foreground: 0 0% 98%;
-    --card: 215 50% 12%;
-    --card-foreground: 0 0% 98%;
-    --popover: 215 50% 12%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 0 0% 98%;
-    --primary-foreground: 215 65% 16%;
-    --secondary: 215 30% 18%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 215 30% 18%;
-    --muted-foreground: 215 16% 65%;
-    --accent: 215 30% 18%;
-    --accent-foreground: 0 0% 98%;
+    --background: 240 28% 9%;
+    --foreground: 37 40% 94%;
+    --card: 240 25% 13%;
+    --card-foreground: 37 40% 94%;
+    --popover: 240 25% 13%;
+    --popover-foreground: 37 40% 94%;
+    --primary: 30 96% 59%;
+    --primary-foreground: 240 28% 14%;
+    --secondary: 240 20% 18%;
+    --secondary-foreground: 37 40% 94%;
+    --muted: 240 20% 18%;
+    --muted-foreground: 240 12% 60%;
+    --accent: 39 48% 57%;
+    --accent-foreground: 37 40% 94%;
     --destructive: 0 62.8% 30.6%;
     --destructive-foreground: 0 0% 98%;
-    --border: 215 30% 18%;
-    --input: 215 30% 18%;
-    --ring: 215 16% 65%;
+    --border: 240 20% 20%;
+    --input: 240 20% 20%;
+    --ring: 39 48% 57%;
   }
 }
 
@@ -109,6 +137,24 @@
   }
   .border-gold {
     border-color: var(--color-gold);
+  }
+  .text-teal {
+    color: var(--color-teal);
+  }
+  .bg-teal {
+    background-color: var(--color-teal);
+  }
+  .text-slate {
+    color: var(--color-slate);
+  }
+  .bg-cream {
+    background-color: var(--color-cream);
+  }
+  .bg-cta {
+    background-color: var(--color-cta);
+  }
+  .hover\:bg-cta-light:hover {
+    background-color: var(--color-cta-light);
   }
 }
 

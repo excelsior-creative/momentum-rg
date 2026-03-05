@@ -51,7 +51,7 @@ export const ListingsSection = async () => {
           <Button
             asChild
             variant="outline"
-            className="border-brand text-brand hover:bg-brand hover:text-white transition-colors self-start md:self-end"
+            className="border-charcoal text-charcoal hover:bg-charcoal hover:text-white transition-colors self-start md:self-end"
           >
             <Link href="/listings">
               View All Listings

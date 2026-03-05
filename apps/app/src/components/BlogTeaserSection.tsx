@@ -76,7 +76,7 @@ export const BlogTeaserSection = async () => {
       <Container>
         <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
           <div>
-            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+            <span className="text-sm font-semibold uppercase tracking-widest text-gold">
               Real Estate Tips
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
@@ -89,7 +89,7 @@ export const BlogTeaserSection = async () => {
           </div>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-brand font-semibold hover:gap-3 transition-all shrink-0"
+            className="inline-flex items-center gap-2 text-teal font-semibold hover:gap-3 transition-all shrink-0"
           >
             View All Articles
             <ArrowRight className="w-4 h-4" />
@@ -100,18 +100,18 @@ export const BlogTeaserSection = async () => {
           {posts.map((post, i) => (
             <article
               key={i}
-              className="group flex flex-col bg-white rounded-2xl border border-border overflow-hidden hover:border-brand/30 hover:shadow-lg transition-all duration-300"
+              className="group flex flex-col bg-white rounded-2xl border border-border overflow-hidden hover:border-gold/30 hover:shadow-lg transition-all duration-300"
             >
               {/* Color band at top */}
-              <div className="h-2 bg-brand" />
+              <div className="h-2 bg-gold" />
 
               <div className="p-7 flex flex-col flex-1">
-                <span className="text-xs font-semibold uppercase tracking-widest text-brand mb-3">
+                <span className="text-xs font-semibold uppercase tracking-widest text-gold mb-3">
                   {post.category}
                 </span>
 
                 <Link href={post.href}>
-                  <h3 className="font-heading text-lg font-bold text-foreground mb-3 group-hover:text-brand transition-colors leading-snug">
+                  <h3 className="font-heading text-lg font-bold text-foreground mb-3 group-hover:text-gold transition-colors leading-snug">
                     {post.title}
                   </h3>
                 </Link>
@@ -137,7 +137,7 @@ export const BlogTeaserSection = async () => {
                   )}
                   <Link
                     href={post.href}
-                    className="text-sm font-semibold text-brand flex items-center gap-1 group-hover:gap-2 transition-all"
+                    className="text-sm font-semibold text-teal flex items-center gap-1 group-hover:gap-2 transition-all"
                   >
                     Read More
                     <ArrowRight className="w-4 h-4" />

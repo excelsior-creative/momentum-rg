@@ -81,8 +81,8 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
           </>
         ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-brand/10 via-warm-gray to-gold/10 flex items-center justify-center">
-            <MapPin className="h-12 w-12 text-brand/20" />
+          <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-warm-gray to-teal/5 flex items-center justify-center">
+            <MapPin className="h-12 w-12 text-gold/20" />
           </div>
         )}
 
@@ -96,7 +96,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
 
         {/* Featured badge */}
         {property.featured && (
-          <span className="absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full bg-brand text-white">
+          <span className="absolute top-3 right-3 text-xs font-bold px-2.5 py-1 rounded-full bg-gold text-charcoal">
             Featured
           </span>
         )}
@@ -112,7 +112,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
       <div className="p-5 flex flex-col flex-1">
         {/* Price */}
         {property.price ? (
-          <p className="text-xl font-bold text-brand tracking-tight">
+          <p className="text-xl font-bold text-charcoal tracking-tight">
             {formatPrice(property.price)}
           </p>
         ) : (
@@ -122,7 +122,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         )}
 
         {/* Title */}
-        <p className="font-semibold text-foreground mt-1 leading-snug line-clamp-2 group-hover:text-brand transition-colors">
+        <p className="font-semibold text-foreground mt-1 leading-snug line-clamp-2 group-hover:text-gold transition-colors">
           {property.title}
         </p>
 
@@ -138,28 +138,28 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
         <div className="flex items-center gap-4 mt-auto pt-4 border-t border-border/60 text-sm text-muted-foreground">
           {property.bedrooms != null && (
             <span className="flex items-center gap-1.5">
-              <Bed className="h-4 w-4 text-brand/60" />
+              <Bed className="h-4 w-4 text-gold/60" />
               {property.bedrooms}
               <span className="text-xs hidden sm:inline">bd</span>
             </span>
           )}
           {property.bathrooms != null && (
             <span className="flex items-center gap-1.5">
-              <Bath className="h-4 w-4 text-brand/60" />
+              <Bath className="h-4 w-4 text-gold/60" />
               {property.bathrooms}
               <span className="text-xs hidden sm:inline">ba</span>
             </span>
           )}
           {property.sqft && (
             <span className="flex items-center gap-1.5">
-              <Maximize className="h-4 w-4 text-brand/60" />
+              <Maximize className="h-4 w-4 text-gold/60" />
               {property.sqft.toLocaleString()}
               <span className="text-xs hidden sm:inline">sqft</span>
             </span>
           )}
           {/* Fill remaining space */}
           <span className="flex-1" />
-          <span className="text-xs font-medium text-brand opacity-0 group-hover:opacity-100 transition-opacity">
+          <span className="text-xs font-medium text-teal opacity-0 group-hover:opacity-100 transition-opacity">
             View →
           </span>
         </div>

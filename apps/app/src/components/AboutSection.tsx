@@ -58,7 +58,7 @@ export const AboutSection = () => {
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-foreground leading-tight">
               Putting Purpose Behind{" "}
-              <span className="text-brand italic">Every Property</span>
+              <span className="text-gold italic">Every Property</span>
             </h2>
             <p className="text-muted-foreground mt-6 text-base leading-relaxed">
               Momentum Realty Group was founded by Karl in 2009 to help others
@@ -77,7 +77,7 @@ export const AboutSection = () => {
             <div className="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-6">
               {stats.map((stat) => (
                 <div key={stat.label} className="text-center">
-                  <div className="text-3xl font-heading font-semibold text-brand">{stat.value}</div>
+                  <div className="text-3xl font-heading font-semibold text-gold">{stat.value}</div>
                   <div className="text-xs text-muted-foreground mt-1 font-display uppercase tracking-wide">
                     {stat.label}
                   </div>
@@ -88,7 +88,7 @@ export const AboutSection = () => {
             <div className="mt-10 flex gap-4">
               <Button
                 asChild
-                className="bg-brand hover:bg-brand-light text-white px-8 h-12 transition-colors font-display uppercase tracking-wide"
+                className="bg-cta hover:bg-cta-light text-white px-8 h-12 transition-colors font-display uppercase tracking-wide"
               >
                 <Link href="/about">
                   Learn More

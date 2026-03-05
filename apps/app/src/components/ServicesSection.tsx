@@ -40,53 +40,54 @@ const services = [
 
 export const ServicesSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-charcoal">
+    <section className="py-20 md:py-28 bg-white">
       <Container>
         <div className="text-center mb-14">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
             What We Do
           </span>
-          <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-white">
+          <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-foreground">
             Full-Service Real Estate
           </h2>
-          <p className="text-white/50 mt-4 max-w-2xl mx-auto text-base leading-relaxed">
+          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-base leading-relaxed">
             From buying your first home to managing your investment portfolio,
             Momentum Realty Group handles every aspect of your real estate journey.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/10">
-          {services.map((service, i) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {services.map((service) => (
             <div
               key={service.title}
-              className="group relative flex flex-col p-8 bg-black/40 hover:bg-brand/10 transition-all duration-300 cursor-pointer"
+              className="group relative flex flex-col p-8 bg-cream border border-border rounded-xl hover:border-gold/40 hover:shadow-lg transition-all duration-300"
             >
-              {/* Gold top border on hover */}
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
+              {/* Gold top accent bar */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold rounded-t-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 
               {/* Icon */}
-              <div className="w-16 h-16 mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+              <div className="w-14 h-14 mb-5 opacity-70 group-hover:opacity-100 transition-opacity">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={service.icon}
                   alt={service.title}
-                  className="w-full h-full object-contain filter invert brightness-150"
+                  className="w-full h-full object-contain"
+                  style={{ filter: "brightness(0) saturate(100%) invert(57%) sepia(38%) saturate(571%) hue-rotate(6deg) brightness(97%) contrast(87%)" }}
                 />
               </div>
 
               <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-2 font-display">
                 {service.tagline}
               </span>
-              <h3 className="font-heading text-xl font-medium text-white mb-4">
+              <h3 className="font-heading text-xl font-medium text-foreground mb-4">
                 {service.title}
               </h3>
-              <p className="text-white/50 text-sm leading-relaxed flex-1">
+              <p className="text-muted-foreground text-sm leading-relaxed flex-1">
                 {service.description}
               </p>
 
               <Link
                 href={service.href}
-                className="mt-6 inline-flex items-center text-sm font-semibold text-gold hover:text-white transition-colors font-display uppercase tracking-wide"
+                className="mt-6 inline-flex items-center text-sm font-semibold text-teal hover:text-charcoal transition-colors font-display uppercase tracking-wide"
               >
                 Contact Us
                 <ArrowRight className="ml-1.5 h-4 w-4" />

@@ -33,7 +33,7 @@ export const CTASection = () => {
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             {/* Quote overlay */}
             <div className="absolute bottom-8 left-8 right-8">
-              <div className="bg-white/95 backdrop-blur-sm rounded-xl p-5 border-l-4 border-brand shadow-xl">
+              <div className="bg-white/95 backdrop-blur-sm rounded-xl p-5 border-l-4 border-gold shadow-xl">
                 <p className="font-heading text-foreground text-base italic leading-relaxed">
                   &ldquo;I designed Momentum to break the mold of the traditional brokerage model and put primary focus on the <em>why</em> of my clientele.&rdquo;
                 </p>
@@ -55,12 +55,12 @@ export const CTASection = () => {
 
           {/* Right: content */}
           <div className="py-16 md:py-20 px-8 md:px-16 flex flex-col justify-center order-1 lg:order-2">
-            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-brand font-display mb-4">
+            <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display mb-4">
               Why Choose Momentum
             </span>
             <h2 className="font-heading text-3xl md:text-4xl font-medium text-foreground leading-tight mb-6">
               Real Experience.{" "}
-              <span className="text-brand italic">Real Results.</span>
+              <span className="text-gold italic">Real Results.</span>
             </h2>
             <p className="text-muted-foreground text-base leading-relaxed mb-8">
               With over two decades of experience in Southern California real estate,
@@ -71,7 +71,7 @@ export const CTASection = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
               {whyPoints.map((point) => (
                 <div key={point} className="flex items-start gap-2.5">
-                  <CheckCircle2 className="h-4.5 w-4.5 text-brand flex-shrink-0 mt-0.5" />
+                  <CheckCircle2 className="h-4.5 w-4.5 text-gold flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-foreground/80 leading-snug">{point}</span>
                 </div>
               ))}
@@ -80,9 +80,9 @@ export const CTASection = () => {
             <div className="flex gap-4">
               <Button
                 asChild
-                className="bg-brand hover:bg-brand-light text-white px-8 h-12 font-display uppercase tracking-wide transition-colors"
+                className="bg-cta hover:bg-cta-light text-white px-8 h-12 font-display uppercase tracking-wide transition-colors"
               >
-                <Link href="/about">
+                <Link href="/team/karl">
                   Meet Karl
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
@@ -100,7 +100,7 @@ export const CTASection = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="relative overflow-hidden bg-brand py-20 md:py-28">
+      <section className="relative overflow-hidden bg-charcoal py-20 md:py-28">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
         <m.div
           animate={{ scale: [1, 1.15, 1], rotate: [0, 60, 0] }}
@@ -129,7 +129,7 @@ export const CTASection = () => {
               <Button
                 asChild
                 size="lg"
-                className="bg-gold hover:bg-gold-light text-brand font-semibold px-10 h-14 text-base transition-colors border-none shadow-lg"
+                className="bg-cta hover:bg-cta-light text-white font-semibold px-10 h-14 text-base transition-colors border-none shadow-lg"
               >
                 <Link href="/contact">
                   Schedule a Consultation
