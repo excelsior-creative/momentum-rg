@@ -152,6 +152,33 @@ export default async function PropertyDetailPage({
 
   return (
     <div>
+      {/* JSON-LD Schema for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "RealEstateListing",
+            name: property.title,
+            description: property.excerpt || undefined,
+            url: `https://momentumrg.com/listings/${property.slug}`,
+            ...(property.price && { offers: { "@type": "Offer", price: property.price, priceCurrency: "USD" } }),
+            ...(fullAddress && {
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: property.address || undefined,
+                addressLocality: property.city || undefined,
+                addressRegion: property.state || "CA",
+                postalCode: property.zipCode || undefined,
+                addressCountry: "US",
+              },
+            }),
+            ...(images[0] && { image: images[0] }),
+            ...(property.bedrooms && { numberOfRooms: property.bedrooms }),
+          }),
+        }}
+      />
+
       {/* Header bar */}
       <div className="bg-charcoal py-10 relative">
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
@@ -176,7 +203,7 @@ export default async function PropertyDetailPage({
                   </span>
                 )}
               </div>
-              <h1 className="text-2xl md:text-4xl font-bold text-white leading-tight">
+              <h1 className="font-heading text-2xl md:text-4xl font-medium text-white leading-tight">
                 {property.title}
               </h1>
               {fullAddress && (
