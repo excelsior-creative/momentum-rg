@@ -154,7 +154,7 @@ export default function PropertyManagementPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {steps.map((step) => (
               <div key={step.num} className="text-center">
-                <div className="w-16 h-16 rounded-full bg-brand text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-5">
+                <div className="w-16 h-16 rounded-full bg-cta text-white font-heading font-bold text-xl flex items-center justify-center mx-auto mb-5">
                   {step.num}
                 </div>
                 <h3 className="font-heading font-bold text-foreground text-lg mb-3">
@@ -182,7 +182,7 @@ export default function PropertyManagementPage() {
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 bg-brand text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-brand-light transition-colors"
+              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
             >
               Schedule a Free Consultation
               <ArrowRight className="w-5 h-5" />

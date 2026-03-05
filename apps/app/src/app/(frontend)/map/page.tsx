@@ -124,7 +124,7 @@ export default async function MapPage({
               href={f.value === "all" ? "/map" : `/map?status=${f.value}`}
               className={`px-3 py-1.5 rounded-full text-xs font-semibold transition-colors font-display ${
                 statusFilter === f.value
-                  ? "bg-brand text-white"
+                  ? "bg-cta text-white"
                   : "bg-white/10 text-white/70 hover:bg-white/20 hover:text-white"
               }`}
             >

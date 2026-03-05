@@ -70,7 +70,7 @@ export const ContactForm = () => {
         </p>
         <button
           onClick={() => setState("idle")}
-          className="px-8 py-3 bg-brand hover:bg-brand-light text-white font-display font-semibold uppercase tracking-wide text-sm rounded-lg transition-colors"
+          className="px-8 py-3 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide text-sm rounded-lg transition-colors"
         >
           Send Another
         </button>
@@ -183,7 +183,7 @@ export const ContactForm = () => {
       <button
         type="submit"
         disabled={state === "submitting"}
-        className="w-full py-4 bg-brand hover:bg-brand-light text-white font-display font-semibold uppercase tracking-wide text-sm rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg"
+        className="w-full py-4 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide text-sm rounded-lg transition-colors disabled:opacity-70 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-lg"
       >
         {state === "submitting" ? (
           <>

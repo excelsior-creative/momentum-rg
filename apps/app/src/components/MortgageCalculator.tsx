@@ -141,7 +141,7 @@ export const MortgageCalculator = () => {
 
             <Link
               href="/contact"
-              className="mt-8 inline-flex items-center gap-2 bg-brand hover:bg-brand-light text-white font-display font-semibold uppercase tracking-wide px-8 py-3.5 rounded-xl transition-colors"
+              className="mt-8 inline-flex items-center gap-2 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-8 py-3.5 rounded-xl transition-colors"
             >
               Talk to a Mortgage Expert
               <ArrowRight className="w-4 h-4" />
@@ -234,7 +234,7 @@ export const MortgageCalculator = () => {
                     onClick={() => setTermYears(y)}
                     className={`flex-1 py-2.5 rounded-lg text-sm font-display font-semibold transition-all border ${
                       termYears === y
-                        ? "bg-brand border-brand text-white"
+                        ? "bg-cta border-cta text-white"
                         : "bg-white/5 border-white/20 text-white/60 hover:border-white/40 hover:text-white"
                     }`}
                   >

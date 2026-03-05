@@ -67,7 +67,7 @@ export const MapSection = () => {
           </div>
           <Button
             asChild
-            className="bg-brand hover:bg-brand-light text-white font-display font-semibold uppercase tracking-wide px-8 h-12 flex-shrink-0 transition-colors"
+            className="bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-8 h-12 flex-shrink-0 transition-colors"
           >
             <Link href="/map">
               Full Map View
@@ -102,7 +102,7 @@ export const MapSection = () => {
               </div>
               <Link
                 href="/map"
-                className="pointer-events-auto bg-brand hover:bg-brand-light text-white text-xs font-display font-semibold uppercase tracking-wide px-4 py-2 rounded-lg transition-colors"
+                className="pointer-events-auto bg-cta hover:bg-cta-light text-white text-xs font-display font-semibold uppercase tracking-wide px-4 py-2 rounded-lg transition-colors"
               >
                 Explore All →
               </Link>

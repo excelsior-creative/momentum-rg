@@ -109,7 +109,7 @@ export const ListingsSearch = () => {
           onClick={() => setShowFilters((v) => !v)}
           className={`flex items-center gap-2 px-4 py-3.5 rounded-xl border text-sm font-display font-semibold transition-all ${
             showFilters || hasActiveFilters
-              ? "bg-brand border-brand text-white"
+              ? "bg-cta border-cta text-white"
               : "bg-white border-border text-foreground hover:border-brand hover:text-brand"
           }`}
         >
@@ -123,7 +123,7 @@ export const ListingsSearch = () => {
         <button
           type="submit"
           disabled={isPending}
-          className="px-6 py-3.5 bg-brand hover:bg-brand-light text-white font-display font-semibold uppercase tracking-wide text-sm rounded-xl transition-colors shadow-sm disabled:opacity-70"
+          className="px-6 py-3.5 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide text-sm rounded-xl transition-colors shadow-sm disabled:opacity-70"
         >
           Search
         </button>

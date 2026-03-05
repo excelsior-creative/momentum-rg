@@ -204,7 +204,7 @@ export default async function ListingsPage({
                 href={buildHref(currentFilters, { status: f.value, page: "1" })}
                 className={`px-5 py-2 rounded-full text-sm font-semibold transition-colors border font-display ${
                   statusFilter === f.value
-                    ? "bg-brand text-white border-brand"
+                    ? "bg-cta text-white border-cta"
                     : "bg-white text-charcoal border-border hover:border-brand hover:text-brand"
                 }`}
               >
