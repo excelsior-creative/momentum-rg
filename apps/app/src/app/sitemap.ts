@@ -24,6 +24,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/listings?city=la-mirada`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.75 },
     { url: `${SITE_URL}/listings?city=anaheim`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.75 },
     { url: `${SITE_URL}/listings?city=riverside`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.75 },
+    // Area landing pages
+    { url: `${SITE_URL}/areas/long-beach`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.85 },
+    { url: `${SITE_URL}/areas/huntington-beach`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.85 },
+    { url: `${SITE_URL}/areas/la-habra`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/privacy`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
     { url: `${SITE_URL}/terms`, lastModified: new Date(), changeFrequency: "yearly", priority: 0.3 },
   ];

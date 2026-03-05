@@ -10,7 +10,8 @@ const areas = [
     county: "Los Angeles County",
     description:
       "From Belmont Shore to Signal Hill, Long Beach offers a vibrant coastal real estate market with diverse housing options for every lifestyle.",
-    href: "/listings?city=long-beach",
+    href: "/areas/long-beach",
+    listingsHref: "/listings?city=long-beach",
   },
   {
     city: "La Mirada",
@@ -19,6 +20,7 @@ const areas = [
     description:
       "A family-friendly suburban gem with excellent schools, parks, and convenient freeway access to the greater Los Angeles metro area.",
     href: "/listings?city=la-mirada",
+    listingsHref: "/listings?city=la-mirada",
   },
   {
     city: "La Habra",
@@ -26,7 +28,8 @@ const areas = [
     county: "Orange County",
     description:
       "Straddling Orange and Los Angeles Counties, La Habra provides excellent value with strong appreciation potential and a thriving community.",
-    href: "/listings?city=la-habra",
+    href: "/areas/la-habra",
+    listingsHref: "/listings?city=la-habra",
   },
   {
     city: "Huntington Beach",
@@ -34,7 +37,8 @@ const areas = [
     county: "Orange County",
     description:
       "\"Surf City USA\" offers premier coastal living, top-rated schools, and a thriving real estate market driven by lifestyle and recreation.",
-    href: "/listings?city=huntington-beach",
+    href: "/areas/huntington-beach",
+    listingsHref: "/listings?city=huntington-beach",
   },
   {
     city: "Anaheim",
@@ -43,6 +47,7 @@ const areas = [
     description:
       "The heart of Orange County — from entertainment district condos to suburban single-family homes, Anaheim has something for every buyer.",
     href: "/listings?city=anaheim",
+    listingsHref: "/listings?city=anaheim",
   },
   {
     city: "Riverside",
@@ -51,6 +56,7 @@ const areas = [
     description:
       "Growing fast with outstanding affordability and investment potential. Riverside is one of Southern California's hottest emerging markets.",
     href: "/listings?city=riverside",
+    listingsHref: "/listings?city=riverside",
   },
 ];
 
