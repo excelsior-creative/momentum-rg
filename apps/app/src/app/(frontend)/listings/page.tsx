@@ -6,6 +6,7 @@ import { Container } from "@/components/Container";
 import { PropertyCard } from "@/components/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
+import { Map } from "lucide-react";
 import type { Property } from "@/payload-types";
 import type { Metadata } from "next";
 
@@ -163,6 +164,15 @@ export default async function ListingsPage({
               </Link>
             ))}
           </div>
+
+          {/* Map view link */}
+          <Link
+            href={`/map${statusFilter !== "all" ? `?status=${statusFilter}` : ""}`}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-charcoal text-white text-sm font-display font-semibold hover:bg-charcoal/80 transition-colors ml-auto"
+          >
+            <Map className="w-4 h-4" />
+            Map View
+          </Link>
 
           {/* City filter badge */}
           {cityLabel && (

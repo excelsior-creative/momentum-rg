@@ -23,6 +23,7 @@ const navItems: NavItem[] = [
       { name: "For Sale", path: "/listings/for-sale" },
       { name: "For Lease", path: "/listings/for-lease" },
       { name: "Sold", path: "/listings/sold" },
+      { name: "Property Map", path: "/map" },
     ],
   },
   { name: "About", path: "/about" },
