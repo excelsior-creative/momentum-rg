@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { Logo } from "./Logo";
 import { cn } from "@/lib/utils";
@@ -42,12 +42,23 @@ export const Navbar = () => {
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="w-full">
-      {/* Contact bar */}
-      <div className="bg-brand text-white text-sm py-2">
-        <div className="max-w-7xl mx-auto px-4 md:px-10 flex flex-col sm:flex-row justify-between items-center gap-1 sm:gap-0">
+    <header className={cn("w-full sticky top-0 z-50 transition-all duration-300", scrolled && "shadow-lg")}>
+      {/* Contact bar — hides when scrolled */}
+      <m.div
+        animate={{ height: scrolled ? 0 : "auto", opacity: scrolled ? 0 : 1 }}
+        transition={{ duration: 0.25 }}
+        className="overflow-hidden bg-charcoal text-white text-sm"
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-10 flex flex-col sm:flex-row justify-between items-center py-2 gap-1 sm:gap-0">
           <div className="flex items-center gap-6 flex-wrap justify-center">
             <a
               href="tel:7143363375"
@@ -70,14 +81,26 @@ export const Navbar = () => {
             <span>CBRE #01364278</span>
           </div>
         </div>
-      </div>
+      </m.div>
 
       {/* Main nav */}
-      <nav className="bg-brand border-b border-white/10">
+      <nav
+        className={cn(
+          "transition-all duration-300",
+          scrolled
+            ? "bg-white/95 backdrop-blur-md border-b border-border/60"
+            : "bg-white border-b border-border"
+        )}
+      >
         <div className="max-w-7xl mx-auto px-4 md:px-10">
-          <div className="relative flex justify-between items-center py-4">
+          <div
+            className={cn(
+              "relative flex justify-between items-center transition-all duration-300",
+              scrolled ? "py-2.5" : "py-4"
+            )}
+          >
             {/* Logo */}
-            <Logo />
+            <Logo variant="orange" />
 
             {/* Desktop nav */}
             <div className="hidden lg:flex items-center gap-1">
@@ -93,8 +116,8 @@ export const Navbar = () => {
                       className={cn(
                         "flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors",
                         pathname.startsWith(item.path)
-                          ? "text-gold"
-                          : "text-white/80 hover:text-white"
+                          ? "text-brand"
+                          : "text-foreground/70 hover:text-brand"
                       )}
                     >
                       {item.name}
@@ -107,13 +130,13 @@ export const Navbar = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 4 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute top-full left-0 mt-1 w-52 bg-brand-light border border-white/10 rounded-lg shadow-xl overflow-hidden z-50"
+                          className="absolute top-full left-0 mt-1 w-52 bg-white border border-border rounded-lg shadow-xl overflow-hidden z-50"
                         >
                           {item.children.map((child) => (
                             <Link
                               key={child.name}
                               href={child.path}
-                              className="block px-4 py-2.5 text-sm text-white/80 hover:text-white hover:bg-white/10 transition-colors"
+                              className="block px-4 py-2.5 text-sm text-foreground/70 hover:text-brand hover:bg-warm-gray transition-colors"
                               onClick={() => setOpenDropdown(null)}
                             >
                               {child.name}
@@ -130,8 +153,8 @@ export const Navbar = () => {
                     className={cn(
                       "px-3 py-2 text-sm font-medium rounded-md transition-colors",
                       pathname === item.path
-                        ? "text-gold"
-                        : "text-white/80 hover:text-white"
+                        ? "text-brand font-semibold"
+                        : "text-foreground/70 hover:text-brand"
                     )}
                   >
                     {item.name}
@@ -141,10 +164,20 @@ export const Navbar = () => {
             </div>
 
             {/* CTA */}
-            <div className="hidden lg:block">
+            <div className="hidden lg:flex items-center gap-3">
+              <a
+                href="tel:7143363375"
+                className={cn(
+                  "text-sm font-medium text-foreground/60 hover:text-brand transition-colors flex items-center gap-1.5",
+                  !scrolled && "hidden"
+                )}
+              >
+                <Phone className="h-3.5 w-3.5" />
+                (714) 336-3375
+              </a>
               <Button
                 asChild
-                className="bg-gold hover:bg-gold-light text-brand font-semibold transition-colors border-none"
+                className="bg-brand hover:bg-brand-light text-white font-semibold transition-colors border-none"
               >
                 <Link href="/contact">Get Started</Link>
               </Button>
@@ -153,7 +186,7 @@ export const Navbar = () => {
             {/* Mobile toggle */}
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="lg:hidden p-2 text-white"
+              className="lg:hidden p-2 text-foreground"
               aria-label="Toggle menu"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -168,7 +201,7 @@ export const Navbar = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden border-t border-white/10 overflow-hidden"
+              className="lg:hidden border-t border-border overflow-hidden"
             >
               <div className="max-w-7xl mx-auto px-4 md:px-10 py-4 flex flex-col gap-2">
                 {navItems.map((item) => (
@@ -178,7 +211,7 @@ export const Navbar = () => {
                       onClick={() => setIsOpen(false)}
                       className={cn(
                         "block py-2 text-base font-medium",
-                        pathname === item.path ? "text-gold" : "text-white/80"
+                        pathname === item.path ? "text-brand" : "text-foreground/80"
                       )}
                     >
                       {item.name}
@@ -190,7 +223,7 @@ export const Navbar = () => {
                             key={child.name}
                             href={child.path}
                             onClick={() => setIsOpen(false)}
-                            className="py-1 text-sm text-white/60 hover:text-white transition-colors"
+                            className="py-1 text-sm text-foreground/60 hover:text-brand transition-colors"
                           >
                             {child.name}
                           </Link>
@@ -199,10 +232,10 @@ export const Navbar = () => {
                     )}
                   </div>
                 ))}
-                <hr className="border-white/10 my-2" />
+                <hr className="border-border my-2" />
                 <Button
                   asChild
-                  className="bg-gold hover:bg-gold-light text-brand font-semibold w-full"
+                  className="bg-brand hover:bg-brand-light text-white font-semibold w-full"
                 >
                   <Link href="/contact" onClick={() => setIsOpen(false)}>
                     Get Started

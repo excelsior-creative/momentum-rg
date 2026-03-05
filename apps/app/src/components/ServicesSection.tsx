@@ -1,11 +1,11 @@
 import React from "react";
 import Link from "next/link";
 import { Container } from "./Container";
-import { ArrowRight, Home, Banknote, Building2, TrendingUp } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const services = [
   {
-    icon: Home,
+    icon: "https://momentumrg.com/wp-content/uploads/2025/06/image.png",
     title: "Real Estate",
     tagline: "Problem Solved",
     description:
@@ -13,7 +13,7 @@ const services = [
     href: "/real-estate-solutions",
   },
   {
-    icon: Banknote,
+    icon: "https://momentumrg.com/wp-content/uploads/2025/06/mortgages.png",
     title: "Mortgages",
     tagline: "Easier Than Ever",
     description:
@@ -21,7 +21,7 @@ const services = [
     href: "/contact",
   },
   {
-    icon: Building2,
+    icon: "https://momentumrg.com/wp-content/uploads/2025/06/prop_management.png",
     title: "Property Management",
     tagline: "Simple Approach",
     description:
@@ -29,7 +29,7 @@ const services = [
     href: "/property-management",
   },
   {
-    icon: TrendingUp,
+    icon: "https://momentumrg.com/wp-content/uploads/2025/06/investments.png",
     title: "Investments",
     tagline: "Grow With Us",
     description:
@@ -40,45 +40,53 @@ const services = [
 
 export const ServicesSection = () => {
   return (
-    <section className="py-20 md:py-28">
+    <section className="py-20 md:py-28 bg-charcoal">
       <Container>
         <div className="text-center mb-14">
-          <span className="text-sm font-semibold uppercase tracking-widest text-gold">
+          <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
             What We Do
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mt-3 text-brand">
+          <h2 className="font-heading text-3xl md:text-4xl font-medium mt-3 text-white">
             Full-Service Real Estate
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-lg">
+          <p className="text-white/50 mt-4 max-w-2xl mx-auto text-base leading-relaxed">
             From buying your first home to managing your investment portfolio,
             Momentum Realty Group handles every aspect of your real estate journey.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-px bg-white/5 rounded-xl overflow-hidden border border-white/10">
+          {services.map((service, i) => (
             <div
               key={service.title}
-              className="group relative flex flex-col p-8 bg-white border border-border rounded-xl hover:border-gold/40 hover:shadow-xl transition-all duration-300"
+              className="group relative flex flex-col p-8 bg-black/40 hover:bg-brand/10 transition-all duration-300 cursor-pointer"
             >
-              {/* Gold accent top border on hover */}
-              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300 rounded-t-xl" />
+              {/* Gold top border on hover */}
+              <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 
-              <div className="w-12 h-12 rounded-lg bg-brand/5 flex items-center justify-center mb-5 group-hover:bg-brand group-hover:text-white transition-colors duration-300">
-                <service.icon className="w-6 h-6 text-brand group-hover:text-white transition-colors" />
+              {/* Icon */}
+              <div className="w-16 h-16 mb-6 opacity-80 group-hover:opacity-100 transition-opacity">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={service.icon}
+                  alt={service.title}
+                  className="w-full h-full object-contain filter invert brightness-150"
+                />
               </div>
 
-              <span className="text-xs font-semibold uppercase tracking-widest text-gold mb-1">
+              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold mb-2 font-display">
                 {service.tagline}
               </span>
-              <h3 className="text-xl font-bold text-brand mb-3">{service.title}</h3>
-              <p className="text-muted-foreground text-sm leading-relaxed flex-1">
+              <h3 className="font-heading text-xl font-medium text-white mb-4">
+                {service.title}
+              </h3>
+              <p className="text-white/50 text-sm leading-relaxed flex-1">
                 {service.description}
               </p>
 
               <Link
                 href={service.href}
-                className="mt-6 inline-flex items-center text-sm font-semibold text-brand hover:text-gold transition-colors"
+                className="mt-6 inline-flex items-center text-sm font-semibold text-gold hover:text-white transition-colors font-display uppercase tracking-wide"
               >
                 Contact Us
                 <ArrowRight className="ml-1.5 h-4 w-4" />

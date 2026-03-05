@@ -1,15 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 
-export const Logo = ({ className }: { className?: string }) => {
+type LogoProps = {
+  className?: string;
+  /** "white" = white logo for dark bg (default), "orange" = colored logo for light bg */
+  variant?: "white" | "orange";
+};
+
+export const Logo = ({ className, variant = "white" }: LogoProps) => {
   return (
     <Link href="/" className={className}>
       <Image
-        src="/logo.svg"
-        alt="Logo"
-        width={100}
-        height={30}
-        className="h-8 w-auto"
+        src={variant === "orange" ? "/logo-orange.svg" : "/logo.svg"}
+        alt="Momentum Realty Group"
+        width={140}
+        height={42}
+        className="h-10 w-auto"
       />
     </Link>
   );

@@ -20,7 +20,7 @@ const footerLinks = {
 
 export const Footer = async () => {
   return (
-    <footer className="bg-brand text-white">
+    <footer className="bg-charcoal text-white">
       <div className="max-w-7xl mx-auto px-4 md:px-10 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
@@ -63,7 +63,7 @@ export const Footer = async () => {
           {/* Links */}
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
-              <h3 className="text-sm font-bold uppercase tracking-widest text-gold mb-4">
+              <h3 className="text-xs font-display font-semibold uppercase tracking-[0.2em] text-gold mb-4">
                 {category}
               </h3>
               <ul className="space-y-2.5">
