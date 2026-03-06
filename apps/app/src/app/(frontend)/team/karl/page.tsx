@@ -1,5 +1,9 @@
 import { Container } from '@/components/Container'
+import { Breadcrumbs } from '@/components/Breadcrumbs'
+import { StructuredData } from '@/components/StructuredData'
+import { Button } from '@/components/ui/button'
 import { generatePageMetadata } from '@/lib/metadata'
+import { generateBreadcrumbSchema } from '@/lib/structured-data'
 import Link from 'next/link'
 
 export const revalidate = 3600
@@ -23,10 +27,17 @@ export const metadata = generatePageMetadata({
 export default function KarlPage() {
   return (
     <div className="flex flex-col">
+      <StructuredData
+        data={generateBreadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+          { name: 'Karl Parize', path: '/team/karl' },
+        ])}
+      />
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <img
-          src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+          src="/about-team-california-home.jpg"
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"
@@ -36,6 +47,15 @@ export default function KarlPage() {
 
         <Container className="relative z-10">
           <div className="max-w-2xl">
+            <Breadcrumbs
+              inverted
+              className="mb-6"
+              items={[
+                { label: 'Home', href: '/' },
+                { label: 'About', href: '/about' },
+                { label: 'Karl Parize' },
+              ]}
+            />
             <Link
               href="/about"
               className="text-gold/70 text-xs font-semibold uppercase tracking-[0.3em] font-display hover:text-gold transition-colors"
@@ -180,12 +200,9 @@ export default function KarlPage() {
               refer their friends and family. We earn trust one transaction at a time.
             </p>
             <div className="mt-8">
-              <a
-                href="/contact"
-                className="inline-flex items-center justify-center gap-2 bg-cta hover:bg-cta-light text-white font-semibold px-8 py-3 rounded-lg transition-colors"
-              >
-                Get Started Today
-              </a>
+              <Button asChild variant="cta" size="marketing">
+                <Link href="/contact">Get Started Today</Link>
+              </Button>
             </div>
           </div>
         </Container>

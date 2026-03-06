@@ -10,6 +10,7 @@ import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 
 import { Categories } from "@/collections/Categories";
+import { ContentGenerationRuns } from "@/collections/ContentGenerationRuns";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";
 import { Properties } from "@/collections/Properties";
@@ -38,7 +39,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Posts, Media, Categories, Tags, Properties],
+  collections: [Users, Posts, Media, Categories, Tags, Properties, ContentGenerationRuns],
   globals: [SiteSettings, ContentGenerationSettings],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",

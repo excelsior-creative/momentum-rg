@@ -52,14 +52,14 @@ export const Posts: CollectionConfig = {
               body: JSON.stringify({
                 secret,
                 tag: 'posts',
-                paths: [`/blog/${doc.slug}`, '/blog'],
+                paths: [`/articles/${doc.slug}`, '/articles'],
               }),
             })
 
             if (!res.ok) {
               console.error('Revalidation failed:', await res.text())
             } else {
-              console.log(`Revalidated: /blog/${doc.slug} and /blog`)
+              console.log(`Revalidated: /articles/${doc.slug} and /articles`)
             }
           } catch (err) {
             console.error('Revalidation request failed:', err)

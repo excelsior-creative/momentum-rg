@@ -7,26 +7,12 @@ import { Container } from "@/components/Container";
 import { PropertyCard } from "@/components/PropertyCard";
 import { Button } from "@/components/ui/button";
 import { ListingsSearch } from "@/components/ListingsSearch";
+import { AREAS, AREA_SLUGS } from "@/lib/areas";
 import { generatePageMetadata } from "@/lib/metadata";
-import { Map } from "lucide-react";
 import type { Property } from "@/payload-types";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
-
-export const metadata: Metadata = generatePageMetadata({
-  title: "Property Listings | Momentum Realty Group",
-  description:
-    "Browse homes for sale and for lease across Orange County, LA County, and Riverside County. Find your next home with Momentum Realty Group.",
-  path: "/listings",
-  keywords: [
-    "homes for sale Orange County",
-    "property listings Long Beach",
-    "homes for sale Huntington Beach",
-    "La Habra real estate",
-    "Momentum Realty Group listings",
-  ],
-});
 
 const STATUS_FILTERS = [
   { label: "All", value: "all" },
@@ -35,14 +21,9 @@ const STATUS_FILTERS = [
   { label: "Sold", value: "sold" },
 ];
 
-const CITY_LABELS: Record<string, string> = {
-  "long-beach": "Long Beach",
-  "huntington-beach": "Huntington Beach",
-  "la-habra": "La Habra",
-  "la-mirada": "La Mirada",
-  anaheim: "Anaheim",
-  riverside: "Riverside",
-};
+const CITY_LABELS: Record<string, string> = Object.fromEntries(
+  AREA_SLUGS.map((slug) => [slug, AREAS[slug].name]),
+);
 
 type SearchParams = {
   status?: string;
@@ -52,6 +33,44 @@ type SearchParams = {
   price?: string;
   type?: string;
 };
+
+function hasNonCanonicalListingsState(params: SearchParams) {
+  return Boolean(
+    (params.status && params.status !== "all") ||
+      (params.page && params.page !== "1") ||
+      params.city ||
+      params.q ||
+      params.price ||
+      params.type,
+  );
+}
+
+export async function generateMetadata({
+  searchParams,
+}: {
+  searchParams: Promise<SearchParams>;
+}): Promise<Metadata> {
+  const params = await searchParams;
+  const cityLabel = params.city ? CITY_LABELS[params.city] || params.city : "";
+  const statusLabel =
+    STATUS_FILTERS.find((filter) => filter.value === params.status)?.label ?? "Listings";
+
+  return generatePageMetadata({
+    title: cityLabel ? `${statusLabel} in ${cityLabel}` : "Property Listings | Momentum Realty Group",
+    description: cityLabel
+      ? `Browse current ${statusLabel.toLowerCase()} in ${cityLabel} with Momentum Realty Group. Use this filtered view to explore available inventory, then visit the dedicated ${cityLabel} area guide for local market context.`
+      : "Browse homes for sale and for lease across Orange County, LA County, and Riverside County. Find your next home with Momentum Realty Group.",
+    path: "/listings",
+    keywords: [
+      "homes for sale Orange County",
+      "property listings Long Beach",
+      "homes for sale Huntington Beach",
+      "La Habra real estate",
+      "Momentum Realty Group listings",
+    ],
+    noIndex: hasNonCanonicalListingsState(params),
+  });
+}
 
 function buildHref(base: Record<string, string>, overrides: Record<string, string>) {
   const merged = { ...base, ...overrides };
@@ -195,7 +214,7 @@ export default async function ListingsPage({
           <ListingsSearch />
         </Suspense>
 
-        {/* Status + Map row */}
+        {/* Status filters */}
         <div className="flex flex-col sm:flex-row gap-4 mb-8 items-start sm:items-center justify-between">
           <div className="flex gap-2 flex-wrap">
             {STATUS_FILTERS.map((f) => (
@@ -212,14 +231,6 @@ export default async function ListingsPage({
               </Link>
             ))}
           </div>
-
-          <Link
-            href={`/map${statusFilter !== "all" ? `?status=${statusFilter}` : ""}`}
-            className="flex items-center gap-2 px-4 py-2 rounded-lg bg-charcoal text-white text-sm font-display font-semibold hover:bg-charcoal/80 transition-colors"
-          >
-            <Map className="w-4 h-4" />
-            Map View
-          </Link>
         </div>
 
         {/* Active search indicator */}

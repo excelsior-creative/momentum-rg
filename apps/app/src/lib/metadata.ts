@@ -1,12 +1,79 @@
 import type { Metadata } from "next";
 
-export const SITE_URL = process.env.NEXT_PUBLIC_SERVER_URL || "http://localhost:3000";
+export const DEFAULT_SITE_URL = "https://momentumrg.com";
 export const SITE_NAME = "Momentum Realty Group";
 export const SITE_TAGLINE = "Putting Purpose Behind Every Property";
 export const DEFAULT_DESCRIPTION =
   "Momentum Realty Group — Orange County real estate experts. Helping buyers, sellers, and investors across Orange County, LA County, and Riverside County since 2009.";
+export const SITE_PHONE = "+17143363375";
+export const SITE_EMAIL = "karl@momentumrg.com";
+export const SITE_ADDRESS = {
+  streetAddress: "10554 Progress Way, Unit C",
+  addressLocality: "Cypress",
+  addressRegion: "CA",
+  postalCode: "90630",
+  addressCountry: "US",
+} as const;
+export const SITE_GEO = {
+  latitude: 33.6553,
+  longitude: -117.8622,
+} as const;
+export const SERVICE_AREA_CITIES = [
+  "Long Beach",
+  "Huntington Beach",
+  "La Habra",
+  "La Mirada",
+  "Anaheim",
+  "Riverside",
+] as const;
 
-export const DEFAULT_OG_IMAGE = "/og-image.jpg";
+function normalizeSiteUrl(candidate?: string | null) {
+  if (!candidate) return DEFAULT_SITE_URL;
+
+  const trimmed = candidate.trim();
+  if (!trimmed) return DEFAULT_SITE_URL;
+
+  const withProtocol = /^https?:\/\//i.test(trimmed) ? trimmed : `https://${trimmed}`;
+
+  try {
+    const url = new URL(withProtocol);
+    url.hash = "";
+    url.search = "";
+    return url.toString().replace(/\/$/, "");
+  } catch {
+    return DEFAULT_SITE_URL;
+  }
+}
+
+function resolveSiteUrl() {
+  const configuredUrl =
+    process.env.NEXT_PUBLIC_SERVER_URL ??
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    process.env.SITE_URL;
+
+  if (configuredUrl) {
+    return normalizeSiteUrl(configuredUrl);
+  }
+
+  // Preview deployments should still canonicalize to production.
+  return DEFAULT_SITE_URL;
+}
+
+export const SITE_URL = resolveSiteUrl();
+export const DEFAULT_OG_IMAGE = "/opengraph-image";
+export const DEFAULT_TWITTER_IMAGE = "/twitter-image";
+
+export function buildAbsoluteUrl(path = "/") {
+  return new URL(path, SITE_URL).toString();
+}
+
+export function isPreviewDeployment() {
+  return process.env.VERCEL_ENV === "preview";
+}
+
+function resolvePageTitle(title: string): Metadata["title"] {
+  return title.includes(SITE_NAME) ? { absolute: title } : title;
+}
 
 /**
  * Default metadata for the entire site
@@ -48,6 +115,7 @@ export const defaultMetadata: Metadata = {
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,
   publisher: SITE_NAME,
+  manifest: "/manifest.webmanifest",
   formatDetection: {
     email: false,
     address: false,
@@ -62,7 +130,7 @@ export const defaultMetadata: Metadata = {
     description: DEFAULT_DESCRIPTION,
     images: [
       {
-        url: DEFAULT_OG_IMAGE,
+        url: buildAbsoluteUrl(DEFAULT_OG_IMAGE),
         width: 1200,
         height: 630,
         alt: `${SITE_NAME} - ${SITE_TAGLINE}`,
@@ -73,7 +141,7 @@ export const defaultMetadata: Metadata = {
     card: "summary_large_image",
     title: `${SITE_NAME} | ${SITE_TAGLINE}`,
     description: DEFAULT_DESCRIPTION,
-    images: [DEFAULT_OG_IMAGE],
+    images: [buildAbsoluteUrl(DEFAULT_TWITTER_IMAGE)],
   },
   robots: {
     index: true,
@@ -88,6 +156,10 @@ export const defaultMetadata: Metadata = {
   },
   alternates: {
     canonical: SITE_URL,
+  },
+  icons: {
+    icon: [{ url: "/icon", type: "image/png" }],
+    apple: [{ url: "/apple-icon", type: "image/png" }],
   },
 };
 
@@ -109,11 +181,11 @@ export function generatePageMetadata({
   keywords?: string[];
   noIndex?: boolean;
 }): Metadata {
-  const url = `${SITE_URL}${path}`;
-  const image = ogImage || DEFAULT_OG_IMAGE;
+  const url = buildAbsoluteUrl(path);
+  const image = buildAbsoluteUrl(ogImage || DEFAULT_OG_IMAGE);
 
   return {
-    title,
+    title: resolvePageTitle(title),
     description,
     keywords: keywords || (defaultMetadata.keywords as string[]),
     openGraph: {
@@ -170,11 +242,11 @@ export function generateArticleMetadata({
   keywords?: string;
   noIndex?: boolean;
 }): Metadata {
-  const url = `${SITE_URL}/blog/${slug}`;
-  const image = ogImage || DEFAULT_OG_IMAGE;
+  const url = buildAbsoluteUrl(`/articles/${slug}`);
+  const image = buildAbsoluteUrl(ogImage || DEFAULT_OG_IMAGE);
 
   return {
-    title,
+    title: resolvePageTitle(title),
     description,
     keywords: keywords || undefined,
     openGraph: {

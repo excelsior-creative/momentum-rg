@@ -73,6 +73,7 @@ export interface Config {
     categories: Category;
     tags: Tag;
     properties: Property;
+    'content-generation-runs': ContentGenerationRun;
     search: Search;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -87,6 +88,7 @@ export interface Config {
     categories: CategoriesSelect<false> | CategoriesSelect<true>;
     tags: TagsSelect<false> | TagsSelect<true>;
     properties: PropertiesSelect<false> | PropertiesSelect<true>;
+    'content-generation-runs': ContentGenerationRunsSelect<false> | ContentGenerationRunsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -373,6 +375,58 @@ export interface Property {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content-generation-runs".
+ */
+export interface ContentGenerationRun {
+  id: number;
+  status: 'queued' | 'skipped' | 'generating' | 'published' | 'failed';
+  triggerSource: 'cron' | 'manual';
+  /**
+   * Stable dedupe key for the selected topic brief
+   */
+  fingerprint: string;
+  startedAt: string;
+  completedAt?: string | null;
+  topicTitle: string;
+  topicQuery?: string | null;
+  primaryKeyword?: string | null;
+  secondaryKeywords?:
+    | {
+        keyword: string;
+        id?: string | null;
+      }[]
+    | null;
+  geoTarget?: string | null;
+  audienceSegment?: string | null;
+  searchIntent?: string | null;
+  topicScore?: number | null;
+  skipReason?: string | null;
+  errorMessage?: string | null;
+  providerData?:
+    | {
+        [k: string]: unknown;
+      }
+    | unknown[]
+    | string
+    | number
+    | boolean
+    | null;
+  models?: {
+    researchProvider?: string | null;
+    textModel?: string | null;
+    imageModel?: string | null;
+  };
+  costs?: {
+    candidateCount?: number | null;
+    estimatedInputTokens?: number | null;
+    estimatedOutputTokens?: number | null;
+  };
+  post?: (number | null) | Post;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -439,6 +493,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'properties';
         value: number | Property;
+      } | null)
+    | ({
+        relationTo: 'content-generation-runs';
+        value: number | ContentGenerationRun;
       } | null)
     | ({
         relationTo: 'search';
@@ -665,6 +723,50 @@ export interface PropertiesSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "content-generation-runs_select".
+ */
+export interface ContentGenerationRunsSelect<T extends boolean = true> {
+  status?: T;
+  triggerSource?: T;
+  fingerprint?: T;
+  startedAt?: T;
+  completedAt?: T;
+  topicTitle?: T;
+  topicQuery?: T;
+  primaryKeyword?: T;
+  secondaryKeywords?:
+    | T
+    | {
+        keyword?: T;
+        id?: T;
+      };
+  geoTarget?: T;
+  audienceSegment?: T;
+  searchIntent?: T;
+  topicScore?: T;
+  skipReason?: T;
+  errorMessage?: T;
+  providerData?: T;
+  models?:
+    | T
+    | {
+        researchProvider?: T;
+        textModel?: T;
+        imageModel?: T;
+      };
+  costs?:
+    | T
+    | {
+        candidateCount?: T;
+        estimatedInputTokens?: T;
+        estimatedOutputTokens?: T;
+      };
+  post?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "search_select".
  */
 export interface SearchSelect<T extends boolean = true> {
@@ -774,13 +876,67 @@ export interface ContentGenerationSetting {
     primaryColor?: string | null;
     secondaryColor?: string | null;
   };
+  operations: {
+    /**
+     * Master switch for the automated article pipeline.
+     */
+    enabled?: boolean | null;
+    /**
+     * Minimum time between successful auto-published articles.
+     */
+    cadenceHours: number;
+    /**
+     * Minimum topic score required before the pipeline will publish.
+     */
+    qualityThreshold: number;
+    maxResearchSeeds: number;
+    maxTopicCandidates: number;
+    /**
+     * Optional dedicated Payload user email for generated posts.
+     */
+    systemAuthorEmail?: string | null;
+  };
+  /**
+   * Seed keywords and problem statements used to build live research queries.
+   */
   keywords?:
     | {
         keyword: string;
         id?: string | null;
       }[]
     | null;
+  targetGeographies?:
+    | {
+        name: string;
+        id?: string | null;
+      }[]
+    | null;
+  audienceSegments?:
+    | {
+        audience: string;
+        id?: string | null;
+      }[]
+    | null;
+  bannedTopics?:
+    | {
+        topic: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional queue of hand-picked topics. The next available entry is consumed before live research.
+   */
+  manualTopicQueue?:
+    | {
+        primaryKeyword: string;
+        geography?: string | null;
+        audience?: string | null;
+        angle?: string | null;
+        id?: string | null;
+      }[]
+    | null;
   topicResearch?: {
+    provider?: 'serpapi' | null;
     prompt?: string | null;
   };
   postGeneration?: {
@@ -842,15 +998,53 @@ export interface ContentGenerationSettingsSelect<T extends boolean = true> {
         primaryColor?: T;
         secondaryColor?: T;
       };
+  operations?:
+    | T
+    | {
+        enabled?: T;
+        cadenceHours?: T;
+        qualityThreshold?: T;
+        maxResearchSeeds?: T;
+        maxTopicCandidates?: T;
+        systemAuthorEmail?: T;
+      };
   keywords?:
     | T
     | {
         keyword?: T;
         id?: T;
       };
+  targetGeographies?:
+    | T
+    | {
+        name?: T;
+        id?: T;
+      };
+  audienceSegments?:
+    | T
+    | {
+        audience?: T;
+        id?: T;
+      };
+  bannedTopics?:
+    | T
+    | {
+        topic?: T;
+        id?: T;
+      };
+  manualTopicQueue?:
+    | T
+    | {
+        primaryKeyword?: T;
+        geography?: T;
+        audience?: T;
+        angle?: T;
+        id?: T;
+      };
   topicResearch?:
     | T
     | {
+        provider?: T;
         prompt?: T;
       };
   postGeneration?:

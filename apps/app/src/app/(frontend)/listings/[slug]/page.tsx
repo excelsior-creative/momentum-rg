@@ -4,10 +4,20 @@ import Link from "next/link";
 import { getPayload } from "payload";
 import config from "@/payload.config";
 import { Container } from "@/components/Container";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { ListingImageGallery } from "@/components/ListingImageGallery";
+import { PageHero } from "@/components/PageHero";
+import { StructuredData } from "@/components/StructuredData";
 import { Bed, Bath, Maximize, Car, MapPin, Calendar, Hash, ChevronLeft, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
-import type { Property } from "@/payload-types";
+import {
+  combineSchemas,
+  generateBreadcrumbSchema,
+  generateListingSchema,
+} from "@/lib/structured-data";
+import { AREAS, getAreaSlugByCity } from "@/lib/areas";
+import type { Media, Property } from "@/payload-types";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -46,6 +56,27 @@ const TYPE_LABELS: Record<string, string> = {
   "co-op":              "Co-Op",
 };
 
+const DEFAULT_LISTING_HERO_IMAGE =
+  "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg";
+
+function getMediaUrl(media?: number | Media | null) {
+  if (!media || typeof media !== "object") {
+    return null;
+  }
+
+  return media.url || null;
+}
+
+function getPropertyImageUrls(property: Property) {
+  const candidateUrls = [
+    getMediaUrl(property.featuredImage),
+    ...(property.gallery || []).map((item) => getMediaUrl(item.image)),
+    ...((property.wpImageUrls || []).map((item) => item.url || null)),
+  ].filter(Boolean) as string[];
+
+  return Array.from(new Set(candidateUrls));
+}
+
 // ─── Metadata ─────────────────────────────────────────────────────────────────
 
 export async function generateMetadata({
@@ -69,14 +100,21 @@ export async function generateMetadata({
 
     const priceStr = property.price ? ` — ${formatPrice(property.price)}` : "";
     const cityStr = property.city ? ` in ${property.city}` : "";
+    const images = getPropertyImageUrls(property);
+    const areaSlug = getAreaSlugByCity(property.city);
+    const area = areaSlug ? AREAS[areaSlug] : null;
 
     return generatePageMetadata({
       title: property.title,
-      description: property.excerpt || `${property.title}${priceStr}${cityStr}. View property details, specs, and contact Momentum Realty Group.`,
+      description:
+        property.excerpt ||
+        `${property.title}${priceStr}${cityStr}. View property details, market context${area ? ` for ${area.name}` : ""}, and contact Momentum Realty Group.`,
       path: `/listings/${slug}`,
+      ogImage: images[0] || undefined,
       keywords: [
         property.city || "",
         property.county || "",
+        property.zipCode || "",
         property.propertyType ? TYPE_LABELS[property.propertyType] || "" : "",
         "real estate",
         "Orange County",
@@ -120,9 +158,18 @@ export default async function PropertyDetailPage({
     className: "bg-gray-600 text-white",
   };
 
-  const images = ((property as any).wpImageUrls || [])
-    .map((i: { url: string }) => i.url)
-    .filter(Boolean) as string[];
+  const images = getPropertyImageUrls(property);
+  const heroImage = images[0] || DEFAULT_LISTING_HERO_IMAGE;
+  const areaSlug = getAreaSlugByCity(property.city);
+  const area = areaSlug ? AREAS[areaSlug] : null;
+  const schema = combineSchemas(
+    generateBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Listings", path: "/listings" },
+      { name: property.title, path: `/listings/${slug}` },
+    ]),
+    generateListingSchema({ property, images }),
+  );
 
   const fullAddress = [
     property.address,
@@ -152,83 +199,65 @@ export default async function PropertyDetailPage({
 
   return (
     <div>
-      {/* JSON-LD Schema for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "RealEstateListing",
-            name: property.title,
-            description: property.excerpt || undefined,
-            url: `https://momentumrg.com/listings/${property.slug}`,
-            ...(property.price && { offers: { "@type": "Offer", price: property.price, priceCurrency: "USD" } }),
-            ...(fullAddress && {
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: property.address || undefined,
-                addressLocality: property.city || undefined,
-                addressRegion: property.state || "CA",
-                postalCode: property.zipCode || undefined,
-                addressCountry: "US",
-              },
-            }),
-            ...(images[0] && { image: images[0] }),
-            ...(property.bedrooms && { numberOfRooms: property.bedrooms }),
-          }),
-        }}
-      />
+      <StructuredData data={schema} />
 
-      {/* Header bar */}
-      <div className="bg-charcoal py-10 relative">
-        <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
-        <Container>
-          <Link
-            href="/listings"
-            className="inline-flex items-center gap-1.5 text-white/70 hover:text-white text-sm mb-4 transition-colors"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            Back to Listings
-          </Link>
+      <PageHero
+        title={property.title}
+        backgroundImage={heroImage}
+        className="py-28 md:py-36"
+        contentClassName="max-w-none"
+      >
+        <Breadcrumbs
+          inverted
+          className="mt-8"
+          items={[
+            { label: "Home", href: "/" },
+            { label: "Listings", href: "/listings" },
+            { label: property.title },
+          ]}
+        />
+        <Link
+          href="/listings"
+          className="inline-flex items-center gap-1.5 text-white/70 hover:text-white text-sm mt-4 transition-colors"
+        >
+          <ChevronLeft className="w-4 h-4" />
+          Back to Listings
+        </Link>
 
-          <div className="flex flex-wrap items-start justify-between gap-4">
-            <div>
-              <div className="flex items-center gap-3 mb-2">
-                <span className={`text-xs font-bold px-3 py-1 rounded-full ${statusInfo.className}`}>
-                  {statusInfo.label}
+        <div className="mt-5 flex flex-wrap items-start justify-between gap-6">
+          <div>
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <span className={`text-xs font-bold px-3 py-1 rounded-full ${statusInfo.className}`}>
+                {statusInfo.label}
+              </span>
+              {property.featured && (
+                <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white">
+                  Featured
                 </span>
-                {property.featured && (
-                  <span className="text-xs font-bold px-3 py-1 rounded-full bg-white/20 text-white">
-                    Featured
-                  </span>
-                )}
-              </div>
-              <h1 className="font-heading text-2xl md:text-4xl font-medium text-white leading-tight">
-                {property.title}
-              </h1>
-              {fullAddress && (
-                <p className="flex items-center gap-1.5 text-white/70 mt-2 text-sm">
-                  <MapPin className="w-4 h-4 shrink-0" />
-                  {fullAddress}
+              )}
+            </div>
+            {fullAddress && (
+              <p className="flex items-center gap-1.5 text-white/75 text-sm md:text-base">
+                <MapPin className="w-4 h-4 shrink-0" />
+                {fullAddress}
+              </p>
+            )}
+          </div>
+
+          {property.price && (
+            <div className="sm:text-right">
+              <p className="text-3xl md:text-4xl font-bold text-gold">
+                {formatPrice(property.price)}
+              </p>
+              {property.priceOld && property.priceOld !== property.price && (
+                <p className="text-white/50 line-through text-sm mt-0.5">
+                  {formatPrice(property.priceOld)}
                 </p>
               )}
             </div>
-
-            {property.price && (
-              <div className="text-right">
-                <p className="text-3xl md:text-4xl font-bold text-gold">
-                  {formatPrice(property.price)}
-                </p>
-                {property.priceOld && property.priceOld !== property.price && (
-                  <p className="text-white/50 line-through text-sm mt-0.5">
-                    {formatPrice(property.priceOld)}
-                  </p>
-                )}
-              </div>
-            )}
-          </div>
-        </Container>
-      </div>
+          )}
+        </div>
+      </PageHero>
 
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 py-12">
@@ -237,34 +266,7 @@ export default async function PropertyDetailPage({
 
             {/* Photo gallery */}
             {images.length > 0 ? (
-              <div>
-                {/* Primary image */}
-                <div className="rounded-2xl overflow-hidden bg-gold/5 aspect-[16/9] relative">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={images[0]}
-                    alt={property.title}
-                    className="w-full h-full object-cover"
-                    onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                  />
-                </div>
-                {/* Thumbnail strip */}
-                {images.length > 1 && (
-                  <div className="grid grid-cols-4 gap-2 mt-2">
-                    {images.slice(1, 5).map((url, i) => (
-                      <div key={i} className="rounded-xl overflow-hidden aspect-[4/3] bg-gold/5">
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src={url}
-                          alt={`${property.title} - photo ${i + 2}`}
-                          className="w-full h-full object-cover"
-                          onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }}
-                        />
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <ListingImageGallery images={images} title={property.title} />
             ) : (
               <div className="rounded-2xl overflow-hidden bg-gold/5 aspect-[16/9] flex flex-col items-center justify-center text-muted-foreground border border-border">
                 <MapPin className="w-12 h-12 mb-3 opacity-20" />
@@ -278,7 +280,7 @@ export default async function PropertyDetailPage({
                 {specs.map(({ icon: Icon, label }) => (
                   <div
                     key={label}
-                    className="bg-muted/40 rounded-xl p-4 flex flex-col items-center text-center gap-2 border border-border"
+                    className="bg-white rounded-xl p-4 flex flex-col items-center text-center gap-2 border border-border"
                   >
                     <Icon className="w-5 h-5 text-gold" />
                     <span className="text-sm font-semibold">{label}</span>
@@ -314,7 +316,7 @@ export default async function PropertyDetailPage({
             {details.length > 0 && (
               <div>
                 <h2 className="text-xl font-bold mb-3">Property Details</h2>
-                <div className="border border-border rounded-xl overflow-hidden divide-y divide-border">
+                <div className="bg-white border border-border rounded-xl overflow-hidden divide-y divide-border">
                   {details.map(({ label, value }) => (
                     <div key={label} className="grid grid-cols-2 px-5 py-3 text-sm">
                       <span className="text-muted-foreground">{label}</span>
@@ -322,6 +324,43 @@ export default async function PropertyDetailPage({
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {(property.city || area) && (
+              <div className="rounded-2xl border border-border bg-warm-gray p-6 md:p-8">
+                <h2 className="text-xl font-bold text-foreground">
+                  Local Market Context
+                </h2>
+                <p className="mt-3 text-muted-foreground leading-relaxed">
+                  Looking beyond the specs? We can help you compare this home to
+                  nearby inventory, neighborhood trends, commute patterns, and
+                  the broader market in {property.city || "the surrounding area"}.
+                </p>
+                <div className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                  {area && (
+                    <Button asChild variant="outline">
+                      <Link href={`/areas/${areaSlug}`}>Explore {area.name} Guide</Link>
+                    </Button>
+                  )}
+                  {property.city && (
+                    <Button asChild variant="outline">
+                      <Link
+                        href={`/listings?city=${areaSlug || property.city.toLowerCase().replace(/\s+/g, "-")}`}
+                      >
+                        More Homes in {property.city}
+                      </Link>
+                    </Button>
+                  )}
+                  <Button asChild className="bg-cta hover:bg-cta-light text-white">
+                    <Link href="/contact">Ask About This Property</Link>
+                  </Button>
+                </div>
+                {area && (
+                  <p className="mt-4 text-sm text-muted-foreground">
+                    {area.name} highlights: {area.whyBuy}
+                  </p>
+                )}
               </div>
             )}
           </div>
@@ -370,14 +409,14 @@ export default async function PropertyDetailPage({
 
               {/* Property ID / quick info */}
               {property.propertyId && (
-                <div className="border border-border rounded-xl p-4 text-sm text-muted-foreground flex items-center gap-2">
+                <div className="border border-border rounded-xl bg-white p-4 text-sm text-muted-foreground flex items-center gap-2 shadow-sm">
                   <Hash className="w-4 h-4 shrink-0" />
                   MLS# {property.propertyId}
                 </div>
               )}
 
               {property.dateAdded && (
-                <div className="border border-border rounded-xl p-4 text-sm text-muted-foreground flex items-center gap-2">
+                <div className="border border-border rounded-xl bg-white p-4 text-sm text-muted-foreground flex items-center gap-2 shadow-sm">
                   <Calendar className="w-4 h-4 shrink-0" />
                   Listed {new Date(property.dateAdded).toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}
                 </div>

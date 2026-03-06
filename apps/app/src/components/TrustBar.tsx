@@ -9,18 +9,18 @@ const stats = [
 
 export const TrustBar = () => {
   return (
-    <div className="bg-gold">
+    <div className="border-y border-gold/15 bg-charcoal">
       <div className="max-w-7xl mx-auto px-4 md:px-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-charcoal/20">
+        <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
           {stats.map((stat) => (
             <div
               key={stat.label}
               className="flex flex-col items-center justify-center py-5 md:py-6 px-4 text-center"
             >
-              <span className="font-heading text-2xl md:text-3xl font-semibold text-charcoal">
+              <span className="font-heading text-2xl md:text-3xl font-semibold text-gold">
                 {stat.value}
               </span>
-              <span className="text-xs font-display uppercase tracking-widest text-charcoal/70 mt-1">
+              <span className="text-xs font-display uppercase tracking-widest text-white/70 mt-1">
                 {stat.label}
               </span>
             </div>

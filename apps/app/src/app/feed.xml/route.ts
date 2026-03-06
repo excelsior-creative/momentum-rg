@@ -32,8 +32,8 @@ export async function GET() {
       return `
     <item>
       <title><![CDATA[${post.title}]]></title>
-      <link>${SITE_URL}/blog/${post.slug}</link>
-      <guid>${SITE_URL}/blog/${post.slug}</guid>
+      <link>${SITE_URL}/articles/${post.slug}</link>
+      <guid>${SITE_URL}/articles/${post.slug}</guid>
       <pubDate>${publishedDate}</pubDate>
       <description><![CDATA[${post.excerpt || ""}]]></description>
     </item>`;

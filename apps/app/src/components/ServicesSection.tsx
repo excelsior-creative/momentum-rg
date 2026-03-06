@@ -18,7 +18,7 @@ const services = [
     tagline: "Easier Than Ever",
     description:
       "We have a variety of mortgage instruments to help you get what you want. Let us help you understand your current mortgage, refinance, or how to best leverage home equity.",
-    href: "/contact",
+    href: "/mortgages",
   },
   {
     icon: "https://momentumrg.com/wp-content/uploads/2025/06/prop_management.png",
@@ -34,13 +34,13 @@ const services = [
     tagline: "Grow With Us",
     description:
       "Keeping our finger on the pulse, our network of analysts helps you understand the market. We have a long history of clients who have found success with investment properties.",
-    href: "/contact",
+    href: "/investments",
   },
 ];
 
 export const ServicesSection = () => {
   return (
-    <section className="py-20 md:py-28 bg-white">
+    <section className="py-20 md:py-28 bg-cream">
       <Container>
         <div className="text-center mb-14">
           <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
@@ -59,7 +59,7 @@ export const ServicesSection = () => {
           {services.map((service) => (
             <div
               key={service.title}
-              className="group relative flex flex-col p-8 bg-cream border border-border rounded-xl hover:border-gold/40 hover:shadow-lg transition-all duration-300"
+              className="group relative flex flex-col p-8 bg-white border border-border rounded-xl hover:border-gold/40 hover:shadow-lg transition-all duration-300"
             >
               {/* Gold top accent bar */}
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold rounded-t-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
@@ -89,7 +89,7 @@ export const ServicesSection = () => {
                 href={service.href}
                 className="mt-6 inline-flex items-center text-sm font-semibold text-teal hover:text-charcoal transition-colors font-display uppercase tracking-wide"
               >
-                Contact Us
+                Learn More
                 <ArrowRight className="ml-1.5 h-4 w-4" />
               </Link>
             </div>

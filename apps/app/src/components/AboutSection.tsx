@@ -17,7 +17,7 @@ export const AboutSection = () => {
       <Container>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
-          {/* Left: real photo from WP CDN */}
+          {/* Left: local hero image */}
           <div className="relative">
             {/* Background accent */}
             <div className="absolute -top-6 -left-6 w-48 h-48 bg-warm-gray rounded-full -z-10 hidden lg:block" />
@@ -26,8 +26,8 @@ export const AboutSection = () => {
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
-                alt="Momentum Realty Group — Orange County Real Estate"
+                src="/about-california-home.png"
+                alt="Exterior of a California home"
                 className="w-full h-[480px] object-cover"
               />
               {/* Karl floating card */}
@@ -86,20 +86,13 @@ export const AboutSection = () => {
             </div>
 
             <div className="mt-10 flex gap-4">
-              <Button
-                asChild
-                className="bg-cta hover:bg-cta-light text-white px-8 h-12 transition-colors font-display uppercase tracking-wide"
-              >
+              <Button asChild variant="cta" size="marketing">
                 <Link href="/about">
                   Learn More
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                className="border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white px-8 h-12 transition-colors font-display uppercase tracking-wide"
-              >
+              <Button asChild variant="ctaOutline" size="marketing">
                 <Link href="/contact">Contact Karl</Link>
               </Button>
             </div>

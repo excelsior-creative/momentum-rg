@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
@@ -8,9 +9,9 @@ import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
 export const revalidate = 3600;
 
 export const metadata = generatePageMetadata({
-  title: "Multi-Unit Property Management",
+  title: "Multi-Unit Property Management in Southern California",
   description:
-    "Expert multi-unit property management for duplexes, triplexes, and apartment complexes in Orange County, LA County, and Riverside County.",
+    "Expert multi-unit property management for duplexes, triplexes, fourplexes, and apartment properties in Orange County, LA County, and Riverside County.",
   path: "/property-management/multi-unit",
   keywords: [
     "multi unit property management",
@@ -43,6 +44,29 @@ const propertyTypes = [
   {
     label: "Mixed-Use Properties",
     desc: "Residential + commercial units in a single building.",
+  },
+];
+
+const portfolioPriorities = [
+  {
+    title: "Occupancy and Turnover Control",
+    description:
+      "Vacancy in multi-unit assets compounds quickly. We focus on lease cadence, resident communication, and make-ready execution that keeps units moving back to market faster.",
+  },
+  {
+    title: "Rent Roll Visibility",
+    description:
+      "Owners need clean reporting across the whole property, not just one unit at a time. We keep collections, disbursements, and performance reporting organized and usable.",
+  },
+  {
+    title: "Vendor and Maintenance Coordination",
+    description:
+      "As unit counts rise, maintenance can turn chaotic. We help centralize vendor communication, work-order follow-through, and recurring upkeep planning.",
+  },
+  {
+    title: "California Compliance Support",
+    description:
+      "Multi-unit ownership brings more operational complexity around notices, renewals, habitability, and resident issues. We help owners manage that complexity with a consistent process.",
   },
 ];
 
@@ -159,6 +183,38 @@ export default function MultiUnitManagementPage() {
         </Container>
       </section>
 
+      <section className="py-20 md:py-24 border-t border-border bg-warm-gray">
+        <Container>
+          <div className="text-center mb-14">
+            <span className="text-sm font-semibold uppercase tracking-widest text-brand">
+              Operational Priorities
+            </span>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold mt-3 text-foreground">
+              What matters most on multi-unit assets
+            </h2>
+            <p className="text-muted-foreground mt-4 max-w-2xl mx-auto">
+              Managing duplexes and apartment properties is not just a scaled-up version of
+              single-family management. The asset performs when the systems behind occupancy,
+              maintenance, and reporting stay tight.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {portfolioPriorities.map(({ title, description }) => (
+              <div
+                key={title}
+                className="rounded-2xl border border-border bg-white p-7 shadow-sm"
+              >
+                <h3 className="font-heading text-xl font-bold text-foreground">{title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </Container>
+      </section>
+
       {/* CTA */}
       <section className="py-16 bg-warm-gray border-t border-border">
         <Container>
@@ -171,19 +227,15 @@ export default function MultiUnitManagementPage() {
               properties and learn how we can improve your bottom line.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
-              >
-                Schedule a Consultation
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <Link
-                href="/property-management"
-                className="inline-flex items-center gap-2 border border-border text-foreground font-semibold px-8 py-4 rounded-xl hover:border-brand hover:text-brand transition-colors"
-              >
-                View All Services
-              </Link>
+              <Button asChild variant="cta" size="marketing">
+                <Link href="/contact">
+                  Schedule a Consultation
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </Button>
+              <Button asChild variant="ctaOutline" size="marketing">
+                <Link href="/property-management">View All Services</Link>
+              </Button>
             </div>
           </div>
         </Container>

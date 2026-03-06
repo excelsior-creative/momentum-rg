@@ -1,6 +1,7 @@
 import React from "react";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
 import {
@@ -36,7 +37,7 @@ const solutions = [
     title: "Buyer Representation",
     description:
       "From first-time buyers to seasoned investors, we guide you through every step — property search, offer strategy, negotiation, inspections, and close. Our knowledge of Southern California's micro-markets means you won't overpay.",
-    href: "/contact",
+    href: "/listings",
   },
   {
     icon: TrendingUp,
@@ -50,21 +51,21 @@ const solutions = [
     title: "1031 Exchanges",
     description:
       "Defer capital gains taxes and grow your portfolio through strategic like-kind exchanges. Karl has guided numerous investors through the complex 1031 process with zero missteps.",
-    href: "/contact",
+    href: "/investments",
   },
   {
     icon: Landmark,
     title: "Investment Properties",
     description:
       "Whether you're buying your first rental or expanding a multi-property portfolio, we analyze cap rates, cash flow, appreciation potential, and financing to find deals that make sense for your goals.",
-    href: "/contact",
+    href: "/investments",
   },
   {
     icon: Users,
     title: "Probate & Estate Sales",
     description:
       "Compassionate, experienced handling of inherited and estate properties. We navigate the legal and emotional complexity to protect the estate's value and move the process forward efficiently.",
-    href: "/contact",
+    href: "/team/esmeralda",
   },
   {
     icon: Search,
@@ -189,13 +190,12 @@ export default function RealEstateSolutionsPage() {
               No pressure, no pitch. Just a conversation about what you want to
               achieve and whether Momentum is the right fit.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
-            >
-              Schedule a Free Consultation
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <Button asChild variant="cta" size="hero">
+              <Link href="/contact">
+                Schedule a Free Consultation
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
           </div>
         </Container>
       </section>

@@ -3,19 +3,26 @@ import Link from "next/link";
 
 type LogoProps = {
   className?: string;
-  /** "white" = white logo for dark bg (default), "gold" | "orange" = gold-toned logo for light bg */
-  variant?: "white" | "gold" | "orange";
+  /** "white" = white logo for dark bg (default), "gold" | "orange" = gold-toned logo, "charcoal" = dark logo for light bg */
+  variant?: "white" | "gold" | "orange" | "charcoal";
 };
 
 export const Logo = ({ className, variant = "white" }: LogoProps) => {
+  const src =
+    variant === "charcoal"
+      ? "/logo-charcoal.svg"
+      : variant === "gold" || variant === "orange"
+        ? "/logo-orange.svg"
+        : "/logo.svg";
+
   return (
     <Link href="/" className={className}>
       <Image
-        src={variant === "gold" || variant === "orange" ? "/logo-orange.svg" : "/logo.svg"}
+        src={src}
         alt="Momentum Realty Group"
-        width={140}
-        height={42}
-        className="h-10 w-auto"
+        width={174}
+        height={78}
+        className="h-14 w-auto"
       />
     </Link>
   );

@@ -1,7 +1,10 @@
 import React from "react";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { StructuredData } from "@/components/StructuredData";
+import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
+import { combineSchemas, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/structured-data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
@@ -101,8 +104,24 @@ const faqs = [
 ];
 
 export default function FAQsPage() {
+  const schema = combineSchemas(
+    generateBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "FAQs", path: "/faqs" },
+    ]),
+    generateFAQSchema(
+      faqs.flatMap((section) =>
+        section.questions.map((item) => ({
+          question: item.q,
+          answer: item.a,
+        })),
+      ),
+    ),
+  );
+
   return (
     <div className="flex flex-col">
+      <StructuredData data={schema} />
       <PageHero
         badge="FAQ"
         title="Frequently Asked"
@@ -147,13 +166,12 @@ export default function FAQsPage() {
               Karl and his team are available to answer any questions specific to
               your situation. Let&apos;s have a conversation.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-cta text-white font-heading font-semibold px-8 py-4 rounded-xl shadow-lg hover:bg-cta-light transition-colors"
-            >
-              Talk to Karl
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+            <Button asChild variant="cta" size="marketing">
+              <Link href="/contact">
+                Talk to Karl
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+            </Button>
           </div>
         </Container>
       </section>

@@ -37,14 +37,16 @@ export default function RootLayout({
   const shouldShowToolbar = process.env.NODE_ENV !== "production";
 
   return (
-    <html lang="en" className={`${montserrat.variable} ${playfair.variable} ${inter.variable}`}>
+    <html lang="en-US" className={`${montserrat.variable} ${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
         {children}
         {shouldShowToolbar && <VercelToolbar />}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
-        />
+        {globalSchema && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+          />
+        )}
       </body>
     </html>
   );

@@ -52,7 +52,7 @@ export const Hero = () => {
   const slide = SLIDES[current];
 
   return (
-    <section className="relative overflow-hidden min-h-[88vh] flex items-center">
+    <section className="relative overflow-hidden min-h-[72vh] flex items-center">
       {/* Background slides */}
       <AnimatePresence mode="sync">
         <m.div
@@ -68,10 +68,8 @@ export const Hero = () => {
 
       {/* Dark gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-r from-black/88 via-black/60 to-black/25" />
-      {/* Gold accent line at top */}
-      <div className="absolute top-0 left-0 right-0 h-1 bg-gold z-10" />
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-10 py-24 md:py-36">
+      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 md:px-10 py-20 md:py-28">
         <div className="max-w-2xl">
           {/* Eyebrow */}
           <m.div
@@ -116,21 +114,13 @@ export const Hero = () => {
             transition={{ duration: 0.6, delay: 0.5 }}
             className="flex flex-col sm:flex-row gap-4"
           >
-            <Button
-              asChild
-              size="lg"
-              className="bg-cta hover:bg-cta-light text-white font-display font-semibold px-8 h-14 text-base uppercase tracking-wide transition-colors border-none shadow-xl"
-            >
+            <Button asChild variant="cta" size="hero">
               <Link href="/contact">
                 Get Started
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
-            <Button
-              asChild
-              size="lg"
-              className="bg-transparent border border-white/50 text-white hover:bg-white/10 hover:border-white px-8 h-14 text-base font-display uppercase tracking-wide transition-colors"
-            >
+            <Button asChild variant="ctaInverse" size="hero">
               <a href="tel:7143363375">
                 <Phone className="mr-2 h-4 w-4" />
                 (714) 336-3375
@@ -155,7 +145,7 @@ export const Hero = () => {
       </div>
 
       {/* Karl Parize floating card */}
-      <div className="hidden xl:block absolute bottom-16 right-10 z-20">
+      <div className="hidden xl:block absolute bottom-12 right-10 z-20">
         <div className="bg-black/80 backdrop-blur-sm border border-gold/30 rounded-2xl p-5 flex items-center gap-4 shadow-2xl">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img

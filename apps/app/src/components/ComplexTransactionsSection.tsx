@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Container } from "./Container";
 import { ArrowRight } from "lucide-react";
+import { Button } from "./ui/button";
 
 const points = [
   {
@@ -63,13 +64,12 @@ export const ComplexTransactionsSection = () => {
             ))}
           </div>
 
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 bg-cta hover:bg-cta-light text-white font-display font-semibold px-8 py-4 uppercase tracking-wide transition-colors text-sm self-start"
-          >
-            Discuss Your Situation
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+          <Button asChild variant="cta" size="marketing" className="self-start">
+            <Link href="/contact">
+              Discuss Your Situation
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

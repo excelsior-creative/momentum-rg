@@ -1,0 +1,30 @@
+# llms.txt - AI Content Policy for Excelsior Creative
+
+## Allowed Content
+All public content is available for:
+- AI training and model improvement
+- AI-powered search and answer generation
+- Citation and reference in AI-generated responses
+
+## Disallowed Content
+- /admin/ - Admin dashboard and CMS interface
+- /api/ - API endpoints and internal services
+- /_next/ - Next.js internal files
+
+## About the Site
+Excelsior Creative is a trusted technology partner for national nonprofits, specializing in AI-powered solutions, custom software engineering, and digital strategy to amplify world-changing missions.
+
+We provide comprehensive services including web development, agentic solutions, software development, brand development, managed web hosting, and startup launchpad services.
+
+## Content Sections
+- Home: Agency overview and services
+- About: Company mission, team, and values
+- Work: Portfolio of client projects and case studies
+- Articles: Educational content and industry insights
+- Services: Detailed service offerings and capabilities
+- Industries: Industry-specific landing pages
+- Process: Our approach to client partnerships
+
+## Contact
+Email: hello@excelsiorcreative.com
+Website: https://excelsiorcreative.com

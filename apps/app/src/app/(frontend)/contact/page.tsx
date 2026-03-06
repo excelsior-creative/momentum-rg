@@ -1,7 +1,13 @@
 import React from "react";
 import { Container } from "@/components/Container";
 import { ContactForm } from "@/components/ContactForm";
+import { StructuredData } from "@/components/StructuredData";
 import { generatePageMetadata } from "@/lib/metadata";
+import {
+  combineSchemas,
+  generateBreadcrumbSchema,
+  generateContactPageSchema,
+} from "@/lib/structured-data";
 import { Mail, MapPin, Phone } from "lucide-react";
 import type { Metadata } from "next";
 
@@ -36,14 +42,30 @@ const contactDetails = [
   {
     icon: MapPin,
     label: "Office",
-    value: "1451 Quail Street, Suite 110B\nNewport Beach, CA 92660",
-    href: "https://maps.google.com/?q=1451+Quail+Street+Suite+110B+Newport+Beach+CA",
+    value: "10554 Progress Way,\nUnit C\nCypress, CA 90630",
+    href: "https://maps.google.com/?q=10554+Progress+Way+Unit+C+Cypress+CA+90630",
   },
 ];
 
+const reasonsToReachOut = [
+  "Buying or selling in Orange County, LA County, or Riverside County",
+  "Evaluating an investment property or 1031 exchange option",
+  "Comparing property management support for a rental or portfolio",
+  "Navigating a foreclosure, probate, or other complex real estate situation",
+];
+
 export default function ContactPage() {
+  const schema = combineSchemas(
+    generateBreadcrumbSchema([
+      { name: "Home", path: "/" },
+      { name: "Contact", path: "/contact" },
+    ]),
+    generateContactPageSchema(),
+  );
+
   return (
     <div>
+      <StructuredData data={schema} />
       {/* Premium dark hero */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -136,6 +158,38 @@ export default function ContactPage() {
           </div>
         </div>
       </Container>
+
+      <section className="border-t border-border bg-warm-gray py-16">
+        <Container>
+          <div className="grid grid-cols-1 lg:grid-cols-[0.95fr_1.05fr] gap-12 items-start">
+            <div>
+              <span className="text-xs font-semibold uppercase tracking-[0.25em] text-gold font-display">
+                Based in Cypress
+              </span>
+              <h2 className="font-heading text-2xl md:text-3xl font-medium mt-3 text-foreground">
+                Local support for Southern California clients
+              </h2>
+              <p className="text-muted-foreground mt-4 leading-relaxed">
+                Momentum Realty Group works from Cypress and serves buyers, sellers, investors, and
+                property owners across Orange County, LA County, and Riverside County. If your next
+                move involves a decision with real financial weight, this is the place to start the
+                conversation.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {reasonsToReachOut.map((reason) => (
+                <div
+                  key={reason}
+                  className="rounded-xl border border-border bg-white px-5 py-4 text-sm text-foreground"
+                >
+                  {reason}
+                </div>
+              ))}
+            </div>
+          </div>
+        </Container>
+      </section>
     </div>
   );
 }

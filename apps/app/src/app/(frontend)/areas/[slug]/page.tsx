@@ -1,135 +1,19 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
+import { StructuredData } from "@/components/StructuredData";
+import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
-import { ArrowRight, MapPin, Home, TrendingUp, School, Car } from "lucide-react";
+import { generateBreadcrumbSchema } from "@/lib/structured-data";
+import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
-
-// ─── Area Data ───────────────────────────────────────────────────────────────
-
-const AREAS = {
-  "long-beach": {
-    name: "Long Beach",
-    county: "Los Angeles County",
-    zipCodes: ["90804", "90803", "90815", "90807", "90806"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
-    tagline: "Where the Coast Meets Community",
-    description:
-      "Long Beach is California's seventh-largest city — a cosmopolitan port city with diverse neighborhoods, a thriving arts scene, and some of LA County's most accessible waterfront real estate.",
-    highlights: [
-      { icon: Home, label: "Median Sale Price", value: "$685K–$1.1M" },
-      { icon: TrendingUp, label: "YoY Appreciation", value: "~5.2%" },
-      { icon: MapPin, label: "Key Zip Codes", value: "90804, 90803, 90815" },
-      { icon: School, label: "Schools", value: "Long Beach USD" },
-    ],
-    neighborhoods: [
-      {
-        name: "Belmont Shore / Belmont Heights",
-        zip: "90803",
-        description:
-          "The most prestigious coastal neighborhood in Long Beach. Walkable blocks steps from the beach, Second Street dining, and the Belmont Pier. Single-family homes and condos from $800K to $3M+.",
-      },
-      {
-        name: "Central Long Beach",
-        zip: "90804",
-        description:
-          "The best-value entry point into Long Beach real estate. Strong revitalization, diverse architecture, and a genuine community feel. Bungalows and duplexes from $550K.",
-      },
-      {
-        name: "East Long Beach / Los Altos",
-        zip: "90815",
-        description:
-          "Established, tree-lined streets with quality LBUSD schools and family-friendly parks. One of the most in-demand zip codes for move-up buyers. SFRs from $700K.",
-      },
-      {
-        name: "Bixby Knolls",
-        zip: "90807",
-        description:
-          "A charming, walkable neighborhood known for its Art Deco architecture, Atlantic Avenue boutiques, and strong community identity. Homes from $750K.",
-      },
-    ],
-    whyBuy:
-      "Long Beach offers something rare in Southern California: genuine neighborhood diversity at a price point below coastal OC. With $4B+ in planned downtown investment, strong rental demand driven by CSULB and Long Beach City College, and direct Metro A-Line access to downtown LA, Long Beach real estate fundamentals are strong.",
-    cityFilter: "long-beach",
-  },
-  "huntington-beach": {
-    name: "Huntington Beach",
-    county: "Orange County",
-    zipCodes: ["92649", "92648", "92646", "92647"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png",
-    tagline: "Surf City, USA — Coastal Living at Its Best",
-    description:
-      "Huntington Beach is Orange County's beachfront crown jewel. Known worldwide as Surf City USA, it offers 10 miles of uninterrupted coastline, world-class surf breaks, and a real estate market that has historically outperformed inland OC by 15–25%.",
-    highlights: [
-      { icon: Home, label: "Median Sale Price", value: "$1.1M–$3.5M" },
-      { icon: TrendingUp, label: "YoY Appreciation", value: "~6.1%" },
-      { icon: MapPin, label: "Key Zip Codes", value: "92649, 92648, 92646" },
-      { icon: Car, label: "Commute", value: "30 min to Irvine, 45 min to LA" },
-    ],
-    neighborhoods: [
-      {
-        name: "Huntington Harbour",
-        zip: "92649",
-        description:
-          "An exclusive waterfront community with private channels, bayfront docks, and a boating lifestyle unique to Southern California. Homes range from $900K townhomes to $8M+ waterfront estates.",
-      },
-      {
-        name: "Downtown / Main Street Corridor",
-        zip: "92648",
-        description:
-          "Ground zero for Huntington Beach lifestyle. Walk to the pier, Pacific City, and 5-star surf breaks. High demand from investors and second-home buyers. Condos from $600K, SFRs from $1.2M.",
-      },
-      {
-        name: "South Huntington Beach",
-        zip: "92646",
-        description:
-          "Family-oriented with top-rated Huntington Beach Union HSD schools and quiet, established neighborhoods. Strong appreciation and long-term holding value. SFRs from $900K.",
-      },
-    ],
-    whyBuy:
-      "Coastal OC real estate has proven to be one of the most recession-resistant asset classes in California. Limited land supply, strict coastal development restrictions, and international buyer demand keep Huntington Beach prices supported. Strong vacation rental potential in short-term-rental-permitted zones.",
-    cityFilter: "huntington-beach",
-  },
-  "la-habra": {
-    name: "La Habra",
-    county: "Orange County (with LA County border)",
-    zipCodes: ["90631", "90632"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
-    tagline: "OC Value with LA County Connectivity",
-    description:
-      "La Habra sits at the northern edge of Orange County, straddling the LA County line. It's consistently one of the best-value markets in OC — offering suburban quality of life at prices $200K–$400K below Fullerton or Brea.",
-    highlights: [
-      { icon: Home, label: "Median Sale Price", value: "$750K–$1.1M" },
-      { icon: TrendingUp, label: "YoY Appreciation", value: "~4.8%" },
-      { icon: MapPin, label: "Key Zip Code", value: "90631" },
-      { icon: Car, label: "Freeway Access", value: "5, 57, 60 Fwys" },
-    ],
-    neighborhoods: [
-      {
-        name: "Central La Habra",
-        zip: "90631",
-        description:
-          "The heart of La Habra with the Imperial Highway commercial corridor, city parks, and established SFR neighborhoods. Entry-level homes from $650K.",
-      },
-      {
-        name: "La Habra Heights Adjacent",
-        zip: "90631",
-        description:
-          "Larger lots, more privacy, and a semi-rural feel near the La Habra Heights border. Great for buyers seeking land and space at accessible price points.",
-      },
-    ],
-    whyBuy:
-      "La Habra is the secret of OC real estate. You get Orange County address, La Habra City School District quality, and price points 20–30% below the OC median. Add Cal State Fullerton 10 minutes away for rental demand, and you have a fundamentally sound buy-and-hold investment market.",
-    cityFilter: "la-habra",
-  },
-};
-
-type AreaSlug = keyof typeof AREAS;
+import { AREAS, AREA_SLUGS, type AreaSlug } from "@/lib/areas";
 
 export async function generateStaticParams() {
-  return Object.keys(AREAS).map((slug) => ({ slug }));
+  return AREA_SLUGS.map((slug) => ({ slug }));
 }
 
 export async function generateMetadata({
@@ -168,12 +52,27 @@ export default async function AreaPage({
 
   return (
     <div>
+      <StructuredData
+        data={generateBreadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: area.name, path: `/areas/${slug}` },
+        ])}
+      />
       <PageHero
         badge={area.county}
         title={area.name}
         titleAccent={area.tagline}
         backgroundImage={area.heroImage}
-      />
+      >
+        <Breadcrumbs
+          inverted
+          className="mt-8"
+          items={[
+            { label: "Home", href: "/" },
+            { label: area.name },
+          ]}
+        />
+      </PageHero>
 
       {/* Highlights */}
       <section className="bg-charcoal py-10 border-b border-white/10">
@@ -204,13 +103,12 @@ export default async function AreaPage({
               <p className="text-muted-foreground leading-relaxed text-lg">{area.description}</p>
               <p className="text-muted-foreground leading-relaxed">{area.whyBuy}</p>
 
-              <Link
-                href={`/listings?city=${area.cityFilter}`}
-                className="inline-flex items-center gap-2 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-8 py-3.5 rounded-xl transition-colors mt-4"
-              >
-                Browse {area.name} Listings
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+              <Button asChild variant="cta" size="marketing" className="mt-4">
+                <Link href={`/listings?city=${area.cityFilter}`}>
+                  Browse {area.name} Listings
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+              </Button>
             </div>
 
             {/* Sidebar CTA */}
@@ -223,18 +121,12 @@ export default async function AreaPage({
                 a free consultation to discuss your goals.
               </p>
               <div className="pt-2 space-y-3">
-                <Link
-                  href="/contact"
-                  className="flex items-center justify-center gap-2 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-6 py-3 rounded-lg w-full transition-colors"
-                >
-                  Free Consultation
-                </Link>
-                <a
-                  href="tel:7143363375"
-                  className="flex items-center justify-center gap-2 border border-border hover:border-brand text-foreground hover:text-brand font-display font-semibold px-6 py-3 rounded-lg w-full transition-colors text-sm"
-                >
-                  (714) 336-3375
-                </a>
+                <Button asChild variant="cta" size="marketing" className="w-full">
+                  <Link href="/contact">Free Consultation</Link>
+                </Button>
+                <Button asChild variant="ctaOutline" size="marketing" className="w-full">
+                  <a href="tel:7143363375">(714) 336-3375</a>
+                </Button>
               </div>
               <div className="flex items-center gap-3 border-t border-border pt-5">
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -300,18 +192,12 @@ export default async function AreaPage({
               Get expert guidance from a broker who knows this market inside and out.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/contact"
-                className="bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-10 py-4 rounded-xl transition-colors"
-              >
-                Contact Karl
-              </Link>
-              <Link
-                href={`/listings?city=${area.cityFilter}`}
-                className="bg-white/10 hover:bg-white/20 text-white font-display font-semibold uppercase tracking-wide px-10 py-4 rounded-xl border border-white/20 transition-colors"
-              >
-                Browse Listings
-              </Link>
+              <Button asChild variant="cta" size="hero">
+                <Link href="/contact">Contact Karl</Link>
+              </Button>
+              <Button asChild variant="ctaInverse" size="hero">
+                <Link href={`/listings?city=${area.cityFilter}`}>Browse Listings</Link>
+              </Button>
             </div>
           </div>
         </Container>

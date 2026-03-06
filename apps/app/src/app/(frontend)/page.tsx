@@ -10,7 +10,6 @@ import { ComplexTransactionsSection } from "@/components/ComplexTransactionsSect
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { AreasSection } from "@/components/AreasSection";
 import { BlogTeaserSection } from "@/components/BlogTeaserSection";
-import { MapSection } from "@/components/MapSection";
 import { MortgageCalculator } from "@/components/MortgageCalculator";
 import nextDynamic from "next/dynamic";
 
@@ -44,54 +43,6 @@ export const dynamic = "force-dynamic";
 export default function Home() {
   return (
     <div className="flex flex-col">
-      {/* Local Business JSON-LD for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "RealEstateAgent",
-            name: "Momentum Realty Group",
-            url: "https://momentumrg.com",
-            logo: "https://momentumrg.com/logo.svg",
-            image: "https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg",
-            description:
-              "Momentum Realty Group — Orange County real estate experts serving buyers, sellers, and investors across OC, LA County, and Riverside County since 2009.",
-            telephone: "+17143363375",
-            email: "karl@momentumrg.com",
-            foundingDate: "2009",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress: "1451 Quail Street, Suite 110B",
-              addressLocality: "Newport Beach",
-              addressRegion: "CA",
-              postalCode: "92660",
-              addressCountry: "US",
-            },
-            geo: {
-              "@type": "GeoCoordinates",
-              latitude: 33.6553,
-              longitude: -117.8622,
-            },
-            areaServed: [
-              { "@type": "City", name: "Long Beach" },
-              { "@type": "City", name: "Huntington Beach" },
-              { "@type": "City", name: "La Habra" },
-              { "@type": "City", name: "Anaheim" },
-              { "@type": "City", name: "Riverside" },
-            ],
-            employee: {
-              "@type": "Person",
-              name: "Karl Parize",
-              jobTitle: "Broker / Owner",
-              telephone: "+17143363375",
-              email: "karl@momentumrg.com",
-              hasCredential: ["CBRE #01364278", "NMLS #313044"],
-            },
-            sameAs: ["https://momentumrg.com"],
-          }),
-        }}
-      />
       <Hero />
       <TrustBar />
       <ServicesSection />
@@ -100,7 +51,6 @@ export default function Home() {
       <ComplexTransactionsSection />
       <TestimonialsSection />
       <AreasSection />
-      <MapSection />
       <MortgageCalculator />
       <BlogTeaserSection />
       <CTASection />

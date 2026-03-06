@@ -7,8 +7,8 @@ import { Button } from "./ui/button";
 import Link from "next/link";
 
 export const BlogSection = async ({ 
-  title = "From the blog",
-  badge = "Latest News"
+  title = "Latest Articles",
+  badge = "Articles"
 }: { 
   title?: string;
   badge?: string;
@@ -34,7 +34,7 @@ export const BlogSection = async ({
         <Header
           badge={badge}
           title={title}
-          subtitle="Check out our latest articles, updates, and insights about modern web development."
+          subtitle="Check out our latest articles, market updates, and insights on Orange County real estate."
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
@@ -45,7 +45,7 @@ export const BlogSection = async ({
         
         <div className="flex justify-center">
           <Button asChild variant="outline" size="lg">
-            <Link href="/blog">View All Posts</Link>
+            <Link href="/articles">View All Articles</Link>
           </Button>
         </div>
       </div>

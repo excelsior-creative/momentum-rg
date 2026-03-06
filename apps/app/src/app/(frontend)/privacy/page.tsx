@@ -132,8 +132,9 @@ export default function PrivacyPage() {
           </p>
           <div className="mt-4 p-6 bg-warm-gray rounded-xl border border-border text-muted-foreground">
             <p className="font-medium text-foreground">Momentum Realty Group</p>
-            <p>1451 Quail Street, Suite 110B</p>
-            <p>Newport Beach, CA 92660</p>
+            <p>10554 Progress Way,</p>
+            <p>Unit C</p>
+            <p>Cypress, CA 90630</p>
             <p className="mt-2">
               <a href="tel:7143363375" className="text-brand hover:underline">(714) 336-3375</a>
             </p>

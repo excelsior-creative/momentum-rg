@@ -21,6 +21,20 @@ const nextConfig: NextConfig = {
   },
   // SEO: Consistent URL structure
   trailingSlash: false,
+  async redirects() {
+    return [
+      {
+        source: "/blog",
+        destination: "/articles",
+        permanent: true,
+      },
+      {
+        source: "/blog/:slug",
+        destination: "/articles/:slug",
+        permanent: true,
+      },
+    ];
+  },
   // Image optimization for Core Web Vitals
   images: {
     formats: ["image/avif", "image/webp"],

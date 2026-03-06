@@ -6,7 +6,6 @@ export const ContentGenerationSettings: GlobalConfig = {
     group: 'Settings',
   },
   fields: [
-    // API Configuration
     {
       name: 'apiConfig',
       type: 'group',
@@ -15,7 +14,6 @@ export const ContentGenerationSettings: GlobalConfig = {
         { name: 'apiKey', type: 'text', label: 'API Key' },
       ],
     },
-    // Company Context
     {
       name: 'companyContext',
       type: 'group',
@@ -27,18 +25,108 @@ export const ContentGenerationSettings: GlobalConfig = {
         { name: 'secondaryColor', type: 'text' },
       ],
     },
-    // Keywords
+    {
+      name: 'operations',
+      type: 'group',
+      fields: [
+        {
+          name: 'enabled',
+          type: 'checkbox',
+          defaultValue: false,
+          admin: {
+            description: 'Master switch for the automated article pipeline.',
+          },
+        },
+        {
+          name: 'cadenceHours',
+          type: 'number',
+          defaultValue: 72,
+          required: true,
+          admin: {
+            description: 'Minimum time between successful auto-published articles.',
+          },
+        },
+        {
+          name: 'qualityThreshold',
+          type: 'number',
+          defaultValue: 70,
+          required: true,
+          admin: {
+            description: 'Minimum topic score required before the pipeline will publish.',
+          },
+        },
+        {
+          name: 'maxResearchSeeds',
+          type: 'number',
+          defaultValue: 8,
+          required: true,
+        },
+        {
+          name: 'maxTopicCandidates',
+          type: 'number',
+          defaultValue: 24,
+          required: true,
+        },
+        {
+          name: 'systemAuthorEmail',
+          type: 'text',
+          admin: {
+            description: 'Optional dedicated Payload user email for generated posts.',
+          },
+        },
+      ],
+    },
     {
       name: 'keywords',
       type: 'array',
+      admin: {
+        description: 'Seed keywords and problem statements used to build live research queries.',
+      },
       fields: [{ name: 'keyword', type: 'text', required: true }],
     },
-    // Prompt Templates
+    {
+      name: 'targetGeographies',
+      type: 'array',
+      fields: [{ name: 'name', type: 'text', required: true }],
+    },
+    {
+      name: 'audienceSegments',
+      type: 'array',
+      fields: [{ name: 'audience', type: 'text', required: true }],
+    },
+    {
+      name: 'bannedTopics',
+      type: 'array',
+      fields: [{ name: 'topic', type: 'text', required: true }],
+    },
+    {
+      name: 'manualTopicQueue',
+      type: 'array',
+      admin: {
+        description: 'Optional queue of hand-picked topics. The next available entry is consumed before live research.',
+      },
+      fields: [
+        { name: 'primaryKeyword', type: 'text', required: true },
+        { name: 'geography', type: 'text' },
+        { name: 'audience', type: 'text' },
+        { name: 'angle', type: 'textarea' },
+      ],
+    },
     {
       name: 'topicResearch',
       label: 'Post Topic Research',
       type: 'group',
-      fields: [{ name: 'prompt', type: 'textarea' }],
+      fields: [
+        {
+          name: 'provider',
+          type: 'select',
+          defaultValue: 'serpapi',
+          options: [
+            { label: 'SerpApi', value: 'serpapi' },
+          ],
+        },
+        { name: 'prompt', type: 'textarea' },
+      ],
     },
     {
       name: 'postGeneration',
@@ -46,7 +134,6 @@ export const ContentGenerationSettings: GlobalConfig = {
       type: 'group',
       fields: [{ name: 'prompt', type: 'textarea' }],
     },
-    // Image Styles
     {
       name: 'featuredImageStyles',
       label: 'Post Featured Image Styles',
@@ -57,7 +144,6 @@ export const ContentGenerationSettings: GlobalConfig = {
         { name: 'prompt', type: 'textarea', admin: { description: 'Prompt for the post featured image' } },
       ],
     },
-    // Infographic Settings
     {
       name: 'infographic',
       label: 'Post Infographic Settings',

@@ -28,7 +28,7 @@ export const PostCard = ({ post, priority = false }: PostCardProps) => {
 
   return (
     <Link
-      href={`/blog/${post.slug}`}
+      href={`/articles/${post.slug}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-border bg-white hover:shadow-xl transition-all duration-300"
     >
       {/* Image */}

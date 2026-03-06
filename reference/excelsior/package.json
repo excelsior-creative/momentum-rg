@@ -1,0 +1,86 @@
+{
+  "name": "excelsior-creative-website",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env NODE_OPTIONS='--no-deprecation' next dev",
+    "build": "cross-env NODE_OPTIONS='--no-deprecation' next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "payload": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload",
+    "generate:types": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:types",
+    "generate:importmap": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload generate:importmap",
+    "migrate:create": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload migrate:create",
+    "migrate": "cross-env PAYLOAD_CONFIG_PATH=src/payload.config.ts payload migrate",
+    "seed": "tsx src/seed/index.ts",
+    "import:projects": "tsx scripts/import-projects.ts",
+    "generate:articles": "tsx scripts/generate-articles.ts",
+    "generate:articles:full": "tsx scripts/generate-articles.ts --topic \"Comprehensive guide to establishing a digital presence as an independent philanthropic advisor\" --words 1500 --images 1 --infographics 1 --count 1",
+    "generate:articles:file": "tsx scripts/generate-articles.ts --topic-file scripts/topics/advisors.txt --words 2500 --images 1 --infographics 1 --count 1",
+    "migrate:media": "tsx scripts/migrate-media.ts",
+    "seed:pages": "tsx scripts/seed-pages.ts",
+    "migrate:db": "./scripts/migrate-db.sh"
+  },
+  "dependencies": {
+    "@google/genai": "^1.34.0",
+    "@lobehub/icons": "^3.0.2",
+    "@lobehub/ui": "^3.4.6",
+    "@payloadcms/db-postgres": "^3.69.0",
+    "@payloadcms/db-vercel-postgres": "^3.69.0",
+    "@payloadcms/email-resend": "^3.69.0",
+    "@payloadcms/next": "^3.69.0",
+    "@payloadcms/plugin-search": "^3.69.0",
+    "@payloadcms/richtext-lexical": "^3.69.0",
+    "@payloadcms/storage-vercel-blob": "^3.69.0",
+    "@payloadcms/ui": "^3.69.0",
+    "@vercel/blob": "^2.0.0",
+    "framer-motion": "^12.23.26",
+    "graphql": "^16.12.0",
+    "lucide-react": "^0.562.0",
+    "next": "^16.0.0",
+    "payload": "^3.69.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-google-recaptcha-v3": "^1.11.0",
+    "react-layout-kit": "^2.0.1",
+    "replicate": "^1.4.0",
+    "resend": "^6.6.0",
+    "sharp": "^0.34.5"
+  },
+  "browserslist": [
+    "last 2 Chrome versions",
+    "last 2 Firefox versions",
+    "last 2 Safari versions",
+    "last 2 Edge versions"
+  ],
+  "devDependencies": {
+    "@next/bundle-analyzer": "^16.0.0",
+    "@playwright/test": "^1.57.0",
+    "@tailwindcss/typography": "^0.5.19",
+    "@types/node": "^22.14.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "dotenv": "^17.2.3",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^16.1.1",
+    "playwright": "^1.57.0",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17",
+    "tsx": "^4.19.0",
+    "typescript": "~5.8.2"
+  },
+  "pnpm": {
+    "overrides": {
+      "react": "^19.0.0",
+      "react-dom": "^19.0.0",
+      "pg": "8.13.1"
+    },
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp"
+    ]
+  }
+}

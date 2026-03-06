@@ -1,40 +1,38 @@
-import React from "react";
-import Link from "next/link";
+import { Mail, MapPin, Phone } from "lucide-react";
 import Image from "next/image";
-import { Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
+import { AREA_LINKS } from "@/lib/areas";
 
 const footerLinks = {
   Services: [
     { name: "Real Estate", path: "/real-estate-solutions" },
-    { name: "Mortgages", path: "/contact" },
+    { name: "Mortgages", path: "/mortgages" },
     { name: "Property Management", path: "/property-management" },
-    { name: "Investments", path: "/contact" },
+    { name: "Investments", path: "/investments" },
   ],
   Company: [
     { name: "About / Team", path: "/about" },
     { name: "Listings", path: "/listings" },
-    { name: "Property Map", path: "/map" },
     { name: "FAQs", path: "/faqs" },
-    { name: "News", path: "/blog" },
-    { name: "Privacy Policy", path: "/privacy" },
+    { name: "Articles", path: "/articles" },
   ],
   Areas: [
-    { name: "Long Beach", path: "/areas/long-beach" },
-    { name: "Huntington Beach", path: "/areas/huntington-beach" },
-    { name: "La Habra", path: "/areas/la-habra" },
-    { name: "La Mirada", path: "/listings?city=la-mirada" },
-    { name: "Anaheim", path: "/listings?city=anaheim" },
-    { name: "Riverside", path: "/listings?city=riverside" },
+    ...AREA_LINKS.map((area) => ({ name: area.name, path: area.href })),
   ],
 };
 
 export const Footer = async () => {
   return (
-    <footer className="bg-charcoal text-white">
+    <footer className="relative overflow-hidden border-t border-gold/25 bg-charcoal text-white">
+      <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-0 h-24">
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/80 to-transparent" />
+        <div className="absolute inset-x-0 top-0 h-12 bg-gradient-to-b from-white/[0.06] via-white/[0.025] to-transparent" />
+        <div className="absolute left-1/2 top-0 h-20 w-2/3 -translate-x-1/2 bg-gold/10 blur-3xl" />
+      </div>
       <div className="max-w-7xl mx-auto px-4 md:px-10 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div>
             <Link href="/" className="inline-block mb-5">
               <Image
                 src="/logo.svg"
@@ -65,7 +63,9 @@ export const Footer = async () => {
               </a>
               <div className="flex items-start gap-2.5 text-white/70">
                 <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-0.5" />
-                <span>Orange County, Los Angeles County &amp; Riverside County, CA</span>
+                <span>
+                  Orange County, Los Angeles County &amp; Riverside County, CA
+                </span>
               </div>
             </div>
           </div>
@@ -81,7 +81,7 @@ export const Footer = async () => {
                   <li key={link.name}>
                     <Link
                       href={link.path}
-                      className="text-sm text-white/60 hover:text-white transition-colors"
+                      className="text-sm text-white/60 transition-colors hover:text-gold"
                     >
                       {link.name}
                     </Link>
@@ -92,20 +92,24 @@ export const Footer = async () => {
           ))}
         </div>
 
-        <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="flex flex-col items-center justify-between gap-4 border-t border-gold/15 pt-8 md:flex-row">
           <p className="text-sm text-white/50">
-            © {new Date().getFullYear()} Momentum Realty Group. All rights reserved.
+            © {new Date().getFullYear()} Momentum Realty Group. All rights
+            reserved.
           </p>
           <div className="flex items-center gap-3 text-xs text-white/40">
             <span>NMLS #313044</span>
-            <span>·</span>
+            <span className="text-gold/60">·</span>
             <span>CBRE #01364278</span>
-            <span>·</span>
-            <Link href="/privacy" className="hover:text-white transition-colors">
+            <span className="text-gold/60">·</span>
+            <Link
+              href="/privacy"
+              className="transition-colors hover:text-gold"
+            >
               Privacy Policy
             </Link>
-            <span>·</span>
-            <Link href="/terms" className="hover:text-white transition-colors">
+            <span className="text-gold/60">·</span>
+            <Link href="/terms" className="transition-colors hover:text-gold">
               Terms
             </Link>
           </div>

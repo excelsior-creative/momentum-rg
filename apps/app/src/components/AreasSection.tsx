@@ -2,63 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { Container } from "./Container";
 import { MapPin } from "lucide-react";
-
-const areas = [
-  {
-    city: "Long Beach",
-    zipCodes: ["90804", "90803", "90815"],
-    county: "Los Angeles County",
-    description:
-      "From Belmont Shore to Signal Hill, Long Beach offers a vibrant coastal real estate market with diverse housing options for every lifestyle.",
-    href: "/areas/long-beach",
-    listingsHref: "/listings?city=long-beach",
-  },
-  {
-    city: "La Mirada",
-    zipCodes: ["90638"],
-    county: "Los Angeles County",
-    description:
-      "A family-friendly suburban gem with excellent schools, parks, and convenient freeway access to the greater Los Angeles metro area.",
-    href: "/listings?city=la-mirada",
-    listingsHref: "/listings?city=la-mirada",
-  },
-  {
-    city: "La Habra",
-    zipCodes: ["90631"],
-    county: "Orange County",
-    description:
-      "Straddling Orange and Los Angeles Counties, La Habra provides excellent value with strong appreciation potential and a thriving community.",
-    href: "/areas/la-habra",
-    listingsHref: "/listings?city=la-habra",
-  },
-  {
-    city: "Huntington Beach",
-    zipCodes: ["92649"],
-    county: "Orange County",
-    description:
-      "\"Surf City USA\" offers premier coastal living, top-rated schools, and a thriving real estate market driven by lifestyle and recreation.",
-    href: "/areas/huntington-beach",
-    listingsHref: "/listings?city=huntington-beach",
-  },
-  {
-    city: "Anaheim",
-    zipCodes: ["92801", "92802", "92804"],
-    county: "Orange County",
-    description:
-      "The heart of Orange County — from entertainment district condos to suburban single-family homes, Anaheim has something for every buyer.",
-    href: "/listings?city=anaheim",
-    listingsHref: "/listings?city=anaheim",
-  },
-  {
-    city: "Riverside",
-    zipCodes: ["92501", "92503"],
-    county: "Riverside County",
-    description:
-      "Growing fast with outstanding affordability and investment potential. Riverside is one of Southern California's hottest emerging markets.",
-    href: "/listings?city=riverside",
-    listingsHref: "/listings?city=riverside",
-  },
-];
+import { AREA_LINKS } from "@/lib/areas";
 
 export const AreasSection = () => {
   return (
@@ -78,9 +22,9 @@ export const AreasSection = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {areas.map((area) => (
+          {AREA_LINKS.map((area) => (
             <Link
-              key={area.city}
+              key={area.name}
               href={area.href}
               className="group bg-white rounded-xl p-6 border border-border hover:border-gold/50 hover:shadow-lg transition-all duration-300"
             >
@@ -90,7 +34,7 @@ export const AreasSection = () => {
                 </div>
                 <div>
                   <h3 className="font-heading text-lg font-medium text-foreground group-hover:text-gold transition-colors">
-                    {area.city}
+                    {area.name}
                   </h3>
                   <p className="text-xs text-muted-foreground font-display uppercase tracking-wide mt-0.5">
                     {area.county}

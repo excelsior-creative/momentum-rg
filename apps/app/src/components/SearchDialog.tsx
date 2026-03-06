@@ -101,7 +101,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ isOpen, onClose }) => {
               <Search className="w-5 h-5 text-muted-foreground mr-3" />
               <Input
                 ref={inputRef}
-                placeholder="Search blog posts..."
+                placeholder="Search articles..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
                 className="flex-1 border-none shadow-none focus-visible:ring-0 text-lg h-auto p-0 bg-transparent"
@@ -128,7 +128,7 @@ const SearchDialog: React.FC<SearchDialogProps> = ({ isOpen, onClose }) => {
                   {results.map((result) => (
                     <Link
                       key={result.id}
-                      href={`/blog/${result.slug}`}
+                      href={`/articles/${result.slug}`}
                       onClick={onClose}
                       className="flex flex-col p-4 rounded-xl hover:bg-muted transition-colors group"
                     >
