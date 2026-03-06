@@ -19,6 +19,7 @@ import type { Metadata } from "next";
 import { ArrowLeft, Calendar } from "lucide-react";
 
 export const dynamic = "force-dynamic";
+const ARTICLE_FALLBACK_HERO = "/article-fallback-hero.jpg";
 
 const getPostBySlug = cache(async (slug: string) => {
   const payload = await getPayload({ config });
@@ -49,7 +50,7 @@ export async function generateMetadata({
       description:
         post.meta?.description || post.excerpt || `${post.title} — Momentum Realty Group real estate insights.`,
       slug,
-      ogImage: featuredImage?.url || undefined,
+      ogImage: featuredImage?.url || ARTICLE_FALLBACK_HERO,
       publishedTime: post.publishedDate || undefined,
       modifiedTime: post.updatedAt || undefined,
       author: "Momentum Realty Group",
@@ -208,6 +209,8 @@ export default async function PostPage({
   const featuredImage = post.featuredImage as Media | null;
   const infographic = post.infographic as Media | null;
   const dateStr = formatDate(post.publishedDate);
+  const heroImageSrc = featuredImage?.url || ARTICLE_FALLBACK_HERO;
+  const heroImageAlt = featuredImage?.alt || post.title;
   const pageSchema = combineSchemas(
     generateBreadcrumbSchema([
       { name: "Home", path: "/" },
@@ -222,19 +225,14 @@ export default async function PostPage({
       <StructuredData data={pageSchema} />
       {/* Header */}
       <section className="relative py-20 md:py-28 overflow-hidden">
-        {featuredImage?.url ? (
-          <Image
-            src={featuredImage.url}
-            alt={featuredImage.alt || post.title}
-            fill
-            className="object-cover"
-          />
-        ) : (
-          <div
-            className="absolute inset-0"
-            style={{ background: "linear-gradient(135deg, #1a1a1a 0%, #2D2D2D 100%)" }}
-          />
-        )}
+        <Image
+          src={heroImageSrc}
+          alt={heroImageAlt}
+          fill
+          priority
+          sizes="100vw"
+          className="object-cover"
+        />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
 
