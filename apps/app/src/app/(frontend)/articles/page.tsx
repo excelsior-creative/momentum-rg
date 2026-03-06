@@ -97,7 +97,7 @@ export default async function ArticlesPage({
     });
     posts = result.docs as Post[];
     totalPages = result.totalPages;
-    currentPage = result.page;
+    currentPage = result.page ?? requestedPage;
   } catch (err) {
     console.error("Failed to fetch articles during page render.", err);
     error = true;
