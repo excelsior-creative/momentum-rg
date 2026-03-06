@@ -9,7 +9,7 @@ const stats = [
 
 export const TrustBar = () => {
   return (
-    <div className="border-y border-gold/15 bg-charcoal">
+    <div className="border-y border-gold/15 bg-neutral-900">
       <div className="max-w-7xl mx-auto px-4 md:px-10">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x divide-white/10">
           {stats.map((stat) => (

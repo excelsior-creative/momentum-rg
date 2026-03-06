@@ -116,7 +116,7 @@ export const Navbar = () => {
                           animate={{ opacity: 1, y: 0 }}
                           exit={{ opacity: 0, y: 6 }}
                           transition={{ duration: 0.15 }}
-                          className="absolute top-full left-0 mt-2 w-52 bg-white border border-border rounded-lg shadow-xl overflow-hidden z-50"
+                          className="absolute top-full left-0 mt-2 min-w-64 w-max bg-white border border-border rounded-lg shadow-xl overflow-hidden z-50"
                         >
                           {item.children.map((child) => (
                             <Link
