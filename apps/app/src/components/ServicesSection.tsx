@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./Container";
 import { ArrowRight } from "lucide-react";
 
@@ -65,12 +66,12 @@ export const ServicesSection = () => {
               <div className="absolute top-0 left-0 right-0 h-0.5 bg-gold rounded-t-xl scale-x-0 group-hover:scale-x-100 transition-transform duration-300" />
 
               {/* Icon */}
-              <div className="w-14 h-14 mb-5 opacity-70 group-hover:opacity-100 transition-opacity">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="w-14 h-14 mb-5 opacity-70 group-hover:opacity-100 transition-opacity relative">
+                <Image
                   src={service.icon}
                   alt={service.title}
-                  className="w-full h-full object-contain"
+                  fill
+                  className="object-contain"
                   style={{ filter: "brightness(0) saturate(100%) invert(57%) sepia(38%) saturate(571%) hue-rotate(6deg) brightness(97%) contrast(87%)" }}
                 />
               </div>

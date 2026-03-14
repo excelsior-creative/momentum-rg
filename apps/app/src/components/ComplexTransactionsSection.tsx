@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Container } from "./Container";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
@@ -29,11 +30,11 @@ export const ComplexTransactionsSection = () => {
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
         {/* Left: photo */}
         <div className="relative min-h-[400px] lg:min-h-0">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
             alt="Complex Real Estate Transactions"
-            className="absolute inset-0 w-full h-full object-cover"
+            fill
+            className="object-cover"
           />
           <div className="absolute inset-0 bg-black/40" />
         </div>

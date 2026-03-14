@@ -38,7 +38,7 @@ const CTASection = nextDynamic(
   () => import("@/components/CTASection").then((mod) => mod.CTASection)
 );
 
-export const dynamic = "force-dynamic";
+export const revalidate = 60;
 
 export default function Home() {
   return (

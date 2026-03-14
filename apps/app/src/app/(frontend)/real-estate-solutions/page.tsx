@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
@@ -162,12 +163,12 @@ export default function RealEstateSolutionsPage() {
               history, but the true desired outcome of your clients.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
-              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+              <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand relative">
+                <Image
                   src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
                   alt="Karl Parize"
-                  className="w-full h-full object-cover"
+                  fill
+                  className="object-cover"
                 />
               </div>
               <div className="text-left">

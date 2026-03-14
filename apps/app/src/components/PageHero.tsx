@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import Image from "next/image";
 import { Container } from "./Container";
 
 interface PageHeroProps {
@@ -8,9 +8,6 @@ interface PageHeroProps {
   titleAccent?: string;
   subtitle?: string;
   backgroundImage?: string;
-  className?: string;
-  contentClassName?: string;
-  children?: React.ReactNode;
 }
 
 /**
@@ -23,25 +20,23 @@ export const PageHero = ({
   titleAccent,
   subtitle,
   backgroundImage = "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
-  className,
-  contentClassName,
-  children,
 }: PageHeroProps) => {
   return (
-    <section className={cn("relative py-24 md:py-32 overflow-hidden", className)}>
-      <div className="absolute inset-x-0 top-0 z-10 h-1 bg-gradient-to-r from-transparent via-gold to-transparent" />
+    <section className="relative py-24 md:py-32 overflow-hidden">
       {/* Background photo */}
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
+      <Image
         src={backgroundImage}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover"
+        fill
+        priority
+        className="object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
+      <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
 
       <Container className="relative z-10">
-        <div className={cn("max-w-2xl", contentClassName)}>
+        <div className="max-w-2xl">
           {badge && (
             <span className="text-gold text-xs font-semibold uppercase tracking-[0.3em] font-display">
               {badge}
@@ -59,8 +54,6 @@ export const PageHero = ({
           {subtitle && (
             <p className="text-white/60 mt-4 text-lg leading-relaxed max-w-xl">{subtitle}</p>
           )}
-          <div className="mt-6 h-px w-24 bg-gold/70" aria-hidden="true" />
-          {children}
         </div>
       </Container>
     </section>

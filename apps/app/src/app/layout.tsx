@@ -37,16 +37,18 @@ export default function RootLayout({
   const shouldShowToolbar = process.env.NODE_ENV !== "production";
 
   return (
-    <html lang="en-US" className={`${montserrat.variable} ${playfair.variable} ${inter.variable}`}>
+    <html lang="en" className={`${montserrat.variable} ${playfair.variable} ${inter.variable}`}>
+      <head>
+        <link rel="preconnect" href="https://momentumrg.com" />
+        <link rel="dns-prefetch" href="https://momentumrg.com" />
+      </head>
       <body className="font-sans antialiased">
         {children}
         {shouldShowToolbar && <VercelToolbar />}
-        {globalSchema && (
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
-          />
-        )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
+        />
       </body>
     </html>
   );

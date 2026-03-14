@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowRight, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
@@ -61,9 +62,17 @@ export const Hero = () => {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.9, ease: "easeInOut" }}
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${slide.image})` }}
-        />
+          className="absolute inset-0"
+        >
+          <Image
+            src={slide.image}
+            alt={slide.heading}
+            fill
+            priority={current === 0}
+            className="object-cover object-center"
+            sizes="100vw"
+          />
+        </m.div>
       </AnimatePresence>
 
       {/* Dark gradient overlay */}
@@ -147,10 +156,11 @@ export const Hero = () => {
       {/* Karl Parize floating card */}
       <div className="hidden xl:block absolute bottom-12 right-10 z-20">
         <div className="bg-black/80 backdrop-blur-sm border border-gold/30 rounded-2xl p-5 flex items-center gap-4 shadow-2xl">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          <Image
             src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
             alt="Karl Parize, Owner"
+            width={64}
+            height={64}
             className="w-16 h-16 rounded-full object-cover border-2 border-gold/50"
           />
           <div>

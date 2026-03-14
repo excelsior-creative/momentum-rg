@@ -1,8 +1,6 @@
+import Image from 'next/image'
 import { Container } from '@/components/Container'
-import { Breadcrumbs } from '@/components/Breadcrumbs'
-import { StructuredData } from '@/components/StructuredData'
 import { generatePageMetadata } from '@/lib/metadata'
-import { generateBreadcrumbSchema } from '@/lib/structured-data'
 import Link from 'next/link'
 
 export const revalidate = 3600
@@ -42,35 +40,21 @@ const specialties = [
 export default function EsmeraldaPage() {
   return (
     <div className="flex flex-col">
-      <StructuredData
-        data={generateBreadcrumbSchema([
-          { name: 'Home', path: '/' },
-          { name: 'About', path: '/about' },
-          { name: 'Esmeralda Novikoff', path: '/team/esmeralda' },
-        ])}
-      />
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
-        <img
-          src="/about-team-california-home.jpg"
+        <Image
+          src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/30" />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
 
         <Container className="relative z-10">
           <div className="max-w-2xl">
-            <Breadcrumbs
-              inverted
-              className="mb-6"
-              items={[
-                { label: 'Home', href: '/' },
-                { label: 'About', href: '/about' },
-                { label: 'Esmeralda Novikoff' },
-              ]}
-            />
             <Link
               href="/about"
               className="text-gold/70 text-xs font-semibold uppercase tracking-[0.3em] font-display hover:text-gold transition-colors"
@@ -94,17 +78,18 @@ export default function EsmeraldaPage() {
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-start">
             {/* Photo + credentials */}
-            <div className="max-w-sm mx-auto lg:mx-0 text-left">
+            <div className="text-center lg:text-left">
               <div className="relative inline-block">
-                <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-gold/20 shadow-2xl">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-gold/20 shadow-2xl mx-auto lg:mx-0 relative">
+                  <Image
                     src="/esmeralda-novikoff.jpg"
                     alt="Esmeralda Novikoff - Real Estate & Foreclosure Specialist, Momentum Realty Group"
-                    className="w-full h-full object-cover"
+                    fill
+                    priority
+                    className="object-cover"
                   />
                 </div>
-                <div className="absolute -bottom-3 left-0 w-20 h-1 bg-gold rounded-full" />
+                <div className="absolute -bottom-3 left-0 right-0 mx-auto lg:mx-0 w-20 h-1 bg-gold rounded-full" />
               </div>
 
               <div className="mt-8 space-y-1.5">
@@ -114,10 +99,10 @@ export default function EsmeraldaPage() {
                 </p>
 
                 {/* Credential grid */}
-                <div className="mt-4 grid grid-cols-[max-content_1fr] gap-x-4 gap-y-2 text-sm">
+                <div className="mt-4 space-y-2 text-sm">
                   {credentials.map((c) => (
-                    <div key={c.label} className="contents">
-                      <span className="text-muted-foreground text-xs uppercase tracking-wide">
+                    <div key={c.label} className="flex items-baseline gap-2">
+                      <span className="text-muted-foreground text-xs uppercase tracking-wide w-24 shrink-0">
                         {c.label}
                       </span>
                       <span className="text-foreground font-medium">{c.value}</span>
@@ -128,14 +113,14 @@ export default function EsmeraldaPage() {
                 <div className="pt-4 space-y-2">
                   <a
                     href="tel:8778862699"
-                    className="flex items-center gap-2 text-sm text-foreground hover:text-teal transition-colors justify-start"
+                    className="flex items-center gap-2 text-sm text-foreground hover:text-teal transition-colors justify-center lg:justify-start"
                   >
                     <span className="text-teal">📞</span>
                     (877) 886-2699
                   </a>
                   <a
                     href="mailto:esmenovi@yahoo.com"
-                    className="flex items-center gap-2 text-sm text-foreground hover:text-teal transition-colors justify-start"
+                    className="flex items-center gap-2 text-sm text-foreground hover:text-teal transition-colors justify-center lg:justify-start"
                   >
                     <span className="text-teal">✉</span>
                     esmenovi@yahoo.com

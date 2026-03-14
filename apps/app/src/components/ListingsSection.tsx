@@ -6,33 +6,42 @@ import { PropertyCard } from "./PropertyCard";
 import { ArrowRight } from "lucide-react";
 import { getPayload } from "payload";
 import config from "@/payload.config";
+import { unstable_cache } from "next/cache";
+
+const getFeaturedListings = unstable_cache(
+  async () => {
+    try {
+      const payload = await getPayload({ config });
+      const { docs: featured } = await payload.find({
+        collection: "properties",
+        where: {
+          or: [
+            { status: { equals: "for-sale" } },
+            { status: { equals: "in-escrow" } },
+          ],
+        },
+        limit: 3,
+        sort: "-dateAdded",
+      });
+
+      if (featured.length > 0) return featured;
+
+      const { docs: fallback } = await payload.find({
+        collection: "properties",
+        limit: 3,
+        sort: "-dateAdded",
+      });
+      return fallback;
+    } catch {
+      return [];
+    }
+  },
+  ["featured-listings"],
+  { revalidate: 60, tags: ["properties"] }
+);
 
 export const ListingsSection = async () => {
-  const payload = await getPayload({ config });
-
-  const { docs: featured } = await payload.find({
-    collection: "properties",
-    where: {
-      or: [
-        { status: { equals: "for-sale" } },
-        { status: { equals: "in-escrow" } },
-      ],
-    },
-    limit: 3,
-    sort: "-dateAdded",
-  });
-
-  // Fallback: show any recent properties if no active listings
-  const properties =
-    featured.length > 0
-      ? featured
-      : (
-          await payload.find({
-            collection: "properties",
-            limit: 3,
-            sort: "-dateAdded",
-          })
-        ).docs;
+  const properties = await getFeaturedListings();
 
   if (properties.length === 0) return null;
 

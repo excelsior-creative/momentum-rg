@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
@@ -129,10 +130,11 @@ export default async function AreaPage({
                 </Button>
               </div>
               <div className="flex items-center gap-3 border-t border-border pt-5">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <Image
                   src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
                   alt="Karl Parize"
+                  width={48}
+                  height={48}
                   className="w-12 h-12 rounded-full object-cover border-2 border-gold/30"
                 />
                 <div>

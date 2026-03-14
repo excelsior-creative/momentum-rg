@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { m } from "framer-motion";
 import { Container } from "./Container";
 import { Button } from "./ui/button";
@@ -20,29 +21,29 @@ export const CTASection = () => {
   return (
     <>
       {/* Why Karl Section — split photo + content */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-gold/80 to-transparent" />
+      <section className="bg-white overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[520px]">
           {/* Left: photo */}
           <div className="relative min-h-[360px] lg:min-h-0 order-2 lg:order-1">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/property-management-home.jpg"
+            <Image
+              src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
               alt="Orange County Real Estate — Momentum Realty Group"
-              className="absolute inset-0 w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
             {/* Quote overlay */}
             <div className="absolute bottom-8 left-8 right-8">
-              <div className="rounded-xl border border-gold/20 border-l-4 border-l-gold bg-white/95 p-5 shadow-xl backdrop-blur-sm">
+              <div className="bg-white/95 backdrop-blur-sm rounded-xl p-5 border-l-4 border-gold shadow-xl">
                 <p className="font-heading text-foreground text-base italic leading-relaxed">
                   &ldquo;I designed Momentum to break the mold of the traditional brokerage model and put primary focus on the <em>why</em> of my clientele.&rdquo;
                 </p>
                 <div className="flex items-center gap-3 mt-3">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
+                  <Image
                     src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
                     alt="Karl Parize"
+                    width={40}
+                    height={40}
                     className="w-10 h-10 rounded-full object-cover border-2 border-gold/40"
                   />
                   <div>
@@ -79,13 +80,20 @@ export const CTASection = () => {
             </div>
 
             <div className="flex gap-4">
-              <Button asChild variant="cta" size="marketing">
+              <Button
+                asChild
+                className="bg-cta hover:bg-cta-light text-white px-8 h-12 font-display uppercase tracking-wide transition-colors"
+              >
                 <Link href="/team/karl">
                   Meet Karl
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
-              <Button asChild variant="ctaOutline" size="marketing">
+              <Button
+                asChild
+                variant="outline"
+                className="border-charcoal/20 text-charcoal hover:bg-charcoal hover:text-white px-8 h-12 font-display uppercase tracking-wide transition-colors"
+              >
                 <Link href="/contact">Get In Touch</Link>
               </Button>
             </div>
@@ -120,13 +128,22 @@ export const CTASection = () => {
               every step. Reach out today for a no-pressure consultation with Karl.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild variant="cta" size="hero">
+              <Button
+                asChild
+                size="lg"
+                className="bg-cta hover:bg-cta-light text-white font-semibold px-10 h-14 text-base transition-colors border-none shadow-lg"
+              >
                 <Link href="/contact">
                   Schedule a Consultation
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
               </Button>
-              <Button asChild variant="ctaInverse" size="hero">
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border-white/30 text-white hover:bg-white/10 hover:text-white px-10 h-14 text-base transition-colors"
+              >
                 <Link href="/listings">Browse Listings</Link>
               </Button>
             </div>

@@ -1,4 +1,5 @@
 import React from "react";
+import Image from "next/image";
 import { Container } from "@/components/Container";
 import { ContactForm } from "@/components/ContactForm";
 import { StructuredData } from "@/components/StructuredData";
@@ -68,12 +69,13 @@ export default function ContactPage() {
       <StructuredData data={schema} />
       {/* Premium dark hero */}
       <section className="relative py-24 md:py-32 overflow-hidden">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
+        <Image
           src="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover"
+          fill
+          priority
+          className="object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/75 to-black/40" />
         <div className="absolute top-0 left-0 right-0 h-1 bg-gold" />
@@ -130,10 +132,12 @@ export default function ContactPage() {
 
             {/* Karl card */}
             <div className="mt-10 p-6 bg-warm-gray rounded-2xl border border-border flex items-center gap-5">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
+              <Image
                 src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
                 alt="Karl Parize"
+                width={64}
+                height={64}
+                priority
                 className="w-16 h-16 rounded-full object-cover border-2 border-gold/30 flex-shrink-0"
               />
               <div>
