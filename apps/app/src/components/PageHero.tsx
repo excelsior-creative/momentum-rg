@@ -8,6 +8,7 @@ interface PageHeroProps {
   titleAccent?: string;
   subtitle?: string;
   backgroundImage?: string;
+  children?: React.ReactNode;
 }
 
 /**
@@ -20,6 +21,7 @@ export const PageHero = ({
   titleAccent,
   subtitle,
   backgroundImage = "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+  children,
 }: PageHeroProps) => {
   return (
     <section className="relative py-24 md:py-32 overflow-hidden">
@@ -54,6 +56,7 @@ export const PageHero = ({
           {subtitle && (
             <p className="text-white/60 mt-4 text-lg leading-relaxed max-w-xl">{subtitle}</p>
           )}
+          {children}
         </div>
       </Container>
     </section>
