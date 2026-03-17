@@ -33,6 +33,11 @@ const nextConfig: NextConfig = {
         destination: "/articles/:slug",
         permanent: true,
       },
+      {
+        source: "/mortgages",
+        destination: "/foreclosure",
+        permanent: true,
+      },
     ];
   },
   // Image optimization for Core Web Vitals

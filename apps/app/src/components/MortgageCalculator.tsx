@@ -82,8 +82,8 @@ export const MortgageCalculator = () => {
             </h2>
             <p className="text-white/60 mt-5 text-base leading-relaxed">
               Get a quick estimate based on current rates in Orange County.
-              Every situation is unique — we&rsquo;ll help you find the right
-              mortgage product for your goals.
+              Every situation is unique — reach out and we&rsquo;ll help you
+              understand how the numbers fit your broader real-estate goals.
             </p>
 
             {/* Results summary */}
@@ -143,7 +143,7 @@ export const MortgageCalculator = () => {
               href="/contact"
               className="mt-8 inline-flex items-center gap-2 bg-cta hover:bg-cta-light text-white font-display font-semibold uppercase tracking-wide px-8 py-3.5 rounded-xl transition-colors"
             >
-              Talk to a Mortgage Expert
+              Talk With Our Team
               <ArrowRight className="w-4 h-4" />
             </Link>
           </div>

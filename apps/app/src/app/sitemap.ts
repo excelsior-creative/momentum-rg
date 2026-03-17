@@ -21,6 +21,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${SITE_URL}/property-management`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/property-management/multi-unit`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
     { url: `${SITE_URL}/real-estate-solutions`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.75 },
+    { url: `${SITE_URL}/foreclosure`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
     { url: `${SITE_URL}/faqs`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.7 },
     // Area-filtered listing pages for SEO
     { url: `${SITE_URL}/listings?city=long-beach`, lastModified: new Date(), changeFrequency: "weekly", priority: 0.85 },

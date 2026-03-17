@@ -6,7 +6,7 @@ import { AREA_LINKS } from "@/lib/areas";
 const footerLinks = {
   Services: [
     { name: "Real Estate", path: "/real-estate-solutions" },
-    { name: "Mortgages", path: "/mortgages" },
+    { name: "Foreclosure", path: "/foreclosure" },
     { name: "Property Management", path: "/property-management" },
     { name: "Investments", path: "/investments" },
   ],

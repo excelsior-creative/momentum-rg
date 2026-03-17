@@ -30,7 +30,7 @@ const navItems: NavItem[] = [
     path: "/real-estate-solutions",
     children: [
       { name: "Real Estate Solutions", path: "/real-estate-solutions" },
-      { name: "Mortgages", path: "/mortgages" },
+      { name: "Foreclosure", path: "/foreclosure" },
       { name: "Investments", path: "/investments" },
     ],
   },
@@ -52,7 +52,6 @@ const navItems: NavItem[] = [
     ],
   },
   { name: "Articles", path: "/articles" },
-  { name: "FAQs", path: "/faqs" },
 ];
 
 export const Navbar = () => {
@@ -69,6 +68,19 @@ export const Navbar = () => {
 
   return (
     <header className={cn("w-full sticky top-0 z-50 transition-all duration-300", scrolled && "shadow-lg")}>
+      {/* Belt bar - first in menu */}
+      <div className="border-b border-gold/15 bg-neutral-900">
+        <div className="max-w-7xl mx-auto px-4 md:px-10">
+          <div className="flex items-center justify-end gap-6 py-2 text-sm">
+            <Link
+              href="/faqs"
+              className="text-white/70 hover:text-gold transition-colors font-medium"
+            >
+              FAQs
+            </Link>
+          </div>
+        </div>
+      </div>
       {/* Main nav */}
       <nav
         className={cn(

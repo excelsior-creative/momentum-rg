@@ -19,7 +19,7 @@ export const metadata = generatePageMetadata({
     "real estate FAQ",
     "home buying questions",
     "selling a home",
-    "mortgage questions",
+    "foreclosure options California",
     "Orange County real estate",
   ],
 });
@@ -85,15 +85,15 @@ const faqs = [
     ],
   },
   {
-    category: "Mortgages & Financing",
+    category: "Foreclosure & Distressed Properties",
     questions: [
       {
-        q: "What types of loans do you offer guidance on?",
-        a: "We work with a network of trusted lenders offering conventional, FHA, VA, jumbo, and investment property loans. We'll help you understand the differences and match you with the right product for your situation.",
+        q: "What should I do if I've received a Notice of Default?",
+        a: "Contact us immediately. A Notice of Default is the formal start of the foreclosure process in California, and you typically have 90 days before a Notice of Trustee Sale is filed. The earlier we connect, the more options remain open — from loan modification to a structured short sale.",
       },
       {
-        q: "What credit score do I need to get a mortgage?",
-        a: "Conventional loans typically require a 620+ score. FHA loans can go as low as 580 with 3.5% down. VA loans for eligible veterans often have no minimum. The higher your score, the better your rate — even small improvements can save thousands over the life of a loan.",
+        q: "What is a short sale and is it better than foreclosure?",
+        a: "A short sale is when you sell your home for less than you owe, with lender approval. It typically does less damage to your credit than a completed foreclosure, may allow you to stay in the home longer during the process, and can give you more control over the outcome. Our team includes a certified Short Sale & Foreclosure Resource (SFR) who handles these transactions regularly.",
       },
       {
         q: "What is a 1031 exchange and should I use one?",

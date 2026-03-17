@@ -15,11 +15,11 @@ const services = [
   },
   {
     icon: "https://momentumrg.com/wp-content/uploads/2025/06/mortgages.png",
-    title: "Mortgages",
-    tagline: "Easier Than Ever",
+    title: "Foreclosure",
+    tagline: "We Have Your Back",
     description:
-      "We have a variety of mortgage instruments to help you get what you want. Let us help you understand your current mortgage, refinance, or how to best leverage home equity.",
-    href: "/mortgages",
+      "Facing foreclosure? Our certified Short Sale & Foreclosure Resource specialist helps homeowners understand their options, protect their equity, and move forward with a plan.",
+    href: "/foreclosure",
   },
   {
     icon: "https://momentumrg.com/wp-content/uploads/2025/06/prop_management.png",
