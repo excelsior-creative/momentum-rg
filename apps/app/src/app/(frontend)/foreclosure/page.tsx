@@ -1,7 +1,8 @@
-import React from "react";
-import Link from "next/link";
+import { Container } from "@/components/Container";
+import { PageHero } from "@/components/PageHero";
+import { Button } from "@/components/ui/button";
+import { generatePageMetadata } from "@/lib/metadata";
 import {
-  AlertTriangle,
   ArrowRight,
   Clock,
   FileText,
@@ -10,10 +11,7 @@ import {
   Phone,
   ShieldCheck,
 } from "lucide-react";
-import { Container } from "@/components/Container";
-import { PageHero } from "@/components/PageHero";
-import { Button } from "@/components/ui/button";
-import { generatePageMetadata } from "@/lib/metadata";
+import Link from "next/link";
 
 export const revalidate = 3600;
 
@@ -89,26 +87,6 @@ export default function ForeclosurePage() {
         backgroundImage="/about-california-home.png"
       />
 
-      {/* Urgency notice */}
-      <div className="border-b border-amber-200 bg-amber-50 py-4">
-        <Container>
-          <div className="flex items-center gap-3 text-amber-800">
-            <AlertTriangle className="h-5 w-5 shrink-0 text-amber-600" />
-            <p className="text-sm font-medium">
-              Foreclosure timelines are strict.{" "}
-              <strong>If you have received a Notice of Default or Notice of Trustee Sale</strong>,
-              contact us immediately — every day matters.{" "}
-              <a
-                href="tel:8778862699"
-                className="underline underline-offset-2 hover:text-amber-900 transition-colors"
-              >
-                Call (877) 886-2699
-              </a>
-            </p>
-          </div>
-        </Container>
-      </div>
-
       <section className="border-b border-border bg-white py-20 md:py-28">
         <Container>
           <div className="mx-auto mb-14 max-w-2xl text-center">
@@ -119,8 +97,9 @@ export default function ForeclosurePage() {
               Real support for a difficult situation
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Our team includes a certified Short Sale &amp; Foreclosure Resource (SFR) who has
-              spent two decades helping homeowners navigate exactly this. You are not alone.
+              Our team includes a certified Short Sale &amp; Foreclosure
+              Resource (SFR) who has spent two decades helping homeowners
+              navigate exactly this. You are not alone.
             </p>
           </div>
 
@@ -133,8 +112,12 @@ export default function ForeclosurePage() {
                 <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-brand/5">
                   <Icon className="h-6 w-6 text-brand" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-foreground">{title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{description}</p>
+                <h3 className="font-heading text-xl font-bold text-foreground">
+                  {title}
+                </h3>
+                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
+                  {description}
+                </p>
               </div>
             ))}
           </div>
@@ -153,17 +136,20 @@ export default function ForeclosurePage() {
               </h2>
               <div className="mt-5 space-y-4 text-base leading-relaxed text-muted-foreground">
                 <p>
-                  Foreclosure is a multi-phase legal process with strict deadlines — and most
-                  homeowners don&apos;t know what their real options are until it&apos;s too late.
+                  Foreclosure is a multi-phase legal process with strict
+                  deadlines — and most homeowners don&apos;t know what their
+                  real options are until it&apos;s too late.
                 </p>
                 <p>
-                  Our role is to give you the clearest possible picture of where you stand, what
-                  each path costs you, and which approach gives you the best outcome for your
-                  specific situation. No scripts. No hard sells.
+                  Our role is to give you the clearest possible picture of where
+                  you stand, what each path costs you, and which approach gives
+                  you the best outcome for your specific situation. No scripts.
+                  No hard sells.
                 </p>
                 <blockquote className="border-l-4 border-brand/40 pl-5 py-1 italic text-foreground/80">
-                  &ldquo;Together, we can find a perfect, personalized solution for your unique
-                  situation. Our goal is to save your home and your equity.&rdquo;
+                  &ldquo;Together, we can find a perfect, personalized solution
+                  for your unique situation. Our goal is to save your home and
+                  your equity.&rdquo;
                 </blockquote>
                 <p className="text-sm text-muted-foreground">
                   — Esmeralda Novikoff, SFR · SRES · CA DRE #01409881
@@ -191,7 +177,9 @@ export default function ForeclosurePage() {
                       0{index + 1}
                     </div>
                     <div>
-                      <h3 className="font-heading text-lg font-bold text-foreground">{title}</h3>
+                      <h3 className="font-heading text-lg font-bold text-foreground">
+                        {title}
+                      </h3>
                       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                         {description}
                       </p>
@@ -215,9 +203,9 @@ export default function ForeclosurePage() {
                 Foreclosure guidance connected to the full real-estate picture.
               </h2>
               <p className="mt-5 max-w-2xl text-white/70">
-                Because Momentum works across sales, property strategy, and ownership decisions, we
-                help clients think beyond the immediate crisis and focus on what will serve them best
-                over time.
+                Because Momentum works across sales, property strategy, and
+                ownership decisions, we help clients think beyond the immediate
+                crisis and focus on what will serve them best over time.
               </p>
             </div>
 
@@ -233,7 +221,9 @@ export default function ForeclosurePage() {
                   className="rounded-xl border border-white/10 bg-white/5 p-5"
                 >
                   <Icon className="h-5 w-5 text-gold" />
-                  <p className="mt-3 text-sm leading-relaxed text-white/75">{label}</p>
+                  <p className="mt-3 text-sm leading-relaxed text-white/75">
+                    {label}
+                  </p>
                 </div>
               ))}
             </div>
@@ -248,8 +238,9 @@ export default function ForeclosurePage() {
               Facing foreclosure? Let&apos;s talk today.
             </h2>
             <p className="mt-4 text-muted-foreground">
-              We offer free, no-obligation consultations for homeowners in any stage of foreclosure.
-              Reach out now — the earlier we connect, the more options you have.
+              We offer free, no-obligation consultations for homeowners in any
+              stage of foreclosure. Reach out now — the earlier we connect, the
+              more options you have.
             </p>
             <div className="mt-8 flex flex-col justify-center gap-4 sm:flex-row">
               <Button asChild variant="cta" size="marketing">
