@@ -1,12 +1,12 @@
 "use client";
 
+import { cn } from "@/lib/utils";
+import { AnimatePresence, m } from "framer-motion";
+import { ChevronDown, Menu, Phone, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import React, { useState, useEffect } from "react";
-import { m, AnimatePresence } from "framer-motion";
+import { useEffect, useState } from "react";
 import { Logo } from "./Logo";
-import { cn } from "@/lib/utils";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 
 type NavItem = {
@@ -16,6 +16,16 @@ type NavItem = {
 };
 
 const navItems: NavItem[] = [
+  {
+    name: "About",
+    path: "/about",
+    children: [
+      { name: "Meet Our Team", path: "/about" },
+      { name: "Karl Parize", path: "/team/karl" },
+      { name: "Esmeralda Novikoff", path: "/team/esmeralda" },
+      { name: "FAQs", path: "/faqs" },
+    ],
+  },
   {
     name: "Listings",
     path: "/listings",
@@ -35,20 +45,14 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    name: "About",
-    path: "/about",
-    children: [
-      { name: "Meet Our Team", path: "/about" },
-      { name: "Karl Parize", path: "/team/karl" },
-      { name: "Esmeralda Novikoff", path: "/team/esmeralda" },
-    ],
-  },
-  {
     name: "Property Management",
     path: "/property-management",
     children: [
       { name: "Property Management", path: "/property-management" },
-      { name: "Multi Unit Management", path: "/property-management/multi-unit" },
+      {
+        name: "Multi Unit Management",
+        path: "/property-management/multi-unit",
+      },
     ],
   },
   { name: "Articles", path: "/articles" },
@@ -67,34 +71,26 @@ export const Navbar = () => {
   }, []);
 
   return (
-    <header className={cn("w-full sticky top-0 z-50 transition-all duration-300", scrolled && "shadow-lg")}>
-      {/* Belt bar - first in menu */}
-      <div className="border-b border-gold/15 bg-neutral-900">
-        <div className="max-w-7xl mx-auto px-4 md:px-10">
-          <div className="flex items-center justify-end gap-6 py-2 text-sm">
-            <Link
-              href="/faqs"
-              className="text-white/70 hover:text-gold transition-colors font-medium"
-            >
-              FAQs
-            </Link>
-          </div>
-        </div>
-      </div>
+    <header
+      className={cn(
+        "w-full sticky top-0 z-50 transition-all duration-300",
+        scrolled && "shadow-lg",
+      )}
+    >
       {/* Main nav */}
       <nav
         className={cn(
           "border-b border-transparent transition-all duration-300",
           scrolled
             ? "bg-white/95 backdrop-blur-md border-brand/15"
-            : "bg-white"
+            : "bg-white",
         )}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-10">
           <div
             className={cn(
               "relative flex justify-between items-center transition-all duration-300",
-              scrolled ? "py-2" : "py-3.5"
+              scrolled ? "py-2" : "py-3.5",
             )}
           >
             {/* Logo */}
@@ -115,7 +111,7 @@ export const Navbar = () => {
                         "flex items-center gap-1 rounded-md border border-transparent px-3 py-2 text-[15px] font-semibold transition-colors",
                         pathname.startsWith(item.path)
                           ? "border-brand/20 bg-brand/5 text-brand"
-                          : "text-foreground/70 hover:text-brand"
+                          : "text-foreground/90 hover:text-brand",
                       )}
                     >
                       {item.name}
@@ -134,7 +130,7 @@ export const Navbar = () => {
                             <Link
                               key={child.name}
                               href={child.path}
-                              className="block border-l-2 border-transparent px-4 py-2.5 text-[15px] font-medium text-foreground/70 transition-colors hover:border-brand/40 hover:bg-brand/5 hover:text-brand"
+                              className="block border-l-2 border-transparent px-4 py-2.5 text-[15px] font-medium text-foreground/90 transition-colors hover:border-brand/40 hover:bg-brand/5 hover:text-brand"
                               onClick={() => setOpenDropdown(null)}
                             >
                               {child.name}
@@ -152,12 +148,12 @@ export const Navbar = () => {
                       "rounded-md border border-transparent px-3 py-2 text-[15px] font-semibold transition-colors",
                       pathname === item.path
                         ? "border-brand/20 bg-brand/5 text-brand"
-                        : "text-foreground/70 hover:text-brand"
+                        : "text-foreground/90 hover:text-brand",
                     )}
                   >
                     {item.name}
                   </Link>
-                )
+                ),
               )}
             </div>
 
@@ -165,15 +161,12 @@ export const Navbar = () => {
             <div className="hidden lg:flex items-center gap-3">
               <a
                 href="tel:7143363375"
-                className="flex items-center gap-1.5 text-sm font-medium text-foreground/60 transition-colors hover:text-brand"
+                className="flex items-center gap-1.5 text-sm font-medium text-foreground/90 transition-colors hover:text-brand"
               >
                 <Phone className="h-3.5 w-3.5 text-brand" />
                 (714) 336-3375
               </a>
-              <Button
-                asChild
-                variant="cta"
-              >
+              <Button asChild variant="cta">
                 <Link href="/contact">Get Started</Link>
               </Button>
             </div>
@@ -184,7 +177,11 @@ export const Navbar = () => {
               className="rounded-md p-2 text-foreground transition-colors hover:bg-brand/5 hover:text-brand lg:hidden"
               aria-label="Toggle menu"
             >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+              {isOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
             </button>
           </div>
         </div>
@@ -208,7 +205,7 @@ export const Navbar = () => {
                         "block rounded-md border-l-2 py-2 pl-3 text-lg font-semibold transition-colors",
                         pathname === item.path
                           ? "border-brand text-brand"
-                          : "border-transparent text-foreground/80 hover:border-brand/40 hover:text-brand"
+                          : "border-transparent text-foreground/95 hover:border-brand/40 hover:text-brand",
                       )}
                     >
                       {item.name}
@@ -220,7 +217,7 @@ export const Navbar = () => {
                             key={child.name}
                             href={child.path}
                             onClick={() => setIsOpen(false)}
-                            className="rounded-md border-l-2 border-transparent py-1 pl-3 text-base font-medium text-foreground/60 transition-colors hover:border-brand/30 hover:text-brand"
+                            className="rounded-md border-l-2 border-transparent py-1 pl-3 text-base font-medium text-foreground/90 transition-colors hover:border-brand/30 hover:text-brand"
                           >
                             {child.name}
                           </Link>
