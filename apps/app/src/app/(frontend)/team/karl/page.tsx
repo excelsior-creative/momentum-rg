@@ -11,7 +11,7 @@ export const revalidate = 3600
 export const metadata = generatePageMetadata({
   title: 'Karl Parize | Broker & Owner, Momentum Realty Group',
   description:
-    'Meet Karl Parize, Broker/Owner of Momentum Realty Group. 25+ years of real estate expertise across Orange County, LA County, and Riverside County. NMLS #313044.',
+    'Meet Karl Parize, Broker/Owner of Momentum Realty Group. 25+ years of real estate expertise across Orange County, LA County, and Riverside County.',
   path: '/team/karl',
   keywords: [
     'Karl Parize',
@@ -19,7 +19,6 @@ export const metadata = generatePageMetadata({
     'Momentum Realty Group',
     'Long Beach realtor',
     'Orange County broker',
-    'NMLS 313044',
     'CBRE 01364278',
   ],
 })
@@ -104,8 +103,6 @@ export default function KarlPage() {
                   Broker / Owner
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground justify-center lg:justify-start mt-1">
-                  <span>NMLS #313044</span>
-                  <span>·</span>
                   <span>CBRE #01364278</span>
                 </div>
                 <div className="pt-3 space-y-2">

@@ -110,7 +110,6 @@ export const defaultMetadata: Metadata = {
     "Riverside County real estate",
     "Los Angeles County real estate",
     "multi-unit property management",
-    "NMLS 313044",
   ],
   authors: [{ name: SITE_NAME, url: SITE_URL }],
   creator: SITE_NAME,

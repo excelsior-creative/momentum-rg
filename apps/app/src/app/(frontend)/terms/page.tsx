@@ -46,7 +46,7 @@ export default function TermsPage() {
           <p className="text-muted-foreground">
             Momentum Realty Group provides real estate brokerage, mortgage, and property management
             services in Orange County, Los Angeles County, and Riverside County, California. Our licensed
-            professionals hold California DRE license #01364278 and NMLS #313044.
+            professionals hold California DRE license #01364278.
           </p>
           <p className="text-muted-foreground mt-4">
             Information on this Site is provided for general informational purposes only and does not

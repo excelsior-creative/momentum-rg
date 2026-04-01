@@ -144,8 +144,6 @@ export const Hero = () => {
             transition={{ delay: 0.8 }}
             className="mt-12 flex items-center gap-6 text-white/40 text-xs tracking-widest font-display uppercase"
           >
-            <span>NMLS #313044</span>
-            <span className="w-px h-4 bg-white/20" />
             <span>CBRE #01364278</span>
             <span className="w-px h-4 bg-white/20" />
             <span>Est. 2009</span>

@@ -26,7 +26,7 @@ const team = [
     name: 'Karl Parize',
     title: 'Broker / Owner',
     photo: 'https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg',
-    dre: 'CBRE #01364278 · NMLS #313044',
+    dre: 'CBRE #01364278',
     phone: '(714) 336-3375',
     email: 'karl@momentumrg.com',
     href: '/team/karl',

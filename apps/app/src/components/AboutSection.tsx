@@ -48,7 +48,7 @@ export const AboutSection = () => {
                     <p className="text-gold text-xs font-display uppercase tracking-wider mt-0.5">
                       Owner &amp; Principal Broker
                     </p>
-                    <p className="text-white/50 text-xs mt-0.5">NMLS #313044 · CBRE #01364278</p>
+                    <p className="text-white/50 text-xs mt-0.5">CBRE #01364278</p>
                   </div>
                 </div>
               </div>

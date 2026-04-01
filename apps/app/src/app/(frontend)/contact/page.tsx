@@ -145,7 +145,7 @@ export default function ContactPage() {
                 <p className="text-xs font-display uppercase tracking-wider text-gold mt-0.5">
                   Broker / Owner
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">NMLS #313044 · CBRE #01364278</p>
+                <p className="text-xs text-muted-foreground mt-1">CBRE #01364278</p>
               </div>
             </div>
           </div>

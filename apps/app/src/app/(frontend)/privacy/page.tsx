@@ -64,7 +64,7 @@ export default function PrivacyPage() {
             <li>Respond to your inquiries and provide real estate services</li>
             <li>Send you property listings and market updates (with your consent)</li>
             <li>Improve our website and services</li>
-            <li>Comply with applicable legal and regulatory obligations (including California DRE and NMLS requirements)</li>
+            <li>Comply with applicable legal and regulatory obligations (including California DRE requirements)</li>
           </ul>
 
           <h2 className="font-heading text-2xl font-medium mt-10 mb-4 text-foreground">

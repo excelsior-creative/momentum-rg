@@ -104,8 +104,6 @@ export const Footer = async () => {
             reserved.
           </p>
           <div className="flex items-center gap-3 text-xs text-white/40">
-            <span>NMLS #313044</span>
-            <span className="text-gold/60">·</span>
             <span>CBRE #01364278</span>
             <span className="text-gold/60">·</span>
             <Link
