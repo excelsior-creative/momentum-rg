@@ -17,7 +17,7 @@ import {
   Sparkles,
   Wrench,
 } from "lucide-react";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactFormWithProvider } from "@/components/ContactFormWithProvider";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { StructuredData } from "@/components/StructuredData";
@@ -640,7 +640,7 @@ export default function PropertyManagementPage() {
                 pricing, leasing, and management support.
               </p>
               <div className="mt-8">
-                <ContactForm />
+                <ContactFormWithProvider />
               </div>
             </div>
           </div>

@@ -2,7 +2,7 @@
 
 import React, { createContext, useContext, useState, useCallback } from "react";
 import ContactDialog from "./ContactDialog";
-import { GoogleReCaptchaProvider } from 'react-google-recaptcha-v3'
+import { GoogleReCaptchaProvider, useGoogleReCaptcha } from 'react-google-recaptcha-v3'
 
 type ContactDialogContextType = {
   openContactDialog: () => void;
@@ -27,6 +27,11 @@ export function useContactDialog() {
 type ContactDialogProviderProps = {
   children: React.ReactNode;
 };
+
+function ContactDialogBridge({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  return <ContactDialog isOpen={isOpen} onClose={onClose} executeRecaptcha={executeRecaptcha} />;
+}
 
 export function ContactDialogProvider({ children }: ContactDialogProviderProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -57,7 +62,7 @@ export function ContactDialogProvider({ children }: ContactDialogProviderProps) 
               appendTo: 'head',
             }}
           >
-            <ContactDialog isOpen={isOpen} onClose={closeContactDialog} />
+            <ContactDialogBridge isOpen={isOpen} onClose={closeContactDialog} />
           </GoogleReCaptchaProvider>
         ) : (
           <ContactDialog isOpen={isOpen} onClose={closeContactDialog} />

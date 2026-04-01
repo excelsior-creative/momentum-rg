@@ -95,6 +95,9 @@ importers:
       payload:
         specifier: ^3.77.0
         version: 3.77.0(bufferutil@4.1.0)(graphql@16.12.0)(typescript@5.8.3)(utf-8-validate@6.0.6)
+      payload-recaptcha-v3:
+        specifier: ^3.1.1
+        version: 3.1.1(next@16.1.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.77.0(bufferutil@4.1.0)(graphql@16.12.0)(typescript@5.8.3)(utf-8-validate@6.0.6))
       react:
         specifier: ^19.0.0
         version: 19.2.3
@@ -2974,7 +2977,6 @@ packages:
   '@vercel/postgres@0.9.0':
     resolution: {integrity: sha512-WiI2g3+ce2g1u1gP41MoDj2DsMuQQ+us7vHobysRixKECGaLHpfTI7DuVZmHU087ozRAGr3GocSyqmWLLo+fig==}
     engines: {node: '>=14.6'}
-    deprecated: '@vercel/postgres is deprecated. If you are setting up a new database, you can choose an alternate storage solution from the Vercel Marketplace. If you had an existing Vercel Postgres database, it should have been migrated to Neon as a native Vercel integration. You can find more details and the guide to migrate to Neon''s SDKs here: https://neon.com/docs/guides/vercel-postgres-transition-guide'
 
   '@vercel/python@6.4.1':
     resolution: {integrity: sha512-7921TTz4OXQGhiSLpL7A2n7FIOQLA2Pth4f1SXXoU4C4pJT5ds6gdl0F776Osb5XzP0GjZfFKv6gMRvZdP9nHA==}
@@ -5397,6 +5399,13 @@ packages:
     resolution: {integrity: sha512-gDKb8aZMDeD/tZWs9P6+q0J9Mwkdl6xMV8TjnGP3qJVJ06bdMgkbBlLU8IdfOsIsFz2BW1rNVT3XuNEl8zPAvw==}
     engines: {node: '>=8'}
 
+  payload-recaptcha-v3@3.1.1:
+    resolution: {integrity: sha512-j4HyUlDwFS08Nt1QXq7g+SgnmNN9gBijcoTd/OujgUF/Nw1cAj6qZ0XgKkiagOWKJrg2Vcj33PqOYanzlp6z5Q==}
+    engines: {node: ^18.20.2 || >=20.9.0, pnpm: ^9}
+    peerDependencies:
+      next: ^15.0.0
+      payload: ^3.0.0
+
   payload@3.77.0:
     resolution: {integrity: sha512-hIdQ1sWpu0KPb9Okd9HahZxaddhLdFBo476AR5KX/6H9o4NRlQ5a2HZN+pgXO51M9aPbIBkArk8Ph/LvI4U3LQ==}
     engines: {node: ^18.20.2 || >=20.9.0}
@@ -5608,6 +5617,10 @@ packages:
   qs-esm@7.0.2:
     resolution: {integrity: sha512-D8NAthKSD7SGn748v+GLaaO6k08Mvpoqroa35PqIQC4gtUa8/Pb/k+r0m0NnGBVbHDP1gKZ2nVywqfMisRhV5A==}
     engines: {node: '>=18'}
+
+  qs@6.15.0:
+    resolution: {integrity: sha512-mAZTtNCeetKMH+pSjrb76NAM8V9a05I9aBZOHztWy/UqcJdQYNsf59vrRKWnojAT9Y+GbIvoTBC++CPHqpDBhQ==}
+    engines: {node: '>=0.6'}
 
   queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
@@ -12317,6 +12330,12 @@ snapshots:
 
   path-type@4.0.0: {}
 
+  payload-recaptcha-v3@3.1.1(next@16.1.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4))(payload@3.77.0(bufferutil@4.1.0)(graphql@16.12.0)(typescript@5.8.3)(utf-8-validate@6.0.6)):
+    dependencies:
+      next: 16.1.6(@babel/core@7.29.0)(@opentelemetry/api@1.9.0)(@playwright/test@1.57.0)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.3(react@19.2.3))(react@19.2.3)(sass@1.77.4)
+      payload: 3.77.0(bufferutil@4.1.0)(graphql@16.12.0)(typescript@5.8.3)(utf-8-validate@6.0.6)
+      qs: 6.15.0
+
   payload@3.77.0(bufferutil@4.1.0)(graphql@16.12.0)(typescript@5.8.3)(utf-8-validate@6.0.6):
     dependencies:
       '@next/env': 15.5.12
@@ -12560,6 +12579,10 @@ snapshots:
   punycode@2.3.1: {}
 
   qs-esm@7.0.2: {}
+
+  qs@6.15.0:
+    dependencies:
+      side-channel: 1.1.0
 
   queue-microtask@1.2.3: {}
 

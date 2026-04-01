@@ -5,6 +5,7 @@ import React, { useCallback, useState } from "react";
 import { useGoogleReCaptcha } from "react-google-recaptcha-v3";
 
 type FormState = "idle" | "submitting" | "success" | "error";
+type ExecuteRecaptchaFn = (action: string) => Promise<string>;
 
 const INQUIRY_TYPES = [
   "Buying a Home",
@@ -15,7 +16,11 @@ const INQUIRY_TYPES = [
   "General Question",
 ];
 
-export const ContactForm = () => {
+type ContactFormInnerProps = {
+  executeRecaptcha?: ExecuteRecaptchaFn;
+};
+
+export const ContactFormInner = ({ executeRecaptcha }: ContactFormInnerProps) => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -23,8 +28,6 @@ export const ContactForm = () => {
   const [message, setMessage] = useState("");
   const [state, setState] = useState<FormState>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-
-  const { executeRecaptcha } = useGoogleReCaptcha();
 
   const handleSubmit = useCallback(
     async (e: React.FormEvent) => {
@@ -38,10 +41,13 @@ export const ContactForm = () => {
           recaptchaToken = await executeRecaptcha("contact_form");
         }
 
-        const response = await fetch("/api/contact", {
+        const response = await fetch("/api/contact-submissions", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ name, email, message: `${inquiryType ? `[${inquiryType}] ` : ""}${message}${phone ? `\n\nPhone: ${phone}` : ""}`, recaptchaToken }),
+          headers: {
+            "Content-Type": "application/json",
+            ...(recaptchaToken ? { "x-recaptcha-v3": recaptchaToken } : {}),
+          },
+          body: JSON.stringify({ name, email, phone, inquiryType, message }),
         });
 
         const data = await response.json();
@@ -206,4 +212,10 @@ export const ContactForm = () => {
       </p>
     </form>
   );
+};
+
+/** Requires a GoogleReCaptchaProvider ancestor. */
+export const ContactForm = () => {
+  const { executeRecaptcha } = useGoogleReCaptcha();
+  return <ContactFormInner executeRecaptcha={executeRecaptcha} />;
 };

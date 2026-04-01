@@ -5,11 +5,13 @@ import { sentryPlugin } from "@payloadcms/plugin-sentry";
 import { seoPlugin } from "@payloadcms/plugin-seo";
 import { lexicalEditor } from "@payloadcms/richtext-lexical";
 import { vercelBlobStorage } from "@payloadcms/storage-vercel-blob";
+import reCAPTCHAv3 from "payload-recaptcha-v3";
 import path from "path";
 import { buildConfig } from "payload";
 import { fileURLToPath } from "url";
 
 import { Categories } from "@/collections/Categories";
+import { ContactSubmissions } from "@/collections/ContactSubmissions";
 import { ContentGenerationRuns } from "@/collections/ContentGenerationRuns";
 import { Media } from "@/collections/Media";
 import { Posts } from "@/collections/Posts";
@@ -39,7 +41,7 @@ export default buildConfig({
       baseDir: path.resolve(dirname),
     },
   },
-  collections: [Users, Posts, Media, Categories, Tags, Properties, ContentGenerationRuns],
+  collections: [Users, Posts, Media, Categories, Tags, Properties, ContentGenerationRuns, ContactSubmissions],
   globals: [SiteSettings, ContentGenerationSettings],
   editor: lexicalEditor({}),
   secret: process.env.PAYLOAD_SECRET || "",
@@ -99,6 +101,9 @@ export default buildConfig({
           ? `${doc.title} | ${process.env.NEXT_PUBLIC_SITE_NAME || "Your Site"}`
           : process.env.NEXT_PUBLIC_SITE_NAME || "Your Site",
       generateDescription: ({ doc }: any) => doc?.excerpt || "",
+    }),
+    reCAPTCHAv3({
+      secret: process.env.GOOGLE_RECAPTCHA_SECRET || "",
     }),
   ],
 });

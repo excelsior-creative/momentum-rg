@@ -1,7 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Container } from "@/components/Container";
-import { ContactForm } from "@/components/ContactForm";
+import { ContactFormWithProvider } from "@/components/ContactFormWithProvider";
 import { StructuredData } from "@/components/StructuredData";
 import { generatePageMetadata } from "@/lib/metadata";
 import {
@@ -158,7 +158,7 @@ export default function ContactPage() {
             <h2 className="font-heading text-2xl md:text-3xl font-medium mt-3 mb-8 text-foreground">
               How Can We Help?
             </h2>
-            <ContactForm />
+            <ContactFormWithProvider />
           </div>
         </div>
       </Container>

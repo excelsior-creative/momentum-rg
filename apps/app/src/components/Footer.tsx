@@ -61,12 +61,18 @@ export const Footer = async () => {
                 <Mail className="h-4 w-4 text-gold flex-shrink-0" />
                 karl@momentumrg.com
               </a>
-              <div className="flex items-start gap-2.5 text-white/70">
+              <a
+                href="https://maps.google.com/?q=10554+Progress+Way+Unit+C+Cypress+CA+90630"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-2.5 text-white/70 hover:text-gold transition-colors"
+              >
                 <MapPin className="h-4 w-4 text-gold flex-shrink-0 mt-0.5" />
                 <span>
-                  Orange County, Los Angeles County &amp; Riverside County, CA
+                  10554 Progress Way, Unit C<br />
+                  Cypress, CA 90630
                 </span>
-              </div>
+              </a>
             </div>
           </div>
 

@@ -3,14 +3,17 @@
 import { AnimatePresence, m } from "framer-motion";
 import { X } from "lucide-react";
 import React, { useEffect } from "react";
-import { ContactForm } from "./ContactForm";
+import { ContactFormInner } from "./ContactForm";
+
+type ExecuteRecaptchaFn = (action: string) => Promise<string>;
 
 type ContactDialogProps = {
   isOpen: boolean;
   onClose: () => void;
+  executeRecaptcha?: ExecuteRecaptchaFn;
 };
 
-const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onClose }) => {
+const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onClose, executeRecaptcha }) => {
   // Close on Escape key
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
@@ -65,7 +68,7 @@ const ContactDialog: React.FC<ContactDialogProps> = ({ isOpen, onClose }) => {
 
             {/* Content */}
             <div className="relative z-10">
-               <ContactForm />
+               <ContactFormInner executeRecaptcha={executeRecaptcha} />
             </div>
           </m.div>
         </m.div>
