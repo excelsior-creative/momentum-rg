@@ -74,6 +74,7 @@ export interface Config {
     tags: Tag;
     properties: Property;
     'content-generation-runs': ContentGenerationRun;
+    'contact-submissions': ContactSubmission;
     search: Search;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
@@ -89,6 +90,7 @@ export interface Config {
     tags: TagsSelect<false> | TagsSelect<true>;
     properties: PropertiesSelect<false> | PropertiesSelect<true>;
     'content-generation-runs': ContentGenerationRunsSelect<false> | ContentGenerationRunsSelect<true>;
+    'contact-submissions': ContactSubmissionsSelect<false> | ContactSubmissionsSelect<true>;
     search: SearchSelect<false> | SearchSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
@@ -427,6 +429,21 @@ export interface ContentGenerationRun {
   createdAt: string;
 }
 /**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions".
+ */
+export interface ContactSubmission {
+  id: number;
+  name: string;
+  email: string;
+  phone?: string | null;
+  inquiryType?: string | null;
+  message: string;
+  status: 'new' | 'read' | 'replied';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
  * This is a collection of automatically created search results. These results are used by the global site search and will be updated automatically as documents in the CMS are created or updated.
  *
  * This interface was referenced by `Config`'s JSON-Schema
@@ -497,6 +514,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'content-generation-runs';
         value: number | ContentGenerationRun;
+      } | null)
+    | ({
+        relationTo: 'contact-submissions';
+        value: number | ContactSubmission;
       } | null)
     | ({
         relationTo: 'search';
@@ -762,6 +783,20 @@ export interface ContentGenerationRunsSelect<T extends boolean = true> {
         estimatedOutputTokens?: T;
       };
   post?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "contact-submissions_select".
+ */
+export interface ContactSubmissionsSelect<T extends boolean = true> {
+  name?: T;
+  email?: T;
+  phone?: T;
+  inquiryType?: T;
+  message?: T;
+  status?: T;
   updatedAt?: T;
   createdAt?: T;
 }
