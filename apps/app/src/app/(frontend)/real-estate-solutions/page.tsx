@@ -1,19 +1,18 @@
-import React from "react";
-import Image from "next/image";
 import { Container } from "@/components/Container";
 import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
-import Link from "next/link";
 import {
   ArrowRight,
   Home,
-  TrendingUp,
-  Repeat2,
   Landmark,
-  Users,
+  Repeat2,
   Search,
+  TrendingUp,
+  Users,
 } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export const revalidate = 3600;
 
@@ -80,7 +79,6 @@ const solutions = [
 const stats = [
   { value: "25+", label: "Years of Experience" },
   { value: "3", label: "Counties Served" },
-  { value: "$0", label: "Buyer Agent Fee*" },
   { value: "100%", label: "Client-Focused Approach" },
 ];
 
@@ -98,17 +96,16 @@ export default function RealEstateSolutionsPage() {
       {/* Stats */}
       <section className="py-12 border-b border-border">
         <Container>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="grid grid-cols-3 gap-4 sm:gap-8 text-center">
             {stats.map(({ value, label }) => (
               <div key={label}>
-                <p className="font-heading text-3xl md:text-4xl font-bold text-brand">{value}</p>
+                <p className="font-heading text-3xl md:text-4xl font-bold text-brand">
+                  {value}
+                </p>
                 <p className="text-sm text-muted-foreground mt-1">{label}</p>
               </div>
             ))}
           </div>
-          <p className="text-xs text-muted-foreground text-center mt-6">
-            *Buyer agent compensation subject to current NAR settlement guidelines. Ask us for details.
-          </p>
         </Container>
       </section>
 
@@ -137,7 +134,9 @@ export default function RealEstateSolutionsPage() {
                 <div className="w-12 h-12 rounded-lg bg-brand/5 flex items-center justify-center mb-5 group-hover:bg-brand transition-colors duration-300">
                   <Icon className="w-6 h-6 text-brand group-hover:text-white transition-colors" />
                 </div>
-                <h3 className="font-heading text-xl font-bold text-foreground mb-3">{title}</h3>
+                <h3 className="font-heading text-xl font-bold text-foreground mb-3">
+                  {title}
+                </h3>
                 <p className="text-muted-foreground text-sm leading-relaxed flex-1">
                   {description}
                 </p>
@@ -159,8 +158,7 @@ export default function RealEstateSolutionsPage() {
         <Container>
           <div className="max-w-3xl mx-auto text-center">
             <blockquote className="font-heading text-2xl md:text-3xl font-bold text-foreground mb-8 leading-snug">
-              &ldquo;Success begets success when you seek to not only know the
-              history, but the true desired outcome of your clients.&rdquo;
+              &ldquo;The best way to predict your future is to create it.&rdquo;
             </blockquote>
             <div className="flex items-center justify-center gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand relative">
@@ -172,8 +170,12 @@ export default function RealEstateSolutionsPage() {
                 />
               </div>
               <div className="text-left">
-                <p className="font-heading font-bold text-foreground">Karl Parize</p>
-                <p className="text-sm text-muted-foreground">Broker / Owner, Momentum Realty Group</p>
+                <p className="font-heading font-bold text-foreground">
+                  Karl Parize
+                </p>
+                <p className="text-sm text-muted-foreground">
+                  Broker / Owner, Momentum Realty Group
+                </p>
               </div>
             </div>
           </div>

@@ -30,7 +30,7 @@ export const revalidate = 3600;
 export const metadata = generatePageMetadata({
   title: "Property Management in Orange County and Southern California",
   description:
-    "Full-service property management in Orange County, LA County, and Riverside County. Momentum Realty Group helps rental owners with leasing, rent collection, maintenance coordination, reporting, and California compliance support.",
+    "Full-service property management in Orange County, LA County, Riverside County, and San Diego County. Momentum Realty Group helps rental owners with leasing, rent collection, maintenance coordination, reporting, and California compliance support.",
   path: "/property-management",
   keywords: [
     "property management Orange County",
@@ -44,7 +44,7 @@ export const metadata = generatePageMetadata({
 const stats = [
   { value: "25+", label: "Years of Experience" },
   { value: "500+", label: "Transactions Closed" },
-  { value: "3", label: "Counties Served" },
+  { value: "4", label: "Counties Served" },
   { value: "2009", label: "Founded" },
 ];
 
@@ -119,7 +119,7 @@ const differentiators = [
   "Creative solutions other firms cannot offer",
   "Owner-first strategy focused on your long-term goals",
   "Responsive communication with practical decision support",
-  "Coverage across Orange County, LA County, and Riverside County",
+  "Coverage across Orange County, LA County, Riverside County, and San Diego County",
   "Systems built to reduce your involvement, not your returns",
 ];
 
@@ -138,7 +138,7 @@ const faqs = [
   {
     question: "What types of properties do you manage?",
     answer:
-      "We manage single-family homes, condos, multi-unit residential buildings, and select commercial properties across Orange County, Los Angeles County, and Riverside County.",
+      "We manage single-family homes, condos, multi-unit residential buildings, and select commercial properties across Orange County, Los Angeles County, Riverside County, and San Diego County.",
   },
   {
     question: "What does full-service management include?",
@@ -190,6 +190,11 @@ const marketCoverage = [
     title: "Riverside County Investments",
     description:
       "For Inland Empire rentals and growth-oriented portfolios, we help owners stay ahead of vacancy, maintenance, and operational drag while keeping reporting clear and actionable.",
+  },
+  {
+    title: "San Diego County Properties",
+    description:
+      "From North County coastal communities to the urban core, we help San Diego owners manage leasing, resident communications, and day-to-day operations with the same disciplined approach we bring across Southern California.",
   },
 ];
 
@@ -453,7 +458,7 @@ export default function PropertyManagementPage() {
               <div className="grid gap-4 sm:grid-cols-3">
                 {[
                   { stat: "25+", label: "Years of market experience" },
-                  { stat: "3", label: "Southern California counties served" },
+                  { stat: "4", label: "Southern California counties served" },
                   { stat: "Owner", label: "Focused guidance, not generic service" },
                 ].map(({ stat, label }) => (
                   <div
@@ -565,7 +570,7 @@ export default function PropertyManagementPage() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
             {marketCoverage.map(({ title, description }) => (
               <div key={title} className="rounded-2xl border border-border bg-white p-7">
                 <h3 className="font-heading text-xl font-bold text-foreground">{title}</h3>

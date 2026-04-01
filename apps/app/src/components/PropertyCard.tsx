@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Maximize, MapPin } from "lucide-react";
@@ -39,6 +41,33 @@ type PropertyCardProps = {
   property: Property;
 };
 
+function PropertyCardImage({ src, alt }: { src: string; alt: string }) {
+  const [failed, setFailed] = useState(false);
+
+  if (failed) {
+    return (
+      <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-warm-gray to-teal/5 flex items-center justify-center">
+        <MapPin className="h-12 w-12 text-gold/20" />
+      </div>
+    );
+  }
+
+  return (
+    <>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        unoptimized={src.includes("momentumrg.com")}
+        onError={() => setFailed(true)}
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+    </>
+  );
+}
+
 function getImageUrl(property: Property): string | null {
   if (property.featuredImage && typeof property.featuredImage === "object") {
     const media = property.featuredImage as Media;
@@ -68,18 +97,7 @@ export const PropertyCard = ({ property }: PropertyCardProps) => {
       {/* Image area */}
       <div className="relative h-56 bg-warm-gray overflow-hidden flex-shrink-0">
         {imageUrl ? (
-          <>
-            <Image
-              src={imageUrl}
-              alt={property.title}
-              fill
-              className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              unoptimized={imageUrl.includes("momentumrg.com")}
-            />
-            {/* Gradient overlay for badges */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
-          </>
+          <PropertyCardImage src={imageUrl} alt={property.title} />
         ) : (
           <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-warm-gray to-teal/5 flex items-center justify-center">
             <MapPin className="h-12 w-12 text-gold/20" />

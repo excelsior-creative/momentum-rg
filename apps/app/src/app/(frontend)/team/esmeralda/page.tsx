@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { StructuredData } from '@/components/StructuredData'
 import { generatePageMetadata } from '@/lib/metadata'
+import { buildAbsoluteUrl } from '@/lib/metadata'
+import { combineSchemas, generateBreadcrumbSchema, generatePersonSchema } from '@/lib/structured-data'
 import Link from 'next/link'
 
 export const revalidate = 3600
@@ -38,8 +41,28 @@ const specialties = [
 ]
 
 export default function EsmeraldaPage() {
+  const schema = combineSchemas(
+    generatePersonSchema({
+      name: 'Esmeralda Novikoff',
+      jobTitle: 'Real Estate & Foreclosure Specialist',
+      description:
+        'Certified Seniors Real Estate Specialist (SRES) and Short Sale & Foreclosure Resource (SFR) at Momentum Realty Group. Bilingual in English and Spanish. CA DRE #01409881.',
+      telephone: '+18778862699',
+      email: 'esmenovi@yahoo.com',
+      image: '/esmeralda-novikoff.jpg',
+      url: buildAbsoluteUrl('/team/esmeralda'),
+      knowsLanguage: ['English', 'Spanish'],
+    }),
+    generateBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+      { name: 'Esmeralda Novikoff', path: '/team/esmeralda' },
+    ]),
+  )
+
   return (
     <div className="flex flex-col">
+      <StructuredData data={schema} />
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <Image

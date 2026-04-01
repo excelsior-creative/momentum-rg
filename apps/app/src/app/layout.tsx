@@ -1,7 +1,8 @@
 import { defaultMetadata } from "@/lib/metadata";
 import { generateGlobalSchema } from "@/lib/structured-data";
 import { VercelToolbar } from "@vercel/toolbar/next";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { GoogleAnalytics } from "next/third-parties/google";
 import { Montserrat, Playfair_Display, Inter } from "next/font/google";
 import "./globals.css";
 
@@ -28,6 +29,12 @@ const inter = Inter({
 
 export const metadata: Metadata = defaultMetadata;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#ffffff",
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -50,6 +57,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(globalSchema) }}
         />
       </body>
+      {process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID && (
+        <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID} />
+      )}
     </html>
   );
 }

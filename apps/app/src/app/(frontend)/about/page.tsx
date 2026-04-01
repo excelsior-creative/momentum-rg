@@ -1,6 +1,8 @@
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { StructuredData } from '@/components/StructuredData'
 import { generatePageMetadata } from '@/lib/metadata'
+import { generateBreadcrumbSchema } from '@/lib/structured-data'
 import Link from 'next/link'
 
 export const revalidate = 3600
@@ -47,6 +49,12 @@ const team = [
 export default function AboutPage() {
   return (
     <div className="flex flex-col">
+      <StructuredData
+        data={generateBreadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ])}
+      />
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <Image

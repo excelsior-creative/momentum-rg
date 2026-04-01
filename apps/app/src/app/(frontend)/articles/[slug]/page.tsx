@@ -1,12 +1,5 @@
-import React, { cache } from "react";
-import { getPayload } from "payload";
-import config from "@/payload.config";
-import { notFound } from "next/navigation";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { Container } from "@/components/Container";
-import Image from "next/image";
-import Link from "next/link";
-import { Media, Post } from "@/payload-types";
 import { StructuredData } from "@/components/StructuredData";
 import { Button } from "@/components/ui/button";
 import { generateArticleMetadata } from "@/lib/metadata";
@@ -15,8 +8,15 @@ import {
   generateArticleSchema,
   generateBreadcrumbSchema,
 } from "@/lib/structured-data";
+import { Media, Post } from "@/payload-types";
+import config from "@/payload.config";
+import { Calendar } from "lucide-react";
 import type { Metadata } from "next";
-import { ArrowLeft, Calendar } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { getPayload } from "payload";
+import React, { cache } from "react";
 
 export const dynamic = "force-dynamic";
 const ARTICLE_FALLBACK_HERO = "/article-fallback-hero.jpg";
@@ -43,12 +43,15 @@ export async function generateMetadata({
     if (!post) return {};
 
     const featuredImage =
-      (post.meta?.image as Media | undefined) || (post.featuredImage as Media | undefined);
+      (post.meta?.image as Media | undefined) ||
+      (post.featuredImage as Media | undefined);
 
     return generateArticleMetadata({
       title: post.meta?.title || post.title,
       description:
-        post.meta?.description || post.excerpt || `${post.title} — Momentum Realty Group real estate insights.`,
+        post.meta?.description ||
+        post.excerpt ||
+        `${post.title} — Momentum Realty Group real estate insights.`,
       slug,
       ogImage: featuredImage?.url || ARTICLE_FALLBACK_HERO,
       publishedTime: post.publishedDate || undefined,
@@ -76,7 +79,8 @@ function renderNode(node: any, idx: number): React.ReactNode {
       );
 
     case "heading": {
-      const rawTag = (node.tag as "h1" | "h2" | "h3" | "h4" | "h5" | "h6") || "h2";
+      const rawTag =
+        (node.tag as "h1" | "h2" | "h3" | "h4" | "h5" | "h6") || "h2";
       const Tag = rawTag === "h1" ? "h2" : rawTag;
       const cls =
         Tag === "h2"
@@ -246,13 +250,6 @@ export default async function PostPage({
               { label: post.title },
             ]}
           />
-          <Link
-            href="/articles"
-            className="inline-flex items-center gap-1.5 text-white/60 hover:text-gold text-sm font-display transition-colors mb-8"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            Back to Articles
-          </Link>
           {dateStr && (
             <div className="flex items-center gap-2 text-gold text-xs font-semibold uppercase tracking-wider font-display mb-4">
               <Calendar className="w-3.5 h-3.5" />
@@ -263,7 +260,9 @@ export default async function PostPage({
             {post.title}
           </h1>
           {post.excerpt && (
-            <p className="text-white/60 mt-4 text-lg max-w-2xl leading-relaxed">{post.excerpt}</p>
+            <p className="text-white/60 mt-4 text-lg max-w-2xl leading-relaxed">
+              {post.excerpt}
+            </p>
           )}
         </Container>
       </section>
@@ -283,9 +282,12 @@ export default async function PostPage({
           {infographic?.url && (
             <div className="mt-12 rounded-2xl border border-border bg-card p-4 md:p-6">
               <div className="mb-4">
-                <p className="font-heading text-2xl text-foreground">Quick Visual Summary</p>
+                <p className="font-heading text-2xl text-foreground">
+                  Quick Visual Summary
+                </p>
                 <p className="text-sm text-muted-foreground">
-                  A shareable infographic built from the article&rsquo;s key takeaways.
+                  A shareable infographic built from the article&rsquo;s key
+                  takeaways.
                 </p>
               </div>
               <div className="overflow-hidden rounded-xl border border-border">
@@ -306,7 +308,8 @@ export default async function PostPage({
               Ready to explore Orange County real estate?
             </p>
             <p className="text-white/60 mb-6">
-              Momentum Realty Group serves OC, LA, and Riverside Counties. Let&rsquo;s talk.
+              Momentum Realty Group serves OC, LA, and Riverside Counties.
+              Let&rsquo;s talk.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild variant="cta" size="marketing">

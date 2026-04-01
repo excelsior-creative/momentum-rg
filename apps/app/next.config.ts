@@ -42,6 +42,7 @@ const nextConfig: NextConfig = {
   },
   // Image optimization for Core Web Vitals
   images: {
+    unoptimized: process.env.NODE_ENV === "development",
     formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {

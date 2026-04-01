@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import { Container } from '@/components/Container'
+import { StructuredData } from '@/components/StructuredData'
 import { generatePageMetadata } from '@/lib/metadata'
+import { buildAbsoluteUrl } from '@/lib/metadata'
+import { combineSchemas, generateBreadcrumbSchema, generatePersonSchema } from '@/lib/structured-data'
 import Link from 'next/link'
 
 export const revalidate = 3600
@@ -22,8 +25,27 @@ export const metadata = generatePageMetadata({
 })
 
 export default function KarlPage() {
+  const schema = combineSchemas(
+    generatePersonSchema({
+      name: 'Karl Parize',
+      jobTitle: 'Broker / Owner',
+      description:
+        'Broker and Owner of Momentum Realty Group with 25+ years of real estate, mortgage, and financial planning expertise across Orange County, LA County, and Riverside County.',
+      telephone: '+17143363375',
+      email: 'karl@momentumrg.com',
+      image: 'https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg',
+      url: buildAbsoluteUrl('/team/karl'),
+    }),
+    generateBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'About', path: '/about' },
+      { name: 'Karl Parize', path: '/team/karl' },
+    ]),
+  )
+
   return (
     <div className="flex flex-col">
+      <StructuredData data={schema} />
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <Image

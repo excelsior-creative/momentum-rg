@@ -8,6 +8,8 @@ import { Container } from "@/components/Container";
 import { Bed, Bath, Maximize, Car, MapPin, Calendar, Hash, ChevronLeft, Phone, Mail } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
+import { generateListingSchema } from "@/lib/structured-data";
+import { StructuredData } from "@/components/StructuredData";
 import type { Property } from "@/payload-types";
 import type { Metadata } from "next";
 
@@ -153,32 +155,7 @@ export default async function PropertyDetailPage({
 
   return (
     <div>
-      {/* JSON-LD Schema for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "RealEstateListing",
-            name: property.title,
-            description: property.excerpt || undefined,
-            url: `https://momentumrg.com/listings/${property.slug}`,
-            ...(property.price && { offers: { "@type": "Offer", price: property.price, priceCurrency: "USD" } }),
-            ...(fullAddress && {
-              address: {
-                "@type": "PostalAddress",
-                streetAddress: property.address || undefined,
-                addressLocality: property.city || undefined,
-                addressRegion: property.state || "CA",
-                postalCode: property.zipCode || undefined,
-                addressCountry: "US",
-              },
-            }),
-            ...(images[0] && { image: images[0] }),
-            ...(property.bedrooms && { numberOfRooms: property.bedrooms }),
-          }),
-        }}
-      />
+      <StructuredData data={generateListingSchema({ property, images })} />
 
       {/* Header bar */}
       <div className="bg-charcoal py-10 relative">

@@ -255,6 +255,43 @@ export function generateListingSchema({
   };
 }
 
+export function generatePersonSchema({
+  name,
+  jobTitle,
+  description,
+  telephone,
+  email,
+  image,
+  url,
+  knowsLanguage,
+}: {
+  name: string;
+  jobTitle: string;
+  description?: string;
+  telephone?: string;
+  email?: string;
+  image?: string;
+  url?: string;
+  knowsLanguage?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${url || SITE_URL}#person`,
+    name,
+    jobTitle,
+    ...(description ? { description } : {}),
+    ...(telephone ? { telephone } : {}),
+    ...(email ? { email } : {}),
+    ...(image ? { image: absoluteMediaUrl(image) || image } : {}),
+    ...(url ? { url } : {}),
+    ...(knowsLanguage ? { knowsLanguage } : {}),
+    worksFor: {
+      "@id": BUSINESS_ID,
+    },
+  };
+}
+
 export function generateGlobalSchema() {
   return combineSchemas(generateBusinessSchema(), generateWebSiteSchema());
 }

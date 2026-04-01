@@ -1,8 +1,7 @@
-import React from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { Container } from "./Container";
 import { ArrowRight } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { Container } from "./Container";
 
 const services = [
   {
@@ -12,14 +11,6 @@ const services = [
     description:
       "With over 25 years of experience, we offer creative solutions that other firms cannot. Contact us today to learn how we can save you time and money on your next real estate transaction.",
     href: "/real-estate-solutions",
-  },
-  {
-    icon: "https://momentumrg.com/wp-content/uploads/2025/06/mortgages.png",
-    title: "Foreclosure",
-    tagline: "We Have Your Back",
-    description:
-      "Facing foreclosure? Our certified Short Sale & Foreclosure Resource specialist helps homeowners understand their options, protect their equity, and move forward with a plan.",
-    href: "/foreclosure",
   },
   {
     icon: "https://momentumrg.com/wp-content/uploads/2025/06/prop_management.png",
@@ -37,6 +28,14 @@ const services = [
       "Keeping our finger on the pulse, our network of analysts helps you understand the market. We have a long history of clients who have found success with investment properties.",
     href: "/investments",
   },
+  {
+    icon: "https://momentumrg.com/wp-content/uploads/2025/06/mortgages.png",
+    title: "Foreclosure",
+    tagline: "We Have Your Back",
+    description:
+      "Facing foreclosure? Our certified Short Sale & Foreclosure Resource specialist helps homeowners understand their options, protect their equity, and move forward with a plan.",
+    href: "/foreclosure",
+  },
 ];
 
 export const ServicesSection = () => {
@@ -52,7 +51,8 @@ export const ServicesSection = () => {
           </h2>
           <p className="text-muted-foreground mt-4 max-w-2xl mx-auto text-base leading-relaxed">
             From buying your first home to managing your investment portfolio,
-            Momentum Realty Group handles every aspect of your real estate journey.
+            Momentum Realty Group handles every aspect of your real estate
+            journey.
           </p>
         </div>
 
@@ -72,7 +72,10 @@ export const ServicesSection = () => {
                   alt={service.title}
                   fill
                   className="object-contain"
-                  style={{ filter: "brightness(0) saturate(100%) invert(57%) sepia(38%) saturate(571%) hue-rotate(6deg) brightness(97%) contrast(87%)" }}
+                  style={{
+                    filter:
+                      "brightness(0) saturate(100%) invert(57%) sepia(38%) saturate(571%) hue-rotate(6deg) brightness(97%) contrast(87%)",
+                  }}
                 />
               </div>
 
