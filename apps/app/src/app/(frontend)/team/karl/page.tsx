@@ -19,7 +19,7 @@ export const metadata = generatePageMetadata({
     'Momentum Realty Group',
     'Long Beach realtor',
     'Orange County broker',
-    'CBRE 01364278',
+    'DRE 01364278',
   ],
 })
 
@@ -31,7 +31,7 @@ export default function KarlPage() {
       description:
         'Broker and Owner of Momentum Realty Group with 25+ years of real estate, mortgage, and financial planning expertise across Orange County, LA County, and Riverside County.',
       telephone: '+17143363375',
-      email: 'karl@momentumrg.com',
+      email: 'kparize@momentumrg.com',
       image: 'https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg',
       url: buildAbsoluteUrl('/team/karl'),
     }),
@@ -103,7 +103,7 @@ export default function KarlPage() {
                   Broker / Owner
                 </p>
                 <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-muted-foreground justify-center lg:justify-start mt-1">
-                  <span>CBRE #01364278</span>
+                  <span>DRE #01364278</span>
                 </div>
                 <div className="pt-3 space-y-2">
                   <a
@@ -114,11 +114,11 @@ export default function KarlPage() {
                     (714) 336-3375
                   </a>
                   <a
-                    href="mailto:karl@momentumrg.com"
+                    href="mailto:kparize@momentumrg.com"
                     className="flex items-center gap-2 text-sm text-foreground hover:text-teal transition-colors justify-center lg:justify-start"
                   >
                     <span className="text-teal">✉</span>
-                    karl@momentumrg.com
+                    kparize@momentumrg.com
                   </a>
                 </div>
               </div>

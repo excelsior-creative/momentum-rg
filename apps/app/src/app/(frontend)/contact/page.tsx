@@ -9,7 +9,7 @@ import {
   generateBreadcrumbSchema,
   generateContactPageSchema,
 } from "@/lib/structured-data";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Printer } from "lucide-react";
 import type { Metadata } from "next";
 
 export const revalidate = 3600;
@@ -35,10 +35,16 @@ const contactDetails = [
     href: "tel:7143363375",
   },
   {
+    icon: Printer,
+    label: "Fax",
+    value: "(714) 908-8088",
+    href: "tel:7149088088",
+  },
+  {
     icon: Mail,
     label: "Email",
-    value: "karl@momentumrg.com",
-    href: "mailto:karl@momentumrg.com",
+    value: "kparize@momentumrg.com",
+    href: "mailto:kparize@momentumrg.com",
   },
   {
     icon: MapPin,
@@ -145,7 +151,7 @@ export default function ContactPage() {
                 <p className="text-xs font-display uppercase tracking-wider text-gold mt-0.5">
                   Broker / Owner
                 </p>
-                <p className="text-xs text-muted-foreground mt-1">CBRE #01364278</p>
+                <p className="text-xs text-muted-foreground mt-1">DRE #01364278</p>
               </div>
             </div>
           </div>

@@ -93,8 +93,8 @@ export default function PrivacyPage() {
           </ul>
           <p className="text-muted-foreground mt-4">
             To exercise these rights, contact us at{" "}
-            <a href="mailto:karl@momentumrg.com" className="text-brand hover:underline">
-              karl@momentumrg.com
+            <a href="mailto:kparize@momentumrg.com" className="text-brand hover:underline">
+              kparize@momentumrg.com
             </a>
             .
           </p>
@@ -139,7 +139,7 @@ export default function PrivacyPage() {
               <a href="tel:7143363375" className="text-brand hover:underline">(714) 336-3375</a>
             </p>
             <p>
-              <a href="mailto:karl@momentumrg.com" className="text-brand hover:underline">karl@momentumrg.com</a>
+              <a href="mailto:kparize@momentumrg.com" className="text-brand hover:underline">kparize@momentumrg.com</a>
             </p>
           </div>
         </div>

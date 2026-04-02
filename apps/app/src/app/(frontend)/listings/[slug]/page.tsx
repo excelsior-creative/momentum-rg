@@ -321,7 +321,7 @@ export default async function PropertyDetailPage({
                   <div>
                     <p className="font-bold text-foreground">Karl Parize</p>
                     <p className="text-sm text-muted-foreground">Broker / Owner</p>
-                    <p className="text-xs text-muted-foreground">BRE# 01364278</p>
+                    <p className="text-xs text-muted-foreground">DRE #01364278</p>
                   </div>
                 </div>
 
@@ -334,11 +334,11 @@ export default async function PropertyDetailPage({
                     (714) 336-3375
                   </a>
                   <a
-                    href="mailto:karl@momentumrg.com"
+                    href="mailto:kparize@momentumrg.com"
                     className="flex items-center gap-3 text-sm text-foreground hover:text-teal transition-colors"
                   >
                     <Mail className="w-4 h-4 text-teal shrink-0" />
-                    karl@momentumrg.com
+                    kparize@momentumrg.com
                   </a>
                 </div>
 

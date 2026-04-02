@@ -1,4 +1,4 @@
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Printer } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { AREA_LINKS } from "@/lib/areas";
@@ -55,11 +55,18 @@ export const Footer = async () => {
                 (714) 336-3375
               </a>
               <a
-                href="mailto:karl@momentumrg.com"
+                href="tel:7149088088"
+                className="flex items-center gap-2.5 text-white/70 hover:text-gold transition-colors"
+              >
+                <Printer className="h-4 w-4 text-gold flex-shrink-0" />
+                (714) 908-8088
+              </a>
+              <a
+                href="mailto:kparize@momentumrg.com"
                 className="flex items-center gap-2.5 text-white/70 hover:text-gold transition-colors"
               >
                 <Mail className="h-4 w-4 text-gold flex-shrink-0" />
-                karl@momentumrg.com
+                kparize@momentumrg.com
               </a>
               <a
                 href="https://maps.google.com/?q=10554+Progress+Way+Unit+C+Cypress+CA+90630"
@@ -104,7 +111,7 @@ export const Footer = async () => {
             reserved.
           </p>
           <div className="flex items-center gap-3 text-xs text-white/40">
-            <span>CBRE #01364278</span>
+            <span>DRE #01364278</span>
             <span className="text-gold/60">·</span>
             <Link
               href="/privacy"

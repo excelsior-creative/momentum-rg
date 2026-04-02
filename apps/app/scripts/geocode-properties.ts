@@ -26,7 +26,7 @@ async function geocode(address: string, city: string, state = "CA"): Promise<{ l
   try {
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "MomentumRealtyGroup/1.0 (karl@momentumrg.com)",
+        "User-Agent": "MomentumRealtyGroup/1.0 (kparize@momentumrg.com)",
         Accept: "application/json",
       },
     });
@@ -58,7 +58,7 @@ async function geocodeByZip(zipCode: string): Promise<{ lat: number; lng: number
   try {
     const res = await fetch(url, {
       headers: {
-        "User-Agent": "MomentumRealtyGroup/1.0 (karl@momentumrg.com)",
+        "User-Agent": "MomentumRealtyGroup/1.0 (kparize@momentumrg.com)",
         Accept: "application/json",
       },
     });

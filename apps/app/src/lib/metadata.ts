@@ -6,7 +6,8 @@ export const SITE_TAGLINE = "Putting Purpose Behind Every Property";
 export const DEFAULT_DESCRIPTION =
   "Momentum Realty Group — Orange County real estate experts. Helping buyers, sellers, and investors across Orange County, LA County, and Riverside County since 2009.";
 export const SITE_PHONE = "+17143363375";
-export const SITE_EMAIL = "karl@momentumrg.com";
+export const SITE_FAX = "+17149088088";
+export const SITE_EMAIL = "kparize@momentumrg.com";
 export const SITE_ADDRESS = {
   streetAddress: "10554 Progress Way, Unit C",
   addressLocality: "Cypress",
