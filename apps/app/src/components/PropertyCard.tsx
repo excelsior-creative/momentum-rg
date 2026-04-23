@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Bed, Bath, Maximize, MapPin } from "lucide-react";
 import type { Property, Media } from "@/payload-types";
+import { wpMediaUrlFromAny } from "@/lib/wpMediaUrl";
 
 function formatPrice(price: number) {
   return new Intl.NumberFormat("en-US", {
@@ -75,7 +76,7 @@ function getImageUrl(property: Property): string | null {
   }
   if (property.wpImageUrls && property.wpImageUrls.length > 0) {
     const first = property.wpImageUrls[0];
-    if (first?.url) return first.url;
+    if (first?.url) return wpMediaUrlFromAny(first.url);
   }
   return null;
 }

@@ -11,6 +11,7 @@ import {
 } from "@/lib/structured-data";
 import { Mail, MapPin, Phone, Printer } from "lucide-react";
 import type { Metadata } from "next";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 export const revalidate = 3600;
 
@@ -76,7 +77,7 @@ export default function ContactPage() {
       {/* Premium dark hero */}
       <section className="relative py-24 md:py-32 overflow-hidden">
         <Image
-          src="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
+          src={wpMediaUrl(siteMediaPaths.heroSlideComplex)}
           alt=""
           aria-hidden="true"
           fill
@@ -139,7 +140,7 @@ export default function ContactPage() {
             {/* Karl card */}
             <div className="mt-10 p-6 bg-warm-gray rounded-2xl border border-border flex items-center gap-5">
               <Image
-                src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                src={wpMediaUrl(siteMediaPaths.karlParize)}
                 alt="Karl Parize"
                 width={64}
                 height={64}

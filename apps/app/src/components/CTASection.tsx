@@ -7,6 +7,7 @@ import { m } from "framer-motion";
 import { Container } from "./Container";
 import { Button } from "./ui/button";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 const whyPoints = [
   "25+ years navigating every market cycle",
@@ -26,7 +27,7 @@ export const CTASection = () => {
           {/* Left: photo */}
           <div className="relative min-h-[360px] lg:min-h-0 order-2 lg:order-1">
             <Image
-              src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+              src={wpMediaUrl(siteMediaPaths.aboutCollage)}
               alt="Orange County Real Estate — Momentum Realty Group"
               fill
               className="object-cover"
@@ -40,7 +41,7 @@ export const CTASection = () => {
                 </p>
                 <div className="flex items-center gap-3 mt-3">
                   <Image
-                    src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                    src={wpMediaUrl(siteMediaPaths.karlParize)}
                     alt="Karl Parize"
                     width={40}
                     height={40}

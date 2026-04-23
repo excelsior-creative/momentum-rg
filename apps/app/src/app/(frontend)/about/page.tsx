@@ -4,6 +4,7 @@ import { StructuredData } from '@/components/StructuredData'
 import { generatePageMetadata } from '@/lib/metadata'
 import { generateBreadcrumbSchema } from '@/lib/structured-data'
 import Link from 'next/link'
+import { siteMediaPaths, wpMediaUrl } from '@/lib/wpMediaUrl'
 
 export const revalidate = 3600
 
@@ -25,7 +26,7 @@ const team = [
   {
     name: 'Karl Parize',
     title: 'Broker / Owner',
-    photo: 'https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg',
+    photo: wpMediaUrl(siteMediaPaths.karlParize),
     dre: 'DRE #01364278',
     phone: '(714) 336-3375',
     email: 'kparize@momentumrg.com',
@@ -58,7 +59,7 @@ export default function AboutPage() {
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <Image
-          src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+          src={wpMediaUrl(siteMediaPaths.aboutCollage)}
           alt=""
           aria-hidden="true"
           fill

@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
 import { Post } from "@/payload-types";
 import type { Metadata } from "next";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 export const dynamic = "force-dynamic";
 
@@ -110,7 +111,7 @@ export default async function ArticlesPage({
         {/* Background photo */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg"
+          src={wpMediaUrl(siteMediaPaths.heroOrangeCounty)}
           alt=""
           aria-hidden="true"
           className="absolute inset-0 w-full h-full object-cover"

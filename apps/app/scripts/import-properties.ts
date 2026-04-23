@@ -11,6 +11,7 @@
 import "dotenv/config";
 import { getPayload } from "payload";
 import config from "../src/payload.config";
+import { wpMediaUrl, wpMediaUrlFromAny } from "../src/lib/wpMediaUrl";
 
 // ─── Type Maps ────────────────────────────────────────────────────────────────
 
@@ -137,19 +138,12 @@ async function main() {
           .map((img: any) => {
             const srcFull = img.sizes?.["property_size_rh_map_thumb"]?.source_url ||
               img.sizes?.["full"]?.source_url || "";
-            // Reconstruct from file path
-            if (!srcFull && img.file) {
-              return `https://momentumrg.com/wp-content/uploads/${img.file}`;
-            }
-            return srcFull;
+            const raw =
+              srcFull ||
+              (img.file ? wpMediaUrl(String(img.file).replace(/^\/+/, "")) : "");
+            return raw ? wpMediaUrlFromAny(raw) : "";
           })
           .filter(Boolean);
-
-        // Featured media URL (thumbnail)
-        const featuredImageUrl =
-          wp.featured_media && imageData.length > 0
-            ? `https://momentumrg.com/wp-content/uploads/${imageData[0]?.file || ""}`
-            : null;
 
         // Date added
         const dateAdded = wp.date ? new Date(wp.date).toISOString() : undefined;

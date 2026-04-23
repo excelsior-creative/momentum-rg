@@ -5,6 +5,7 @@ import { generatePageMetadata } from '@/lib/metadata'
 import { buildAbsoluteUrl } from '@/lib/metadata'
 import { combineSchemas, generateBreadcrumbSchema, generatePersonSchema } from '@/lib/structured-data'
 import Link from 'next/link'
+import { siteMediaPaths, wpMediaUrl } from '@/lib/wpMediaUrl'
 
 export const revalidate = 3600
 
@@ -66,7 +67,7 @@ export default function EsmeraldaPage() {
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <Image
-          src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+          src={wpMediaUrl(siteMediaPaths.aboutCollage)}
           alt=""
           aria-hidden="true"
           fill

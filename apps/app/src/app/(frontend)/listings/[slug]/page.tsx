@@ -11,6 +11,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { generateListingSchema } from "@/lib/structured-data";
 import { StructuredData } from "@/components/StructuredData";
 import type { Property } from "@/payload-types";
+import { siteMediaPaths, wpMediaUrl, wpMediaUrlFromAny } from "@/lib/wpMediaUrl";
 import type { Metadata } from "next";
 
 export const dynamic = "force-dynamic";
@@ -124,7 +125,7 @@ export default async function PropertyDetailPage({
   };
 
   const images = ((property as any).wpImageUrls || [])
-    .map((i: { url: string }) => i.url)
+    .map((i: { url: string }) => wpMediaUrlFromAny(i.url))
     .filter(Boolean) as string[];
 
   const fullAddress = [
@@ -312,7 +313,7 @@ export default async function PropertyDetailPage({
                 <div className="flex items-center gap-4 mb-5">
                   <div className="w-14 h-14 rounded-full overflow-hidden bg-gold/10 shrink-0 relative">
                     <Image
-                      src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                      src={wpMediaUrl(siteMediaPaths.karlParize)}
                       alt="Karl Parize"
                       fill
                       className="object-cover"

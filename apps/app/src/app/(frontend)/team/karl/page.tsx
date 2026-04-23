@@ -5,6 +5,7 @@ import { generatePageMetadata } from '@/lib/metadata'
 import { buildAbsoluteUrl } from '@/lib/metadata'
 import { combineSchemas, generateBreadcrumbSchema, generatePersonSchema } from '@/lib/structured-data'
 import Link from 'next/link'
+import { siteMediaPaths, wpMediaUrl } from '@/lib/wpMediaUrl'
 
 export const revalidate = 3600
 
@@ -32,7 +33,7 @@ export default function KarlPage() {
         'Broker and Owner of Momentum Realty Group with 25+ years of real estate, mortgage, and financial planning expertise across Orange County, LA County, and Riverside County.',
       telephone: '+17143363375',
       email: 'kparize@momentumrg.com',
-      image: 'https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg',
+      image: wpMediaUrl(siteMediaPaths.karlParize),
       url: buildAbsoluteUrl('/team/karl'),
     }),
     generateBreadcrumbSchema([
@@ -48,7 +49,7 @@ export default function KarlPage() {
       {/* Hero */}
       <section className="relative min-h-[420px] flex items-center py-24 overflow-hidden">
         <Image
-          src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+          src={wpMediaUrl(siteMediaPaths.aboutCollage)}
           alt=""
           aria-hidden="true"
           fill
@@ -87,7 +88,7 @@ export default function KarlPage() {
               <div className="relative inline-block">
                 <div className="w-52 h-52 rounded-2xl overflow-hidden border-4 border-gold/20 shadow-2xl mx-auto lg:mx-0 relative">
                   <Image
-                    src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                    src={wpMediaUrl(siteMediaPaths.karlParize)}
                     alt="Karl Parize - Broker/Owner, Momentum Realty Group"
                     fill
                     priority

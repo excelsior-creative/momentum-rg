@@ -12,6 +12,7 @@ import { generateBreadcrumbSchema } from "@/lib/structured-data";
 import { ArrowRight } from "lucide-react";
 import type { Metadata } from "next";
 import { AREAS, AREA_SLUGS, type AreaSlug } from "@/lib/areas";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 export async function generateStaticParams() {
   return AREA_SLUGS.map((slug) => ({ slug }));
@@ -131,7 +132,7 @@ export default async function AreaPage({
               </div>
               <div className="flex items-center gap-3 border-t border-border pt-5">
                 <Image
-                  src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                  src={wpMediaUrl(siteMediaPaths.karlParize)}
                   alt="Karl Parize"
                   width={48}
                   height={48}

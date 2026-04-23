@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 export const revalidate = 3600;
 
@@ -90,7 +91,7 @@ export default function RealEstateSolutionsPage() {
         title="Creative Solutions."
         titleAccent="Proven Results."
         subtitle="With over 25 years of experience navigating Southern California real estate, Karl Parize offers solutions that other firms can't. Whether you're buying, selling, or investing — we'll find a way that works for you."
-        backgroundImage="https://momentumrg.com/wp-content/uploads/2025/06/ec0f2dd1aefdaf6488f3e6b01142695d1df501df-scaled.png"
+        backgroundImage={wpMediaUrl(siteMediaPaths.heroSlideWarm)}
       />
 
       {/* Stats */}
@@ -163,7 +164,7 @@ export default function RealEstateSolutionsPage() {
             <div className="flex items-center justify-center gap-4">
               <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-brand relative">
                 <Image
-                  src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                  src={wpMediaUrl(siteMediaPaths.karlParize)}
                   alt="Karl Parize"
                   fill
                   className="object-cover"

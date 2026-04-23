@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { ListingsSearch } from "@/components/ListingsSearch";
 import { AREAS, AREA_SLUGS } from "@/lib/areas";
 import { generatePageMetadata } from "@/lib/metadata";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 import type { Property } from "@/payload-types";
 import type { Metadata } from "next";
 
@@ -187,8 +188,7 @@ export default async function ListingsPage({
         <div
           className="absolute inset-0 bg-cover bg-center opacity-15"
           style={{
-            backgroundImage:
-              "url(https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg)",
+            backgroundImage: `url(${wpMediaUrl(siteMediaPaths.heroOrangeCounty)})`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-transparent" />

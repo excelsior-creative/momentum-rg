@@ -23,6 +23,7 @@ import config from "../src/payload.config";
 import fs from "fs";
 import path from "path";
 import os from "os";
+import { wpMediaUrlFromAny } from "../src/lib/wpMediaUrl";
 
 const args = process.argv.slice(2);
 const DRY_RUN = args.includes("--dry-run");
@@ -93,15 +94,17 @@ async function main() {
       continue;
     }
 
+    const resolvedUrl = wpMediaUrlFromAny(imageUrl);
+
     if (DRY_RUN) {
-      console.log(`  [${i + 1}/${properties.length}] WOULD process "${prop.title}" → ${imageUrl}`);
+      console.log(`  [${i + 1}/${properties.length}] WOULD process "${prop.title}" → ${resolvedUrl}`);
       success++;
       continue;
     }
 
     try {
       // Download image
-      const { buffer, contentType, filename } = await downloadImageToBuffer(imageUrl);
+      const { buffer, contentType, filename } = await downloadImageToBuffer(resolvedUrl);
 
       // Write to temp file (Payload's upload needs a file path or stream)
       const tmpPath = path.join(os.tmpdir(), `mrg_${prop.id}_${filename}`);

@@ -1,11 +1,14 @@
 import { Car, Home, MapPin, School, TrendingUp } from "lucide-react";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
+
+const areaHeroImage = wpMediaUrl(siteMediaPaths.heroOrangeCounty);
 
 export const AREAS = {
   "long-beach": {
     name: "Long Beach",
     county: "Los Angeles County",
     zipCodes: ["90804", "90803", "90815", "90807", "90806"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+    heroImage: areaHeroImage,
     tagline: "Where the Coast Meets Community",
     description:
       "Long Beach is California's seventh-largest city, with a diverse housing stock that ranges from coastal condos and Belmont Shore homes to value-driven duplexes and investment properties near CSULB and downtown.",
@@ -91,7 +94,7 @@ export const AREAS = {
     name: "La Habra",
     county: "Orange County",
     zipCodes: ["90631", "90632"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+    heroImage: areaHeroImage,
     tagline: "Value with Connectivity",
     description:
       "La Habra sits at the northern edge of Orange County and continues to attract buyers who want an Orange County address with more approachable pricing than nearby Fullerton, Brea, or coastal markets.",
@@ -125,7 +128,7 @@ export const AREAS = {
     name: "La Mirada",
     county: "Los Angeles County",
     zipCodes: ["90638"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+    heroImage: areaHeroImage,
     tagline: "Family-Friendly and Well Located",
     description:
       "La Mirada attracts buyers looking for quiet residential neighborhoods, parks, and access to both Orange County and the broader Los Angeles employment base without the pricing pressure of closer-in LA markets.",
@@ -159,7 +162,7 @@ export const AREAS = {
     name: "Anaheim",
     county: "Orange County",
     zipCodes: ["92801", "92802", "92804", "92805", "92806"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+    heroImage: areaHeroImage,
     tagline: "Central Orange County Access",
     description:
       "Anaheim combines major employment centers, entertainment demand, diverse housing stock, and broad price ranges, making it one of the most flexible markets in Orange County for buyers and investors.",
@@ -199,7 +202,7 @@ export const AREAS = {
     name: "Riverside",
     county: "Riverside County",
     zipCodes: ["92501", "92503", "92506", "92507"],
-    heroImage: "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+    heroImage: areaHeroImage,
     tagline: "Affordability with Growth",
     description:
       "Riverside continues to attract buyers and investors priced out of coastal counties, with larger homes, more land, and growth-driven demand tied to the Inland Empire's employment and logistics expansion.",

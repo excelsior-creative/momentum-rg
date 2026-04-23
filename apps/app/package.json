@@ -15,7 +15,9 @@
     "db:push": "payload migrate:fresh --force-accept-warning",
     "type-check": "tsc --noEmit",
     "seed": "cross-env PAYLOAD_SEED=true next dev",
-    "reset:password": "tsx ./scripts/reset-password.ts"
+    "reset:password": "tsx ./scripts/reset-password.ts",
+    "upload:wp-media": "tsx ./scripts/upload-wp-media-to-blob.ts",
+    "upload:wp-media:dry": "tsx ./scripts/upload-wp-media-to-blob.ts --dry-run"
   },
   "dependencies": {
     "@google/genai": "^1.44.0",
@@ -33,6 +35,7 @@
     "@radix-ui/react-label": "^2.1.8",
     "@radix-ui/react-slot": "^1.2.4",
     "@types/leaflet": "^1.9.21",
+    "@vercel/blob": "^0.22.3",
     "@vercel/toolbar": "^0.1.41",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

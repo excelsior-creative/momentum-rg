@@ -43,11 +43,30 @@ export default function RootLayout({
   const globalSchema = generateGlobalSchema();
   const shouldShowToolbar = process.env.NODE_ENV !== "production";
 
+  const mediaBase = process.env.NEXT_PUBLIC_WP_MEDIA_BASE?.trim();
+  let mediaOrigin: string | null = null;
+  if (mediaBase) {
+    try {
+      mediaOrigin = new URL(mediaBase).origin;
+    } catch {
+      mediaOrigin = null;
+    }
+  }
+
   return (
     <html lang="en" className={`${montserrat.variable} ${playfair.variable} ${inter.variable}`}>
       <head>
-        <link rel="preconnect" href="https://momentumrg.com" />
-        <link rel="dns-prefetch" href="https://momentumrg.com" />
+        {mediaOrigin ? (
+          <>
+            <link rel="preconnect" href={mediaOrigin} />
+            <link rel="dns-prefetch" href={mediaOrigin} />
+          </>
+        ) : (
+          <>
+            <link rel="preconnect" href="https://momentumrg.com" />
+            <link rel="dns-prefetch" href="https://momentumrg.com" />
+          </>
+        )}
       </head>
       <body className="font-sans antialiased">
         {children}

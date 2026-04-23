@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Container } from "./Container";
 import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 const stats = [
   { value: "25+", label: "Years Experience" },
@@ -27,7 +28,7 @@ export const AboutSection = () => {
             <div className="relative overflow-hidden rounded-2xl shadow-2xl">
               <div className="relative w-full h-[480px]">
                 <Image
-                  src="https://momentumrg.com/wp-content/uploads/2025/06/New-Project-1-scaled.png"
+                  src={wpMediaUrl(siteMediaPaths.aboutCollage)}
                   alt="Momentum Realty Group — Orange County Real Estate"
                   fill
                   className="object-cover"
@@ -37,7 +38,7 @@ export const AboutSection = () => {
               <div className="absolute bottom-4 left-4 right-4">
                 <div className="bg-charcoal/95 backdrop-blur-sm rounded-xl p-4 flex items-center gap-4 shadow-xl border border-gold/20">
                   <Image
-                    src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+                    src={wpMediaUrl(siteMediaPaths.karlParize)}
                     alt="Karl Parize"
                     width={56}
                     height={56}

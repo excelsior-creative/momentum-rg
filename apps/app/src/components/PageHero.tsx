@@ -1,6 +1,9 @@
 import React from "react";
 import Image from "next/image";
 import { Container } from "./Container";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
+
+const defaultPageHeroBg = wpMediaUrl(siteMediaPaths.heroOrangeCounty);
 
 interface PageHeroProps {
   badge?: string;
@@ -20,7 +23,7 @@ export const PageHero = ({
   title,
   titleAccent,
   subtitle,
-  backgroundImage = "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+  backgroundImage = defaultPageHeroBg,
   children,
 }: PageHeroProps) => {
   return (

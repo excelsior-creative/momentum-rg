@@ -1,5 +1,6 @@
 import React from "react";
 import { Container } from "./Container";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 const testimonials = [
   {
@@ -43,8 +44,7 @@ export const TestimonialsSection = () => {
     <section
       className="py-20 md:py-28 relative overflow-hidden"
       style={{
-        backgroundImage:
-          "url(https://momentumrg.com/wp-content/uploads/2025/06/ec0f2dd1aefdaf6488f3e6b01142695d1df501df-scaled.png)",
+        backgroundImage: `url(${wpMediaUrl(siteMediaPaths.heroSlideWarm)})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}

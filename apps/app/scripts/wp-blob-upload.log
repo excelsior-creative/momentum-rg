@@ -1,0 +1,10 @@
+Root: /Users/bjohnson/Documents/GitHub/momentum-rg/reference/uploads
+Files (images): 52524
+Manifest: /Users/bjohnson/Documents/GitHub/momentum-rg/apps/app/scripts/wp-blob-upload-manifest.json (0 entries)
+Concurrency: 16 | dryRun: false
+
+
+Done. uploaded: 52524 skipped(already in manifest): 0 failed: 0
+
+Set NEXT_PUBLIC_WP_MEDIA_BASE to your Blob store origin (no trailing slash), e.g. from first URL path:
+  https://xg80nx4ndhyxb8fc.public.blob.vercel-storage.com

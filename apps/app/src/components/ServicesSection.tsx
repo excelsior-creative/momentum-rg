@@ -2,10 +2,11 @@ import { ArrowRight } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Container } from "./Container";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 const services = [
   {
-    icon: "https://momentumrg.com/wp-content/uploads/2025/06/image.png",
+    icon: wpMediaUrl(siteMediaPaths.serviceRealEstate),
     title: "Real Estate",
     tagline: "Problem Solved",
     description:
@@ -13,7 +14,7 @@ const services = [
     href: "/real-estate-solutions",
   },
   {
-    icon: "https://momentumrg.com/wp-content/uploads/2025/06/prop_management.png",
+    icon: wpMediaUrl(siteMediaPaths.servicePropMgmt),
     title: "Property Management",
     tagline: "Simple Approach",
     description:
@@ -21,7 +22,7 @@ const services = [
     href: "/property-management",
   },
   {
-    icon: "https://momentumrg.com/wp-content/uploads/2025/06/investments.png",
+    icon: wpMediaUrl(siteMediaPaths.serviceInvestments),
     title: "Investments",
     tagline: "Grow With Us",
     description:
@@ -29,7 +30,7 @@ const services = [
     href: "/investments",
   },
   {
-    icon: "https://momentumrg.com/wp-content/uploads/2025/06/mortgages.png",
+    icon: wpMediaUrl(siteMediaPaths.serviceMortgages),
     title: "Foreclosure",
     tagline: "We Have Your Back",
     description:

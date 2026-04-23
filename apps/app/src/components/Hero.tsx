@@ -6,26 +6,24 @@ import Image from "next/image";
 import { Button } from "./ui/button";
 import { ArrowRight, Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
-// Real OC property photos from Momentum's WP CDN
+// Real OC property photos (Vercel Blob after migration, else legacy WP CDN)
 const SLIDES = [
   {
-    image:
-      "https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg",
+    image: wpMediaUrl(siteMediaPaths.heroOrangeCounty),
     heading: "We do Real Estate",
     accent: "Better",
     body: "Real estate begins with property, but it doesn't end there. At Momentum Realty Group, we're committed to serving your real estate needs through the highest standards of professional excellence, creativity, and service.",
   },
   {
-    image:
-      "https://momentumrg.com/wp-content/uploads/2025/06/ec0f2dd1aefdaf6488f3e6b01142695d1df501df-scaled.png",
+    image: wpMediaUrl(siteMediaPaths.heroSlideWarm),
     heading: "Your Investment",
     accent: "Our Priority",
     body: "From first-time homebuyers to seasoned investors, we bring 25+ years of market expertise and creative problem-solving to every transaction in Orange, Los Angeles, and Riverside Counties.",
   },
   {
-    image:
-      "https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png",
+    image: wpMediaUrl(siteMediaPaths.heroSlideComplex),
     heading: "Complex Deals",
     accent: "Simplified",
     body: "1031 exchanges, multi-unit portfolios, probate sales — we specialize in the transactions other firms can't handle. Our depth of experience turns complicated deals into smooth closings.",
@@ -155,7 +153,7 @@ export const Hero = () => {
       <div className="hidden xl:block absolute bottom-12 right-10 z-20">
         <div className="bg-black/80 backdrop-blur-sm border border-gold/30 rounded-2xl p-5 flex items-center gap-4 shadow-2xl">
           <Image
-            src="https://momentumrg.com/wp-content/uploads/2022/03/Karl-Parize-Realtor-1.jpg"
+            src={wpMediaUrl(siteMediaPaths.karlParize)}
             alt="Karl Parize, Owner"
             width={64}
             height={64}

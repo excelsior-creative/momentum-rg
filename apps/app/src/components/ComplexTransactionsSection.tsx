@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Container } from "./Container";
 import { ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 const points = [
   {
@@ -31,7 +32,7 @@ export const ComplexTransactionsSection = () => {
         {/* Left: photo */}
         <div className="relative min-h-[400px] lg:min-h-0">
           <Image
-            src="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
+            src={wpMediaUrl(siteMediaPaths.heroSlideComplex)}
             alt="Complex Real Estate Transactions"
             fill
             className="object-cover"

@@ -13,6 +13,7 @@
 import "dotenv/config";
 import { getPayload } from "payload";
 import config from "../src/payload.config";
+import { wpMediaUrl, wpMediaUrlFromAny } from "../src/lib/wpMediaUrl";
 
 const WP_BASE = "https://momentumrg.com/wp-json/wp/v2";
 
@@ -76,12 +77,11 @@ async function main() {
     const wpImageUrls = imageData
       .slice(0, 20)
       .map((img: any) => {
-        // Prefer full_url, then url, then reconstruct from file path
-        return (
+        const raw =
           img.full_url ||
           img.url ||
-          (img.file ? `https://momentumrg.com/wp-content/uploads/${img.file}` : null)
-        );
+          (img.file ? wpMediaUrl(String(img.file).replace(/^\/+/, "")) : null);
+        return raw ? wpMediaUrlFromAny(raw) : null;
       })
       .filter(Boolean) as string[];
 

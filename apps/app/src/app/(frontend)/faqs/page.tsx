@@ -7,6 +7,7 @@ import { generatePageMetadata } from "@/lib/metadata";
 import { combineSchemas, generateBreadcrumbSchema, generateFAQSchema } from "@/lib/structured-data";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 
 export const revalidate = 3600;
 
@@ -127,7 +128,7 @@ export default function FAQsPage() {
         title="Frequently Asked"
         titleAccent="Questions"
         subtitle="Real answers to the questions we hear most. Can't find what you're looking for? Reach out directly."
-        backgroundImage="https://momentumrg.com/wp-content/uploads/2025/06/6daf30f51f90728aaf76113795821975d6fd2d41-scaled.png"
+        backgroundImage={wpMediaUrl(siteMediaPaths.heroSlideComplex)}
       />
 
       {/* FAQ Content */}

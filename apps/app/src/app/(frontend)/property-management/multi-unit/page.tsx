@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 import { generatePageMetadata } from "@/lib/metadata";
 import Link from "next/link";
+import { siteMediaPaths, wpMediaUrl } from "@/lib/wpMediaUrl";
 import { ArrowRight, Building2, CheckCircle2 } from "lucide-react";
 
 export const revalidate = 3600;
@@ -78,7 +79,7 @@ export default function MultiUnitManagementPage() {
         title="Your Multifamily Portfolio,"
         titleAccent="Professionally Managed"
         subtitle="Managing multiple units multiplies complexity. Momentum Realty Group brings expertise, systems, and local market knowledge to keep your portfolio performing — with minimal headaches for you."
-        backgroundImage="https://momentumrg.com/wp-content/uploads/2022/03/orange-county-real-estate-2.jpg"
+        backgroundImage={wpMediaUrl(siteMediaPaths.heroOrangeCounty)}
       />
 
       {/* Property Types */}
